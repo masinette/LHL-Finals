@@ -20,6 +20,6 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 
-app.use('/api/users', usersRouter(dbHelpers));
+// app.use('/api/users', usersRouter(dbHelpers));
 
 module.exports = app;
