@@ -28,8 +28,8 @@ CREATE TABLE rooms (
   startDate DATE,
   endDate DATE,
   price INTEGER NOT NULL,
-  petFriendly BOOLEAN,
-  active BOOLEAN,
+  petFriendly BOOLEAN DEFAULT false,
+  active BOOLEAN DEFAULT false,
   address VARCHAR
 );
 
@@ -44,7 +44,7 @@ CREATE TABLE messages (
 
 CREATE TABLE cities (
   id SERIAL PRIMARY KEY NOT NULL,
-  name VARCHAR(255),
+  name VARCHAR(255) NOT NULL,
   latitude DECIMAL,
   longitude DECIMAL
 );
