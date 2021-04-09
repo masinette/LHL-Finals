@@ -4,10 +4,10 @@ import {
 } from 'react';
 import dataReducer, {
   SET_USERS
-} from '../reducer/data_reducer';
+} from '../helpers/dataReducer';
 import axios from 'axios';
 
-const useApplicationData = () => {
+export default function useApplicationData() {
   const [state, dispatch] = useReducer(dataReducer, {
     users: [],
     loading: true,
@@ -35,4 +35,3 @@ const useApplicationData = () => {
   };
 };
 
-export default useApplicationData;
