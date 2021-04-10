@@ -22,6 +22,8 @@ CREATE TABLE users (
 CREATE TABLE rooms (
   id SERIAL PRIMARY KEY NOT NULL,
   user_id INTEGER REFERENCES users(id) ON DELETE CASCADE,
+  title VARCHAR(255) NOT NULL,
+  description TEXT,
   latitude DECIMAL,
   longitude DECIMAL,
   roomSize INTEGER,
@@ -30,7 +32,7 @@ CREATE TABLE rooms (
   price INTEGER NOT NULL,
   petFriendly BOOLEAN DEFAULT false,
   active BOOLEAN DEFAULT false,
-  address VARCHAR
+  address VARCHAR NOT NULL
 );
 
 CREATE TABLE messages (
