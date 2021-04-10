@@ -6,6 +6,7 @@ const {
 
 module.exports = ({
     getUsers,
+    getUser,
     getUserByEmail,
     checkUserLogin,
     addUser
@@ -58,12 +59,12 @@ module.exports = ({
 
     })
 
+    //checks if email and password exists in the DB
     router.post('/login', (req, res) => {
         const {
             email,
             password
         } = req.body;
-        //checks if the email already exists before creating the user
         checkUserLogin(email, password)
             .then(user => {
                 console.log("INSIDE login",user)
@@ -80,7 +81,35 @@ module.exports = ({
             .catch(err => res.json({
                 error: err.message
             }));
+    })
 
+    router.get('/:userid', (req, res) => {
+        getUser(req.params.userid)
+            .then((user) => res.json(user))
+            .catch((err) => res.json({
+                error: err.message
+            }));
+    });
+
+    router.post('/:userid', (req, res) => {
+        const { params } = req.body;
+        console.log("AAAAAALLLLOOOOOO", params, req.params, "body", req.body)
+        // checkUserLogin(email, password)
+        //     .then(user => {
+        //         console.log("INSIDE login",user)
+        //         if (user) {
+        //             res.json(user);
+        //         } else {
+        //             res.json({
+        //                 msg: 'Sorry, wrong password'
+        //             });
+        //         }
+
+        //     })
+        //     .then(newUser => res.json(newUser))
+        //     .catch(err => res.json({
+        //         error: err.message
+        //     }));
     })
 
     return router;
