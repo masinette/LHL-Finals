@@ -15,6 +15,7 @@ CREATE TABLE users (
   level INTEGER NOT NULL,
   address VARCHAR,
   city VARCHAR, 
+  description TEXT,
   email VARCHAR(255) NOT NULL,
   password VARCHAR(255) NOT NULL
 );
@@ -22,6 +23,8 @@ CREATE TABLE users (
 CREATE TABLE rooms (
   id SERIAL PRIMARY KEY NOT NULL,
   user_id INTEGER REFERENCES users(id) ON DELETE CASCADE,
+  title VARCHAR(255),
+  description TEXT,
   latitude DECIMAL,
   longitude DECIMAL,
   roomSize INTEGER,
