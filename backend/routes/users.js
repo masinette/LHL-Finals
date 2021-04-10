@@ -9,7 +9,8 @@ module.exports = ({
     getUser,
     getUserByEmail,
     checkUserLogin,
-    addUser
+    addUser,
+    updateUserDetails
 }) => {
     /* GET users listing with query params http://localhost:3001/api/users?city=Montreal&level=2 */
     router.get('/', (req, res) => {
@@ -94,22 +95,22 @@ module.exports = ({
     router.post('/:userid', (req, res) => {
         const { params } = req.body;
         console.log("AAAAAALLLLOOOOOO", params, req.params, "body", req.body)
-        // checkUserLogin(email, password)
-        //     .then(user => {
-        //         console.log("INSIDE login",user)
-        //         if (user) {
-        //             res.json(user);
-        //         } else {
-        //             res.json({
-        //                 msg: 'Sorry, wrong password'
-        //             });
-        //         }
+        updateUserDetails(req.params.userid, req.body)
+            .then(user => {
+                console.log("INSIDE login",user)
+                if (user) {
+                    res.json(user);
+                } else {
+                    res.json({
+                        msg: 'Sorry, something wrong'
+                    });
+                }
 
-        //     })
-        //     .then(newUser => res.json(newUser))
-        //     .catch(err => res.json({
-        //         error: err.message
-        //     }));
+            })
+            //.then(newUser => res.json(newUser))
+            .catch(err => res.json({
+                error: err.message
+            }));
     })
 
     return router;

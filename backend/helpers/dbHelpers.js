@@ -1,3 +1,5 @@
+const { use } = require("../routes");
+
 module.exports = (db) => {
   const getUsers = (params) => {
     let queryParams = []
@@ -59,6 +61,35 @@ module.exports = (db) => {
         result.rows[0]})
       .catch((err) => err);
   };
+  const updateUserDetails = (userID, params) => {
+    let queryParams = [userID]
+    let queryString = "UPDATE users SET "
+    let keys = [];
+    let values = [];
+    for (let key in params) {
+      if (params[key] !== '') {
+        keys.push(key);
+        queryParams.push(params[key]);
+        values.push(`$${queryParams.length}`);
+      }
+    }
+    queryString += `
+      (${keys}) = (${values})
+      WHERE id = $1
+      RETURNING *
+    `;
+    const query = {
+      text: queryString,
+      values: queryParams
+    };
+    console.log("QUERY", query)
+
+
+    return db
+      .query(query)
+      .then((result) => result.rows[0])
+      .catch((err) => err);
+  };
 
   const checkUserLogin = (email, password) => {
     const query = {
@@ -108,6 +139,7 @@ module.exports = (db) => {
     getUser,
     getUserByEmail,
     addUser,
+    updateUserDetails,
     checkUserLogin,
     getRooms,
   };
