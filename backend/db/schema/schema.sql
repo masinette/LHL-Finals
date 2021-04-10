@@ -11,11 +11,11 @@ CREATE TABLE users (
   id SERIAL PRIMARY KEY NOT NULL,
   firstName VARCHAR(255) NOT NULL,
   lastName VARCHAR(255) NOT NULL,
-  description TEXT,
   is_owner BOOLEAN NOT NULL,
   level INTEGER,
   address VARCHAR,
   city VARCHAR, 
+  description TEXT,
   email VARCHAR(255) NOT NULL,
   password VARCHAR(255) NOT NULL
 );
@@ -23,10 +23,10 @@ CREATE TABLE users (
 CREATE TABLE rooms (
   id SERIAL PRIMARY KEY NOT NULL,
   user_id INTEGER REFERENCES users(id) ON DELETE CASCADE,
+  title VARCHAR(255),
+  description TEXT,
   latitude DECIMAL,
   longitude DECIMAL,
-  title VARCHAR(255) NOT NULL,
-  description TEXT NOT NULL,
   roomSize INTEGER,
   startDate DATE,
   endDate DATE,
@@ -38,8 +38,8 @@ CREATE TABLE rooms (
 
 CREATE TABLE messages (
   id SERIAL PRIMARY KEY NOT NULL,
-  sender INTEGER REFERENCES users(id) ON DELETE CASCADE,
-  receiver INTEGER REFERENCES users(id) ON DELETE CASCADE,
+  sender_id INTEGER REFERENCES users(id) ON DELETE CASCADE,
+  receiver_id INTEGER REFERENCES users(id) ON DELETE CASCADE,
   message TEXT,
   sentDate DATE,
   room_id INTEGER REFERENCES rooms(id) ON DELETE CASCADE
