@@ -1,15 +1,26 @@
 // const { use } = require("../routes");
 
 module.exports = (db) => {
+
+  /* GET users listing with query params http://localhost:3001/api/users?city=Montreal&level=2 */
   const getUsers = (params) => {
-    let queryParams = []
-    let queryString = "SELECT * FROM users "
-    for (let key in params) {
-      if (params[key] !== '') {
-          queryParams.length >= 1 ? queryString += ` AND ` : queryString += `WHERE `
-          queryParams.push(params[key]);
-          queryString += `${key} = $${queryParams.length}`
-      }
+    console.log("PAAARAMS", params.level)
+    const queryParams = [params.city]
+    let queryString = `
+      SELECT * FROM users
+      WHERE CITY= $1 
+      AND `
+    if (Array.isArray(params.level)){
+      params.level.forEach((element, index) => {
+        queryParams.push(element)
+        queryString += `level = $${queryParams.length}`
+        if (params.level[index + 1]) {
+          queryString += " OR "
+        }
+      });
+    } else {
+      queryParams.push(params.level)
+      queryString += `level = $${queryParams.length}`
     }
 
     const query = {
@@ -48,12 +59,12 @@ module.exports = (db) => {
       .catch((err) => err);
   };
 //new user form registering, still missing description, address etc
-  const addUser = (firstName, lastName, is_owner, email, password) => {
+  const addUser = (firstName, lastName, is_owner, level, address, city, description, email, password) => {
     const query = {
-      text: `INSERT INTO users (firstname, lastname, is_owner, email, password) VALUES ($1, $2, $3, $4, $5) RETURNING *`,
-      values: [firstName, lastName, is_owner, email, password],
+      text: `INSERT INTO users (firstname, lastname, is_owner, level, address, city, description, email, password) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING *`,
+      values: [firstName, lastName, is_owner, level, address, city, description, email, password],
     };
-
+    console.log("QUERY", query)
     return db
       .query(query)
       .then((result) => {

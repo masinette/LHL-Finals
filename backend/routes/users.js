@@ -33,15 +33,20 @@ module.exports = ({
     // });
 
     router.post('/', (req, res) => {
+        console.log(req.body)
         const {
             first_name,
             last_name,
             is_owner,
+            level,
+            address,
+            city,
+            description,
             email,
             password
         } = req.body;
         //checks if the email already exists before creating the user
-        getUserByEmail(email)
+       getUserByEmail(email)
             .then(user => {
 
                 if (user) {
@@ -49,7 +54,7 @@ module.exports = ({
                         msg: 'Sorry, a user account with this email already exists'
                     });
                 } else {
-                    return addUser(first_name, last_name, is_owner, email, password)
+                    return addUser(first_name, last_name, is_owner, level, address, city, description, email, password)
                 }
 
             })
