@@ -4,9 +4,12 @@ const { getPostsByUsers } = require("../helpers/dataHelpers");
 
 module.exports = ({ getMessages, getMessageByUser, addMessage, getMessagePosts }) => {
   /* GET messages */
-  router.get("/messages", (req, res) => {
+  router.get("/", (req, res) => {
     getMessages()
-      .then((messages) => res.json(messages))
+      .then((messages) => {
+      // console.log("MESSAGES",messages)
+      res.json(messages)
+  })
       // .then(res.send("Messages"))
       .catch((err) =>
         res.json({
@@ -15,20 +18,28 @@ module.exports = ({ getMessages, getMessageByUser, addMessage, getMessagePosts }
       );
   });
 
-  router.post("/messages", (req, res) => {
+  router.post("/", (req, res) => {
+    const [ sender, reciever, message, sentDate ] = req.body;
 
-    const { sender, reciever, message } = req.body;
-    
-    getMessagePosts()
-      .then((messagesPosts) => {
-        const formattedPosts = getPostsByUsers(messagesPosts);
-        res.json(formattedPosts);
+      getMessages()
+      .then((messages) => {
+        res.json(getMessageByUser);
       })
       .catch((err) =>
         res.json({
           error: err.message,
         })
       );
+    // getMessagePosts()
+    //   .then((messagesPosts) => {
+    //     const formattedPosts = getPostsByUsers(messagesPosts);
+    //     res.json(formattedPosts);
+    //   })
+    //   .catch((err) =>
+    //     res.json({
+    //       error: err.message,
+    //     })
+    //   );
   });
 
 

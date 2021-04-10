@@ -52,56 +52,12 @@ console.log(query)
       .catch((err) => err);
   };
 // WORK IN PROGRESS
-  
-  const getCities = () => {
-    const query = {
-      text: "SELECT * FROM cities",
-    };
-
-    return db
-      .query(query)
-      .then((result) => result.rows)
-      .catch((err) => err);
-  };
-
-
-   const getRooms = () => {
-    const query = {
-      text: "SELECT * FROM rooms",
-    };
-
-    return db
-      .query(query)
-      .then((result) => result.rows)
-      .catch((err) => err);
-  };
-
-   const getRenters = () => {
-    const query = {
-      text: "SELECT * FROM users WHERE owner = false",
-    };
-
-    return db
-      .query(query)
-      .then((result) => result.rows)
-      .catch((err) => err);
-  };
-
-
-
-
-
-
-
 
   return {
     getMessages,
     getMessageByUser,
     addMessage,
-    getMessagePosts,
-    getCities,
-    getRooms,
-    getRenters
+    getMessagePosts
   };
   
 

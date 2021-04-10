@@ -4,13 +4,8 @@ const router = express.Router();
 
 module.exports = ({ getCities }) => {
   /* GET cities */
-  router.get("/cities", (req, res) => {
-    // res.json("city: Cities");
-    res.json("city: Cities");
 
-  });
-
-  router.get("/cities/:id", (req, res) => {
+  router.get("/", (req, res) => {
     const id = req.params.id;
     // res.send(`Cities ${id}`);
 
@@ -23,6 +18,10 @@ module.exports = ({ getCities }) => {
         })
       );
 
+  });
+  router.get("/:id", (req, res) => {
+    // res.json("city: Cities");
+    res.json(cities);
   });
 
   return router;
