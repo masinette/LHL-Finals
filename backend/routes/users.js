@@ -1,8 +1,5 @@
 const express = require('express');
 const router = express.Router();
-const {
-    getPostsByUsers
-} = require('../helpers/dataHelpers');
 
 module.exports = ({
     getUsers,
@@ -21,32 +18,11 @@ module.exports = ({
             }));
     });
 
-    // router.get('/posts', (req, res) => {
-    //     getUsersPosts()
-    //         .then((usersPosts) => {
-    //             const formattedPosts = getPostsByUsers(usersPosts);
-    //             res.json(formattedPosts);
-    //         })
-    //         .catch((err) => res.json({
-    //             error: err.message
-    //         }));
-    // });
 
+    //creates user if email does not already exists
     router.post('/', (req, res) => {
-        console.log(req.body)
-        const {
-            first_name,
-            last_name,
-            is_owner,
-            level,
-            address,
-            city,
-            description,
-            email,
-            password
-        } = req.body;
-        //checks if the email already exists before creating the user
-       getUserByEmail(email)
+
+       getUserByEmail(req.body.email)
             .then(user => {
 
                 if (user) {
@@ -54,7 +30,7 @@ module.exports = ({
                         msg: 'Sorry, a user account with this email already exists'
                     });
                 } else {
-                    return addUser(first_name, last_name, is_owner, level, address, city, description, email, password)
+                    return addUser(req.body)
                 }
 
             })
@@ -97,9 +73,9 @@ module.exports = ({
             }));
     });
 
+    //edit user
     router.post('/:userid', (req, res) => {
         const { params } = req.body;
-        console.log("AAAAAALLLLOOOOOO", params, req.params, "body", req.body)
         updateUserDetails(req.params.userid, req.body)
             .then(user => {
                 console.log("INSIDE login",user)
@@ -112,7 +88,6 @@ module.exports = ({
                 }
 
             })
-            //.then(newUser => res.json(newUser))
             .catch(err => res.json({
                 error: err.message
             }));

@@ -35,6 +35,7 @@ module.exports = (db) => {
       .catch((err) => err);
   };
 
+  //returns user with specified ID  
   const getUser = (id) => {
     const query = {
       text: `SELECT * FROM users WHERE id = $1`,
@@ -47,6 +48,7 @@ module.exports = (db) => {
       .catch((err) => err);
   };
 
+  //returns user with specified email  
   const getUserByEmail = (email) => {
     const query = {
       text: `SELECT * FROM users WHERE email = $1`,
@@ -58,10 +60,15 @@ module.exports = (db) => {
       .then((result) => result.rows[0])
       .catch((err) => err);
   };
-//new user form registering, still missing description, address etc
-  const addUser = (firstName, lastName, is_owner, level, address, city, description, email, password) => {
+
+  //creates new user
+  const addUser = (body) => {
+    const { firstName, lastName, is_owner, level, address, city, description, email, password } = body
     const query = {
-      text: `INSERT INTO users (firstname, lastname, is_owner, level, address, city, description, email, password) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING *`,
+      text: `
+      INSERT INTO users (firstname, lastname, is_owner, level, address, city, description, email, password) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) 
+      RETURNING *
+      `,
       values: [firstName, lastName, is_owner, level, address, city, description, email, password],
     };
     console.log("QUERY", query)
@@ -72,6 +79,8 @@ module.exports = (db) => {
         result.rows[0]})
       .catch((err) => err);
   };
+
+  //edits user
   const updateUserDetails = (userID, params) => {
     let queryParams = [userID]
     let queryString = "UPDATE users SET "
@@ -95,13 +104,13 @@ module.exports = (db) => {
     };
     console.log("QUERY", query)
 
-
     return db
       .query(query)
       .then((result) => result.rows[0])
       .catch((err) => err);
   };
 
+  //validates login credentials
   const checkUserLogin = (email, password) => {
     const query = {
       text: `SELECT * FROM users WHERE email = $1`,
