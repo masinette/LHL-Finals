@@ -33,7 +33,7 @@ CREATE TABLE rooms (
   price INTEGER NOT NULL,
   petFriendly BOOLEAN DEFAULT false,
   active BOOLEAN DEFAULT false,
-  address VARCHAR
+  address VARCHAR NOT NULL
 );
 
 CREATE TABLE messages (

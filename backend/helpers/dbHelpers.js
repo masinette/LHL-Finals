@@ -48,10 +48,22 @@ module.exports = (db) => {
       .catch((err) => err);
   };
 
+  const getRooms = () => {
+    const query = {
+      text: `SELECT * FROM rooms;`
+    }
+
+    return db
+      .query(query)
+      .then((result) => result.rows)
+      .catch(err => err);
+  }
+
   return {
     getUsers,
     getUserByEmail,
     addUser,
     getUsersPosts,
+    getRooms,
   };
 };
