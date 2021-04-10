@@ -1,8 +1,20 @@
 module.exports = (db) => {
-  const getUsers = () => {
+  const getUsers = (params) => {
+    let queryParams = []
+    let queryString = "SELECT * FROM users "
+    for (let key in params) {
+      if (params[key] !== '') {
+          queryParams.length >= 1 ? queryString += ` AND ` : queryString += `WHERE `
+          queryParams.push(params[key]);
+          queryString += `${key} = $${queryParams.length}`
+      }
+    }
+
     const query = {
-      text: "SELECT * FROM users",
+      text: queryString,
+      values: queryParams
     };
+    console.log("QUERY", query)
 
     return db
       .query(query)

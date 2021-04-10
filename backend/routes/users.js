@@ -11,9 +11,9 @@ module.exports = ({
     checkUserLogin,
     addUser
 }) => {
-    /* GET users listing. */
+    /* GET users listing with query params http://localhost:3001/api/users?city=Montreal&level=2 */
     router.get('/', (req, res) => {
-        getUsers()
+        getUsers(req.query)
             .then((users) => res.json(users))
             .catch((err) => res.json({
                 error: err.message
