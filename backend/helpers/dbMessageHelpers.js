@@ -25,7 +25,7 @@ module.exports = (db) => {
   const addMessage = (sender, reciever, message) => {
     const query = {
       text: `INSERT INTO messages (sender, reciever, message ) VALUES ($1, $2, $3, $4) RETURNING *`,
-      values: [firstName, lastName, email, password],
+      values: [sender, reciever, message],
     };
 
     return db

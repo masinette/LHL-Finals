@@ -15,7 +15,10 @@ module.exports = ({ getMessages, getMessageByUser, addMessage, getMessagePosts }
       );
   });
 
-  router.get("/posts", (req, res) => {
+  router.post("/messages", (req, res) => {
+
+    const { sender, reciever, message } = req.body;
+    
     getMessagePosts()
       .then((messagesPosts) => {
         const formattedPosts = getPostsByUsers(messagesPosts);

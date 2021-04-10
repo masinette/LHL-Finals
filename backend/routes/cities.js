@@ -1,11 +1,13 @@
 const express = require("express");
-const dbHelpers = require("../helpers/dbHelpers");
+const dbHelpers = require("../helpers/dbMessageHelpers");
 const router = express.Router();
 
 module.exports = ({ getCities }) => {
   /* GET cities */
   router.get("/cities", (req, res) => {
+    // res.json("city: Cities");
     res.json("city: Cities");
+
   });
 
   router.get("/cities/:id", (req, res) => {
