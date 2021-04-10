@@ -36,6 +36,24 @@ module.exports = (db) => {
       .catch((err) => err);
   };
 
+  const checkUserLogin = (email, password) => {
+    const query = {
+      text: `SELECT * FROM users WHERE email = $1`,
+      values: [email],
+    };
+
+    return db
+      .query(query)
+      .then((result) => {
+        if (result.rows[0].password === password) {
+          return result.rows[0]
+        } else {
+          return false
+        }
+      })
+      .catch((err) => err);
+  };
+
   // const getUsersPosts = () => {
   //   const query = {
   //     text: `SELECT users.id as user_id, first_name, last_name, email, posts.id as post_id, title, content
@@ -65,6 +83,7 @@ module.exports = (db) => {
     getUsers,
     getUserByEmail,
     addUser,
+    checkUserLogin,
     getRooms,
   };
 };

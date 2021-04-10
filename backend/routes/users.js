@@ -7,6 +7,7 @@ const {
 module.exports = ({
     getUsers,
     getUserByEmail,
+    checkUserLogin,
     addUser
 }) => {
     /* GET users listing. */
@@ -30,8 +31,6 @@ module.exports = ({
     // });
 
     router.post('/', (req, res) => {
-
-        console.log("IN post", req.body)
         const {
             first_name,
             last_name,
@@ -49,6 +48,31 @@ module.exports = ({
                     });
                 } else {
                     return addUser(first_name, last_name, is_owner, email, password)
+                }
+
+            })
+            .then(newUser => res.json(newUser))
+            .catch(err => res.json({
+                error: err.message
+            }));
+
+    })
+
+    router.post('/login', (req, res) => {
+        const {
+            email,
+            password
+        } = req.body;
+        //checks if the email already exists before creating the user
+        checkUserLogin(email, password)
+            .then(user => {
+                console.log("INSIDE login",user)
+                if (user) {
+                    res.json(user);
+                } else {
+                    res.json({
+                        msg: 'Sorry, wrong password'
+                    });
                 }
 
             })

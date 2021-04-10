@@ -26,6 +26,6 @@ VALUES
     ('Agatha', 'Crackwood','Looking for some help and company', true, 2, '968 Cranbrooke', 'Toronto', 'agatha@tmail.com', 'test'),
     ('Claris', 'Jones','I love travelling. Culture. Food.', true, 3, '968 Cranbrooke', 'Toronto', 'cjones@tmail.com', 'test'),
     ('Ben', 'Lightyear','Currently reinventing my life', false, 3, '152 Woburn', 'Toronto', 'blightyear@tmail.com', 'test'),
-    ('Frances', 'Bean','I dream about living in Toronto', false, 3, '745 Brookdale', 'Toronto', 'blightyear@tmail.com', 'test'),
+    ('Frances', 'Bean','I dream about living in Toronto', false, 3, '745 Brookdale', 'Toronto', 'frances@tmail.com', 'test'),
     ('Hank', 'Simpson','LOoking for a room in the ciry', false, 1, '968 Melrose', 'Toronto', 'hank@tmail.com', 'test');
     
