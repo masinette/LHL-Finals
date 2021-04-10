@@ -21,32 +21,34 @@ module.exports = (db) => {
       .then((result) => result.rows[0])
       .catch((err) => err);
   };
-
-  const addUser = (firstName, lastName, email, password) => {
+//new user form registering, still missing description, address etc
+  const addUser = (firstName, lastName, is_owner, email, password) => {
     const query = {
-      text: `INSERT INTO users (first_name, last_name, email, password) VALUES ($1, $2, $3, $4) RETURNING *`,
-      values: [firstName, lastName, email, password],
+      text: `INSERT INTO users (firstname, lastname, is_owner, email, password) VALUES ($1, $2, $3, $4, $5) RETURNING *`,
+      values: [firstName, lastName, is_owner, email, password],
     };
 
     return db
       .query(query)
-      .then((result) => result.rows[0])
+      .then((result) => {
+        console.log("apres DB", result.rows[0])
+        result.rows[0]})
       .catch((err) => err);
   };
 
-  const getUsersPosts = () => {
-    const query = {
-      text: `SELECT users.id as user_id, first_name, last_name, email, posts.id as post_id, title, content
-      FROM users
-      INNER JOIN posts
-      ON users.id = posts.user_id`,
-    };
+  // const getUsersPosts = () => {
+  //   const query = {
+  //     text: `SELECT users.id as user_id, first_name, last_name, email, posts.id as post_id, title, content
+  //     FROM users
+  //     INNER JOIN posts
+  //     ON users.id = posts.user_id`,
+  //   };
 
-    return db
-      .query(query)
-      .then((result) => result.rows)
-      .catch((err) => err);
-  };
+  //   return db
+  //     .query(query)
+  //     .then((result) => result.rows)
+  //     .catch((err) => err);
+  // };
 
   const getRooms = () => {
     const query = {
@@ -63,7 +65,6 @@ module.exports = (db) => {
     getUsers,
     getUserByEmail,
     addUser,
-    getUsersPosts,
     getRooms,
   };
 };

@@ -7,8 +7,7 @@ const {
 module.exports = ({
     getUsers,
     getUserByEmail,
-    addUser,
-    getUsersPosts
+    addUser
 }) => {
     /* GET users listing. */
     router.get('/', (req, res) => {
@@ -19,26 +18,28 @@ module.exports = ({
             }));
     });
 
-    router.get('/posts', (req, res) => {
-        getUsersPosts()
-            .then((usersPosts) => {
-                const formattedPosts = getPostsByUsers(usersPosts);
-                res.json(formattedPosts);
-            })
-            .catch((err) => res.json({
-                error: err.message
-            }));
-    });
+    // router.get('/posts', (req, res) => {
+    //     getUsersPosts()
+    //         .then((usersPosts) => {
+    //             const formattedPosts = getPostsByUsers(usersPosts);
+    //             res.json(formattedPosts);
+    //         })
+    //         .catch((err) => res.json({
+    //             error: err.message
+    //         }));
+    // });
 
     router.post('/', (req, res) => {
 
+        console.log("IN post", req.body)
         const {
             first_name,
             last_name,
+            is_owner,
             email,
             password
         } = req.body;
-
+        //checks if the email already exists before creating the user
         getUserByEmail(email)
             .then(user => {
 
@@ -47,7 +48,7 @@ module.exports = ({
                         msg: 'Sorry, a user account with this email already exists'
                     });
                 } else {
-                    return addUser(first_name, last_name, email, password)
+                    return addUser(first_name, last_name, is_owner, email, password)
                 }
 
             })
