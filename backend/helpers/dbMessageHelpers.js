@@ -3,11 +3,11 @@ module.exports = (db) => {
     const query = {
       text: "SELECT * FROM messages",
     };
-console.log(query)
+// console.log(query)
     return db
       .query(query)
       .then((result) => {
-        console.log("RESULT",result)
+        // console.log("RESULT",result)
         return result.rows
       })
       .catch((err) => err);
