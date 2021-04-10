@@ -59,7 +59,7 @@ module.exports = ({
 
     })
 
-    //checks if email and password exists in the DB
+    //checks if email and password exists in the DB to validate login
     router.post('/login', (req, res) => {
         const {
             email,
@@ -67,7 +67,6 @@ module.exports = ({
         } = req.body;
         checkUserLogin(email, password)
             .then(user => {
-                console.log("INSIDE login",user)
                 if (user) {
                     res.json(user);
                 } else {
@@ -83,6 +82,7 @@ module.exports = ({
             }));
     })
 
+    //get the card for one user
     router.get('/:userid', (req, res) => {
         getUser(req.params.userid)
             .then((user) => res.json(user))
