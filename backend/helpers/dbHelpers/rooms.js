@@ -38,7 +38,13 @@ module.exports = (db) => {
       values.push(`$${queryParams.length}`)
     }
 
+    console.log("keys: ", keys)
+    console.log("values: ", values)
+    console.log("queryParams: ", queryParams)
+
     queryString += `(${keys}) VALUES ($${values}) RETURNING *;`
+
+    console.log("query:", queryString)
 
     const query = {
       text: queryString,
