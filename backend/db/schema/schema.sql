@@ -5,6 +5,14 @@ DROP TABLE IF EXISTS cities CASCADE;
 DROP TABLE IF EXISTS interests CASCADE;
 DROP TABLE IF EXISTS users_interests CASCADE;
 
+CREATE TABLE cities (
+  id SERIAL PRIMARY KEY NOT NULL,
+  name VARCHAR(255) NOT NULL,
+  latitude DECIMAL,
+  longitude DECIMAL, 
+  description TEXT,
+  image TEXT
+);
 
 CREATE TABLE users (
   id SERIAL PRIMARY KEY NOT NULL,
@@ -45,14 +53,6 @@ CREATE TABLE messages (
   room_id INTEGER REFERENCES rooms(id) ON DELETE CASCADE
 );
 
-CREATE TABLE cities (
-  id SERIAL PRIMARY KEY NOT NULL,
-  name VARCHAR(255) NOT NULL,
-  latitude DECIMAL,
-  longitude DECIMAL, 
-  description TEXT,
-  image TEXT
-);
 
 CREATE TABLE interests (
   id SERIAL PRIMARY KEY NOT NULL,

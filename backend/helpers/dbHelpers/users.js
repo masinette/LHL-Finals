@@ -5,12 +5,33 @@ module.exports = (db) => {
   /* GET users listing with query params http://localhost:3001/api/users?city=Montreal&level=2 */
   const getUsers = (params) => {
     console.log("PAAARAMS", params.level)
-    const queryParams = [params.city]
+    //const queryParams = [params.city]
+    const queryParams = []
+    //select * from users Join cities on users.city_id = cities.id where name='Montreal';
+    // let queryString = `
+    //   SELECT * FROM users
+    //   WHERE CITY= $1 
+    //   AND `
+    // let queryString = `
+    //   SELECT * FROM users
+    //   JOIN cities ON users.city_id = cities.id
+    //   WHERE name = $1
+    //   AND `
     let queryString = `
       SELECT * FROM users
-      WHERE CITY= $1 
-      AND `
+    `
+    if (params.city) {
+      queryParams.push(params.city);
+      queryString += `
+      JOIN cities ON users.city_id = cities.id
+      WHERE name = $1`
+    }
+    // if(params.level) {
+    //   queryParams.push(params.level)
+    //   queryString += ` AND level = $${queryParams.length} `
+    // }
     if (Array.isArray(params.level)){
+      queryString += " AND "
       params.level.forEach((element, index) => {
         queryParams.push(element)
         queryString += `level = $${queryParams.length}`
@@ -18,9 +39,9 @@ module.exports = (db) => {
           queryString += " OR "
         }
       });
-    } else {
+    } else if (params.level){
       queryParams.push(params.level)
-      queryString += `level = $${queryParams.length}`
+      queryString += `AND level = $${queryParams.length}`
     }
 
     const query = {
