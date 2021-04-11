@@ -1,9 +1,17 @@
 // import logo from './logo.svg';
-import './App.css';
-import useApplicationData from "./hooks/useApplicationData"
+import React from 'react';
+import './App.scss';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import useApplicationData from "./hooks/useApplicationData";
 
-import Messages from "./components/messages/MessagesList"
-import Users from "./components/users/users"
+import CityCards from "./components/cities/CityCards";
+import Messages from "./components/messages/MessagesList";
+import Users from "./components/users/users";
+import TopNav from "./components/layout/Navbar"
+import Hero from "./components/layout/Hero"
+
+
+import { Container, Row, Col } from 'react-bootstrap';
 
 
 const App = () => {
@@ -19,18 +27,25 @@ const App = () => {
 
     return (
     <div className="App" >
-
+{/* 
       <h1> Users </h1>
       <ul> {userList} </ul>
 
       <h1> Messages </h1>
-      <ul> {messageList} </ul>
+      <ul> {messageList} </ul> */}
 
-      <h1> Cities </h1>
-      <ul> {cityList} </ul>
+      <TopNav />
+      <Hero />
+      <Container>
+          <CityCards cities={state.cities} />
+      </Container>
 
-      <h1> Rooms </h1>
-      <ul> {roomList} </ul>
+      {/* <h1> Cities </h1> */}
+      {/* {cityList}  */}
+
+
+      {/* <h1> Rooms </h1> */}
+      {/* <ul> {roomList} </ul> */}
 
 {/* 
     <Messages />
