@@ -26,10 +26,10 @@ module.exports = (db) => {
       .catch((err) => err);
   };
 
-  const addMessage = (sender, receiver, message, sentDate ) => {
+  const addMessage = (sender, receiver, message) => {
     const query = {
-      text: `INSERT INTO messages (sender, receiver, message, sentDate ) VALUES ($1, $2, $3, $4) RETURNING *`,
-      values: [sender, receiver, message, sentDate],
+      text: `INSERT INTO messages (sender, receiver, message) VALUES ($1, $2, $3) RETURNING *`,
+      values: [sender, receiver, message],
     };
 
     return db
