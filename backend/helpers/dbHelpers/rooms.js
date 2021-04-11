@@ -9,10 +9,10 @@ module.exports = (db) => {
     return db
       .query(query)
       .then((result) => result.rows)
-      .catch(console.error("error: ", err));
+      .catch(err => console.error("error: ", err));
   }
 
-  // Get specific room /api/rooms/:id or /api/rooms?id=id
+  // Get specific room /api/rooms/:id
   const getRoom = (id) => {
     const query = {
       text: `SELECT * FROM rooms WHERE id = $1;`,
@@ -76,7 +76,7 @@ module.exports = (db) => {
     WHERE id = $1 
     RETURNING *;`;
 
-    const { user_id, title, description, latitude, longitude, roomSize, startDate, endDate, price, petFriendly, active, address } = body;
+    // const { user_id, title, description, latitude, longitude, roomSize, startDate, endDate, price, petFriendly, active, address } = body;
     const query = {
       text: queryString,
       values: queryParams
@@ -86,7 +86,7 @@ module.exports = (db) => {
       .query(query)
       .then(result => {
         console.log(result)
-        console.log(result.rows)
+        console.log(result.rows)  
         return result.rows
       })
       .catch(err => console.error("error: ", err));
@@ -102,6 +102,8 @@ module.exports = (db) => {
       .then((result) => result.rows)
       .catch(err => err);
   }
+
+  // rooms by level & city_id
 
   return {
     getRooms,

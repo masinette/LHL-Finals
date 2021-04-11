@@ -13,8 +13,8 @@ CREATE TABLE users (
   is_owner BOOLEAN NOT NULL,
   level INTEGER,
   address VARCHAR,
-  city VARCHAR, 
-  description TEXT,
+  city_id INTEGER REFERENCES cities(id) ON DELETE CASCADE,
+  description TEXT NOT NULL,
   email VARCHAR(255) NOT NULL,
   password VARCHAR(255) NOT NULL
 );
@@ -32,7 +32,8 @@ CREATE TABLE rooms (
   price INTEGER NOT NULL,
   petFriendly BOOLEAN DEFAULT false,
   active BOOLEAN DEFAULT false,
-  address VARCHAR NOT NULL
+  city_id INTEGER REFERENCES cities(id) ON DELETE CASCADE,
+  address VARCHAR(255) NOT NULL
 );
 
 CREATE TABLE messages (

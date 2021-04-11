@@ -16,7 +16,7 @@ module.exports = (db) => {
     console.log("userID:", user_id)
     console.log("interest name:", interests)
 
-    // create promises array of all insert commands
+    // create promises array of all insert query commands
     const promises = []
 
     interests.forEach(interest_id => {
