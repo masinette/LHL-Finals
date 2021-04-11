@@ -30,6 +30,7 @@ module.exports = ({ getMessages, getMessageByUser, addMessage, getMessagePosts }
           error: err.message,
         })
       );
+      
     // getMessagePosts()
     //   .then((messagesPosts) => {
     //     const formattedPosts = getPostsByUsers(messagesPosts);

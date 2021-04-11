@@ -49,7 +49,9 @@ CREATE TABLE cities (
   id SERIAL PRIMARY KEY NOT NULL,
   name VARCHAR(255) NOT NULL,
   latitude DECIMAL,
-  longitude DECIMAL
+  longitude DECIMAL, 
+  description TEXT,
+  image TEXT
 );
 
 CREATE TABLE interests (

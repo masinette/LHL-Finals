@@ -7,7 +7,7 @@ export default function CityCards(props) {
   const cityList = props.cities.map((city) => 
   (
     <Card>
-    <Card.Img variant="top" src="images/toronto.png" />
+    <Card.Img variant="top" src="https://images.dailyhive.com/20180116075615/Untitled-design-213.jpg" />
     <Card.Body>
       <Card.Title>
         {city.name}
@@ -17,7 +17,7 @@ export default function CityCards(props) {
       </Card.Text>
     </Card.Body>
     <Card.Footer>
-      <small className="text-muted">Last updated 3 mins ago</small>
+      <small className="text-muted">Last updated today</small>
     </Card.Footer>
   </Card>
 
