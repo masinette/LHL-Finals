@@ -1,0 +1,21 @@
+INSERT INTO interests (name)
+VALUES
+  ('blogging'),
+  ('cooking'),
+  ('collecting'),
+  ('crosswords'),
+  ('dancing'),
+  ('gardening'),
+  ('hiking'),
+  ('knitting'),
+  ('painting'),
+  ('photography'),
+  ('playing music'),
+  ('reading'),
+  ('running'),
+  ('traveling'),
+  ('volunteering'),
+  ('vlogging'),
+  ('woodwork'),
+  ('writing'),
+  ('yoga');

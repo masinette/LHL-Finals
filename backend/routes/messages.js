@@ -19,7 +19,7 @@ module.exports = ({ getMessages, getMessageByUser, addMessage, getMessagePosts }
   });
 
   router.post("/", (req, res) => {
-    const [ sender, reciever, message, sentDate ] = req.body;
+    const [ sender, receiver, message, sentDate ] = req.body;
 
       getMessages()
       .then((messages) => {

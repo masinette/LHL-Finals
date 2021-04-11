@@ -1,3 +1,5 @@
+// const { use } = require("../../routes");
+
 module.exports = (db) => {
 
   const getCities = () => {

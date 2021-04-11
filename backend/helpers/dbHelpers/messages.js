@@ -1,3 +1,5 @@
+// const { use } = require("../../routes");
+
 module.exports = (db) => {
   const getMessages = () => {
     const query = {
@@ -24,10 +26,10 @@ module.exports = (db) => {
       .catch((err) => err);
   };
 
-  const addMessage = (sender, reciever, message, sentDate ) => {
+  const addMessage = (sender, receiver, message, sentDate ) => {
     const query = {
-      text: `INSERT INTO messages (sender, reciever, message, sentDate ) VALUES ($1, $2, $3, $4) RETURNING *`,
-      values: [sender, reciever, message, sentDate],
+      text: `INSERT INTO messages (sender, receiver, message, sentDate ) VALUES ($1, $2, $3, $4) RETURNING *`,
+      values: [sender, receiver, message, sentDate],
     };
 
     return db

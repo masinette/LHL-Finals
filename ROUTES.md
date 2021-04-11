@@ -18,6 +18,8 @@
 /api/messages - GET all messages ?recipient_id=id&listing=listing_id
 /api/messages/ - POST - new message
 
+/api/interests - GET all interests names (for registration survey)
+/api/user_interests - POST add user interests
 
 /api/renters/listings -  GET all rooms
 /api/owners/listings - GET all renters

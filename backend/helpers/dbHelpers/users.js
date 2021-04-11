@@ -1,15 +1,26 @@
 // const { use } = require("../routes");
 
 module.exports = (db) => {
+
+  /* GET users listing with query params http://localhost:3001/api/users?city=Montreal&level=2 */
   const getUsers = (params) => {
-    let queryParams = []
-    let queryString = "SELECT * FROM users "
-    for (let key in params) {
-      if (params[key] !== '') {
-          queryParams.length >= 1 ? queryString += ` AND ` : queryString += `WHERE `
-          queryParams.push(params[key]);
-          queryString += `${key} = $${queryParams.length}`
-      }
+    console.log("PAAARAMS", params.level)
+    const queryParams = [params.city]
+    let queryString = `
+      SELECT * FROM users
+      WHERE CITY= $1 
+      AND `
+    if (Array.isArray(params.level)){
+      params.level.forEach((element, index) => {
+        queryParams.push(element)
+        queryString += `level = $${queryParams.length}`
+        if (params.level[index + 1]) {
+          queryString += " OR "
+        }
+      });
+    } else {
+      queryParams.push(params.level)
+      queryString += `level = $${queryParams.length}`
     }
 
     const query = {
@@ -24,6 +35,7 @@ module.exports = (db) => {
       .catch((err) => err);
   };
 
+  //returns user with specified ID  
   const getUser = (id) => {
     const query = {
       text: `SELECT * FROM users WHERE id = $1`,
@@ -36,6 +48,7 @@ module.exports = (db) => {
       .catch((err) => err);
   };
 
+  //returns user with specified email  
   const getUserByEmail = (email) => {
     const query = {
       text: `SELECT * FROM users WHERE email = $1`,
@@ -47,13 +60,18 @@ module.exports = (db) => {
       .then((result) => result.rows[0])
       .catch((err) => err);
   };
-//new user form registering, still missing description, address etc
-  const addUser = (firstName, lastName, is_owner, email, password) => {
-    const query = {
-      text: `INSERT INTO users (firstname, lastname, is_owner, email, password) VALUES ($1, $2, $3, $4, $5) RETURNING *`,
-      values: [firstName, lastName, is_owner, email, password],
-    };
 
+  //creates new user
+  const addUser = (body) => {
+    const { firstName, lastName, is_owner, level, address, city, description, email, password } = body
+    const query = {
+      text: `
+      INSERT INTO users (firstname, lastname, is_owner, level, address, city, description, email, password) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) 
+      RETURNING *
+      `,
+      values: [firstName, lastName, is_owner, level, address, city, description, email, password],
+    };
+    console.log("QUERY", query)
     return db
       .query(query)
       .then((result) => {
@@ -61,6 +79,8 @@ module.exports = (db) => {
         result.rows[0]})
       .catch((err) => err);
   };
+
+  //edits user
   const updateUserDetails = (userID, params) => {
     let queryParams = [userID]
     let queryString = "UPDATE users SET "
@@ -84,13 +104,13 @@ module.exports = (db) => {
     };
     console.log("QUERY", query)
 
-
     return db
       .query(query)
       .then((result) => result.rows[0])
       .catch((err) => err);
   };
 
+  //validates login credentials
   const checkUserLogin = (email, password) => {
     const query = {
       text: `SELECT * FROM users WHERE email = $1`,
@@ -108,39 +128,13 @@ module.exports = (db) => {
       })
       .catch((err) => err);
   };
-
-  // const getUsersPosts = () => {
-  //   const query = {
-  //     text: `SELECT users.id as user_id, first_name, last_name, email, posts.id as post_id, title, content
-  //     FROM users
-  //     INNER JOIN posts
-  //     ON users.id = posts.user_id`,
-  //   };
-
-  //   return db
-  //     .query(query)
-  //     .then((result) => result.rows)
-  //     .catch((err) => err);
-  // };
-
-  const getRooms = () => {
-    const query = {
-      text: `SELECT * FROM rooms;`
-    }
-
-    return db
-      .query(query)
-      .then((result) => result.rows)
-      .catch(err => err);
-  }
-
+  
   return {
     getUsers,
     getUser,
     getUserByEmail,
     addUser,
     updateUserDetails,
-    checkUserLogin,
-    getRooms,
-  };
-};
+    checkUserLogin
+  }
+}
