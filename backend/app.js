@@ -10,6 +10,7 @@ const dbCitiesHelpers = require('./helpers/dbHelpers/cities')(db);
 const dbUsersHelpers = require('./helpers/dbHelpers/users')(db);
 const dbRoomsHelpers = require('./helpers/dbHelpers/rooms')(db);
 const dbInterestsHelpers = require('./helpers/dbHelpers/interests')(db);
+const dbUserInterestsHelpers = require('./helpers/dbHelpers/userInterests')(db);
 
 
 const indexRouter = require('./routes/index');
@@ -18,6 +19,7 @@ const messagesRouter = require('./routes/messages');
 const citiesRouter = require('./routes/cities');
 const roomsRouter = require('./routes/rooms');
 const interestsRouter = require('./routes/interests');
+const userInterestsRouter = require('./routes/userInterests');
 
 const app = express();
 
@@ -33,6 +35,7 @@ app.use('/api/rooms', roomsRouter(dbRoomsHelpers));
 app.use('/api/messages', messagesRouter(dbMessageHelpers));
 app.use('/api/cities', citiesRouter(dbCitiesHelpers));
 app.use('/api/interests', interestsRouter(dbInterestsHelpers));
+app.use('/api/user_interests', userInterestsRouter(dbUserInterestsHelpers));
 
 // app.use('/api/renters/listings', rentersRouter(dbMessageHelpers));
 // app.use('/api/owners/listings', ownersRouter(dbMessageHelpers));
