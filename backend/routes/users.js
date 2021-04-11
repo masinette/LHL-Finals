@@ -9,7 +9,10 @@ module.exports = ({
     addUser,
     updateUserDetails
 }) => {
-    /* GET users listing with query params http://localhost:3001/api/users?city=Montreal&level=2 */
+    /* GET users listing with query params http://localhost:3001/api/users?city=Montreal&level=2 
+    multiple levels http://localhost:3001/api/users?city=Montreal&level=1&level=2&level=3
+    all users http://localhost:3001/api/users
+    */
     router.get('/', (req, res) => {
         getUsers(req.query)
             .then((users) => res.json(users))
