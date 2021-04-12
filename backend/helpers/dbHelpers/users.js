@@ -5,12 +5,18 @@ module.exports = (db) => {
   /* GET users listing with query params http://localhost:3001/api/users?city=Montreal&level=2 */
   const getUsers = (params) => {
     console.log("PAAARAMS", params.level)
-    const queryParams = [params.city]
+    const queryParams = []
     let queryString = `
       SELECT * FROM users
-      WHERE CITY= $1 
-      AND `
+    `
+    if (params.city) {
+      queryParams.push(params.city);
+      queryString += `
+      JOIN cities ON users.city_id = cities.id
+      WHERE name = $1`
+    }
     if (Array.isArray(params.level)){
+      queryString += " AND "
       params.level.forEach((element, index) => {
         queryParams.push(element)
         queryString += `level = $${queryParams.length}`
@@ -18,9 +24,9 @@ module.exports = (db) => {
           queryString += " OR "
         }
       });
-    } else {
+    } else if (params.level){
       queryParams.push(params.level)
-      queryString += `level = $${queryParams.length}`
+      queryString += `AND level = $${queryParams.length}`
     }
 
     const query = {
@@ -63,13 +69,13 @@ module.exports = (db) => {
 
   //creates new user
   const addUser = (body) => {
-    const { firstName, lastName, is_owner, level, address, city, description, email, password } = body
+    const { firstName, lastName, is_owner, level, address, city_id, description, email, password } = body
     const query = {
       text: `
-      INSERT INTO users (firstname, lastname, is_owner, level, address, city, description, email, password) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) 
+      INSERT INTO users (firstname, lastname, is_owner, level, address, city_id, description, email, password) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) 
       RETURNING *
       `,
-      values: [firstName, lastName, is_owner, level, address, city, description, email, password],
+      values: [firstName, lastName, is_owner, level, address, city_id, description, email, password],
     };
     console.log("QUERY", query)
     return db
