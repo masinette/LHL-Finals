@@ -40,9 +40,6 @@ module.exports = (db) => {
       }
     }
 
-    // Query levels
-    // `SELECT rooms.* FROM rooms JOIN users ON rooms.user_id = users.id WHERE active = true AND rooms.city_id = 4 AND users.level = 1 ;`
-
     queryString += `;`;
     console.log("query: ", queryString);
     console.log("queryparams: ", queryParams);
@@ -69,7 +66,7 @@ module.exports = (db) => {
       .catch(err => console.error("error: ", err));
   }
 
-  // Add new room
+  // Add new room - TODO: only owners can create new rooms. currentUser = rooms.user_id
   const addRoom = (body) => {
     console.log(body)
     let queryString = `INSERT INTO rooms `;
@@ -107,7 +104,7 @@ module.exports = (db) => {
   }
 
 
-  // update existing room 
+  // update existing room - TODO: Only the owners of the room can update/edit room. currentUser = rooms.user_id 
   const updateRoom = (body, room_id) => {
     console.log(body)
     
@@ -142,7 +139,7 @@ module.exports = (db) => {
       .catch(err => console.error("error: ", err));
   }
 
-  // Owners can remove listing *note: owners can also turn active to false using the updateRooms put route*
+  // Owners can remove listing - TODO: Only the owners of the room can delete room. currentUser = rooms.user_id
   const deleteRoom = (room_id) => {
     const queryString = `DELETE FROM rooms WHERE rooms.id = $1;`
     const query = {
