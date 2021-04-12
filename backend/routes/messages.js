@@ -38,9 +38,14 @@ module.exports = ({ getMessages, getMessagesByUser, getMessagesForUser, addMessa
 
 
 //get conversation
- router.get("/thread/:userid", (req, res) => {
+//  router.get("/thread/:userid/:roomid", (req, res) => {
+
+  router.get(`/thread/:userid/:roomid`, (req, res) => {
+
    const userid = req.params.userid;
-    getMessageThread(userid)
+   const roomid = req.params.roomid;
+   
+    getMessageThread(userid, roomid)
       .then((messages) => {
       // console.log("MESSAGES",messages)
       res.json(messages)})
