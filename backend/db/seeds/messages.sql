@@ -3,10 +3,10 @@ INSERT INTO
   /* messages( sender_id, receiver_id, message, sentDate ) */
 
 VALUES
-(1, 2, 'Hi, I want to rent your place', CURRENT_TIMESTAMP, 1, null ),
-(4, 2, 'Hi, I want to rent your place please', CURRENT_TIMESTAMP, 1, null ),
-(2, 1, 'Awesome, I want you to rent my place', CURRENT_TIMESTAMP, 1, null ),
-(2, 4, 'Oh sorry, I already found someone', CURRENT_TIMESTAMP, 1, null );
+(1, 2, 'Hi, I want to rent your place', '2021-04-11 17:12:17.488655', 1, null ),
+(4, 2, 'Hi, I want to rent your place please', '2021-04-11 17:14:17.488655', 1, null ),
+(2, 1, 'Awesome, I want you to rent my place', '2021-04-11 17:22:17.488655', 1, null ),
+(2, 4, 'Oh sorry, I already found someone', '2021-04-11 17:42:17.488655', 1, null );
 
 
  /* (1, 2, 'Is it still available?', CURRENT_TIMESTAMP),

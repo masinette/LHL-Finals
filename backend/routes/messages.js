@@ -19,17 +19,18 @@ module.exports = ({ getMessages, getMessageByUser, addMessage, getMessagePosts }
   });
 
   router.post("/", (req, res) => {
-    const [ sender, receiver, message, sentDate ] = req.body;
+    console.log("BODYYYYY", req.body)
+    //const [ sender, receiver, message ] = req.body;
 
-      getMessages()
-      .then((messages) => {
-        res.json(getMessageByUser);
+    addMessage(req.body)
+    .then((messages) => {
+      res.json(messages);
+    })
+    .catch((err) =>
+      res.json({
+        error: err.message,
       })
-      .catch((err) =>
-        res.json({
-          error: err.message,
-        })
-      );
+    );
       
     // getMessagePosts()
     //   .then((messagesPosts) => {
