@@ -5,7 +5,7 @@ module.exports = (db) => {
     const query = {
       text: "SELECT * FROM messages",
     };
-// console.log(query)
+  // console.log(query)
     return db
       .query(query)
       .then((result) => {
@@ -14,9 +14,10 @@ module.exports = (db) => {
       .catch((err) => err);
   };
 
-  const getMessageByUser = (user) => {
+//get all messages SENT BY user
+  const getMessagesByUser = (user) => {
     const query = {
-      text: `SELECT * FROM messages WHERE user = $1`,
+      text: `SELECT * FROM messages WHERE sender_id = $1`,
       values: [user],
     };
 
@@ -26,10 +27,24 @@ module.exports = (db) => {
       .catch((err) => err);
   };
 
-  const addMessage = (sender, receiver, message, sentDate ) => {
+//get all messages SENT TO user
+  const getMessagesForUser = (user) => {
     const query = {
-      text: `INSERT INTO messages (sender, receiver, message, sentDate ) VALUES ($1, $2, $3, $4) RETURNING *`,
-      values: [sender, receiver, message, sentDate],
+      text: `SELECT * FROM messages WHERE receiver_id = $1`,
+      values: [user],
+  };
+
+    return db
+      .query(query)
+      .then((result) => result.rows[0])
+      .catch((err) => err);
+  };
+
+//add new message 
+  const addMessage = (sender_id, receiver_id, message, sentDate ) => {
+    const query = {
+      text: `INSERT INTO messages (sender_id, receiver_id, message, sentDate ) VALUES ($1, $2, $3, $4) RETURNING *`,
+      values: [sender_id, receiver_id, message, sentDate],
     };
 
     return db
@@ -38,28 +53,39 @@ module.exports = (db) => {
       .catch((err) => err);
   };
 
-// WORK IN PROGRESS
-  const getMessagePosts = () => {
+
+  const getMessageThread = (userid, roomid) => {
     const query = {
-      text: `SELECT messages.id as user_id, first_name, last_name, email, posts.id as post_id, title, content
-      FROM messages
-      INNER JOIN posts
-      ON messages.id = posts.user_id`,
+      // text: `SELECT * FROM messages WHERE sender_id = $1 or receiver_id = $1;`,
+      text: `SELECT * FROM messages WHERE (sender_id = $1 or receiver_id = $1) and (room_id = $2);`,
+      values: [userid, roomid]
     };
 
     return db
       .query(query)
       .then((result) => result.rows)
+      console.log("RESULT",result)
       .catch((err) => err);
   };
-// WORK IN PROGRESS
+
+
 
   return {
     getMessages,
-    getMessageByUser,
+    getMessagesByUser,
+    getMessagesForUser,
     addMessage,
-    getMessagePosts
+    getMessageThread
   };
   
 
 };
+
+
+
+//select messages by room
+// SELECT * FROM messages WHERE sender_id = 2 or receiver_id = 2;
+
+// SELECT * FROM messages WHERE sender_id = 1 or receiver_id = 1 order BY room_id = 1;
+
+// SELECT * FROM messages WHERE (sender_id = 2 or receiver_id = 2) and (room_id = 1);

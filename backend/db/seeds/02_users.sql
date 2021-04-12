@@ -8,7 +8,7 @@ VALUES
     ('Julie', 'Leclerc','I wish to move to Montreal', false, 1, '968 durand', 4, 'julec@tralala.com', 'test'),
     ('Justin', 'Kratt','I would love to help', false, 1, '325 lucerne', 4, 'justin@tralala.com', 'test'),
     ('Ginette', 'Smith','happyly retired', true, 1, '569 allard', 4, 'ginette@tmail.com', 'test'),
-    ('Greg', 'Trahan','happily retired', true, 1, '999 newman', 4, 'greg@tmail.com', 'test'),
+    ('Greg', 'Trahan','happily retired', true, 2, '999 newman', 4, 'greg@tmail.com', 'test'),
     ('Marguerite', 'Westwood','happily retired', true, 1, '999 bertrand', 4, 'marge@tmail.com', 'test'),
     ('Lucy', 'Carrier',' I love sharing my passion for the outdoors', true, 1, '444 wilford', 3, 'lucy@mail.com', 'test'),
     ('Tom', 'Graham','searching for nice place', false, 3, '974 5th anvenue', 3, 'tom@tmail.com', 'test'),

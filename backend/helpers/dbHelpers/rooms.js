@@ -4,7 +4,7 @@ const { param } = require("../../routes");
 
 module.exports = (db) => {
   // Get all rooms by params or no params - LEVELs may need its own db table?
-  // api/rooms, api/rooms?active=true, api/rooms?active=true&city_id=1
+  // api/rooms, api/rooms?active=true, api/rooms?active=true&city_id=1&level=1
   const getRooms = (params) => {
     console.log("params: ", params);
     console.log("params length: ", Object.keys(params).length);
@@ -40,14 +40,10 @@ module.exports = (db) => {
         queryParams.push(params.level);
         queryString += `AND users.level = $${queryParams.length} `;
       }
-
     }
-
 
     // Query levels
     // `SELECT rooms.* FROM rooms JOIN users ON rooms.user_id = users.id WHERE active = true AND rooms.city_id = 4 AND users.level = 1 ;`
-    // `SELECT * FROM cities WHERE id = rooms.city_id`
-    // `SELECT * FROM cities WHERE id = params.city`
 
     queryString += `;`;
     console.log("query: ", queryString);
@@ -113,7 +109,7 @@ module.exports = (db) => {
   }
 
 
-  // update existing room
+  // update existing room 
   const updateRoom = (body, room_id) => {
     console.log(body)
     
@@ -148,25 +144,11 @@ module.exports = (db) => {
       .catch(err => console.error("error: ", err));
   }
 
-  // Get all rooms available for city_id. /api/rooms?city_id=1
-  const getRoomsAvailableInCity = (params) => {
-    const query = {
-      text: `SELECT * FROM rooms WHERE active=true AND city_id = $1;`,
-      values: city_id
-    }
-    return db
-      .query(query)
-      .then((result) => result.rows)
-      .catch(err => err);
-  }
-
-  // rooms by level & city_id
 
   return {
     getRooms,
     getRoom,
     addRoom,
     updateRoom,
-    getRoomsAvailableInCity
   }
 }

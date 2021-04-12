@@ -3,7 +3,8 @@ rooms(user_id, latitude, longitude, title, description, roomSize, startDate, end
 VALUES
   (1, 43.762510, -79.366102, '1 Bedroom', 'Fully furnished bedroom in a 2000 sqft home. Comes with private bath and full access to household amenities(kitchen, l iving room, backyard).', 100, '2021-05-01', '2022-04-30', 500, true, true, '40 Davean Dr.', 1),
   (1, 43.762510, -79.366102, 'Full basement', 'Semi-furnished basement with full kitchen, bathroom and bedroom. Unit come with a separate entrance.', 450, '2021-07-01', '2022-06-30', 850, true, false, '40 Davean Dr.', 1),
-  (6, 45.445729, -73.573923, 'Single Bedroom', 'unfurnished room with full access to shared living space. Chicken Coop with fresh eggs every morning!', 120, '2021-06-01', '2022-05-31', 375, true, true, '569 allard', 4);
+  (6, 45.445729, -73.573923, 'Single Bedroom', 'Unfurnished room with full access to shared living space. Chicken Coop with fresh eggs every morning!', 120, '2021-06-01', '2022-05-31', 375, true, true, '569 allard', 4);
+  (11, 45.445729, -73.573923, 'Single Bedroom', 'Furnished room with shared bathroom and kitchen.', 80, '2021-06-01', '2022-05-31', 200, true, true, '569 allard', 3);
   
 INSERT INTO 
 rooms( user_id, title, description, latitude, longitude, roomSize, startDate, endDate, price, petFriendly, active, address, city_id )
