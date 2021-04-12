@@ -1,5 +1,6 @@
 import React from "react";
-import { useState } from "react"
+import { useState } from "react";
+//import './CitySearch.scss'
 
 export default function CitySearch(props) {
   //const [cityId, setCityId] = useState(null)
@@ -44,7 +45,32 @@ export default function CitySearch(props) {
     }); */
   };
 
-  function onKeyDown(event) {
+  function onKeyDown(e) {
+    const { activeSuggestion, filteredSuggestions } = cityId;
+
+    if (e.keyCode === 13) {
+      setCityId({...cityId,
+        activeSuggestion: 0,
+        showSuggestions: false,
+        userInput: filteredSuggestions[activeSuggestion]
+      })
+    }
+    else if (e.keyCode === 38) {
+      if (cityId.activeSuggestion === 0) {
+        return;
+      }
+
+      setCityId({ ...cityId, activeSuggestion: activeSuggestion - 1 });
+    }
+    else if (e.keyCode === 40) {
+      if (cityId.activeSuggestion - 1 === cityId.filteredSuggestions.length) {
+        return;
+      }
+
+      setCityId({ ...cityId, activeSuggestion: activeSuggestion + 1 });
+    }
+
+    
 /*     setCityId = {
       activeSuggestion: 0,
       filteredSuggestions: [],
@@ -52,8 +78,13 @@ export default function CitySearch(props) {
       userInput: event.target.value
     } */
   }
-  function onClick(event) {
- 
+  function onClick(e) {
+    setCityId({...cityId,
+      activeSuggestion: 0,
+      filteredSuggestions: [],
+      showSuggestions: false,
+      userInput: e.currentTarget.value
+    })
   }
 
   let suggestionsListComponent;
@@ -82,7 +113,6 @@ export default function CitySearch(props) {
 
   return (
     <div>
-      <div>Hello from AutoComplete</div>
       <React.Fragment>
         <input
           type="text"
