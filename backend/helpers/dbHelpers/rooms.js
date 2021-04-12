@@ -1,10 +1,52 @@
 // const { use } = require("../../routes");
 
 module.exports = (db) => {
-  // Get all rooms
-  const getRooms = () => {
+  // Get all rooms by params or no params - LEVELs may need its own db table?
+  // api/rooms, api/rooms?active=true, api/rooms?active=true&city_id=1&level=1
+  const getRooms = (params) => {
+    console.log("params: ", params);
+    console.log("params length: ", Object.keys(params).length);
+    const paramsArray = Object.keys(params);
+
+    let queryString = `SELECT rooms.* FROM rooms `;
+    const queryParams = [];
+    
+    if (params.level) {
+      queryString += `JOIN users ON rooms.user_id = users.id `;
+    }
+
+    if (paramsArray.length !== 0) {
+      queryString += `WHERE active = true `;
+
+      if (params.city_id) {
+        queryParams.push(params.city_id);
+        queryString += `AND rooms.city_id = $${queryParams.length} `;
+      }
+  
+      if (Array.isArray(params.level)) {
+        queryString += "AND (";
+        params.level.forEach((level, index) => {
+          queryParams.push(level);
+          queryString += `users.level = $${queryParams.length} `;
+          if (params.level[index + 1]) {
+            queryString += `OR `;
+          } else {
+            queryString += `) `;
+          }
+        });
+      } else if (params.level) {
+        queryParams.push(params.level);
+        queryString += `AND users.level = $${queryParams.length} `;
+      }
+    }
+
+    queryString += `;`;
+    console.log("query: ", queryString);
+    console.log("queryparams: ", queryParams);
+
     const query = {
-      text: `SELECT * FROM rooms;`
+      text: queryString,
+      values: queryParams
     }
     return db
       .query(query)
@@ -24,10 +66,10 @@ module.exports = (db) => {
       .catch(err => console.error("error: ", err));
   }
 
-  // Add new room
+  // Add new room - TODO: only owners can create new rooms. currentUser = rooms.user_id
   const addRoom = (body) => {
     console.log(body)
-    const queryString = `INSERT INTO rooms `;
+    let queryString = `INSERT INTO rooms `;
     const queryParams = [];
     const keys =[];
     const values = [];
@@ -38,7 +80,13 @@ module.exports = (db) => {
       values.push(`$${queryParams.length}`)
     }
 
-    queryString += `(${keys}) VALUES ($${values}) RETURNING *;`
+    console.log("keys: ", keys)
+    console.log("values: ", values)
+    console.log("queryParams: ", queryParams)
+
+    queryString += `(${keys}) VALUES (${values}) RETURNING *;`
+
+    console.log("query:", queryString)
 
     const query = {
       text: queryString,
@@ -56,7 +104,7 @@ module.exports = (db) => {
   }
 
 
-  // update existing room
+  // update existing room - TODO: Only the owners of the room can update/edit room. currentUser = rooms.user_id 
   const updateRoom = (body, room_id) => {
     console.log(body)
     
@@ -85,30 +133,31 @@ module.exports = (db) => {
     return db
       .query(query)
       .then(result => {
-        console.log(result)
         console.log(result.rows)  
         return result.rows
       })
       .catch(err => console.error("error: ", err));
   }
 
-  // *TODO* - Get all rooms available for city. no city field in rooms table, should we link to cities table?
-  const getRoomsAvailableInCity = (city) => {
+  // Owners can remove listing - TODO: Only the owners of the room can delete room. currentUser = rooms.user_id
+  const deleteRoom = (room_id) => {
+    const queryString = `DELETE FROM rooms WHERE rooms.id = $1;`
     const query = {
-      text: `SELECT * FROM rooms WHERE active=true AND city = $1;`
+      text: queryString,
+      values: [room_id]
     }
+
     return db
       .query(query)
-      .then((result) => result.rows)
-      .catch(err => err);
+      .then(result => console.log("result:", result))
+      .catch(err => console.error("error: ", err));
   }
-
-  // rooms by level & city_id
 
   return {
     getRooms,
     getRoom,
     addRoom,
-    updateRoom
+    updateRoom,
+    deleteRoom
   }
 }
