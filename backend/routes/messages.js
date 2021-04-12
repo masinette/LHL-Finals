@@ -6,6 +6,7 @@ module.exports = ({ getMessages, getMessagesByUser, getMessagesForUser, addMessa
 
 //get all messages from the database
   router.get("/", (req, res) => {
+     console.log("QUERYONE",req.query)
     getMessages()
       .then((messages) => {
       // console.log("MESSAGES",messages)
@@ -44,7 +45,9 @@ module.exports = ({ getMessages, getMessagesByUser, getMessagesForUser, addMessa
 
    const userid = req.params.userid;
    const roomid = req.params.roomid;
-   
+
+   console.log("QUERY",req.query)
+
     getMessageThread(userid, roomid)
       .then((messages) => {
       // console.log("MESSAGES",messages)
