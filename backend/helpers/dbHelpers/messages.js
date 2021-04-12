@@ -1,12 +1,11 @@
 // const { use } = require("../../routes");
-const isUserOwner  = require("./isUserOwner");
 
 module.exports = (db) => {
   const getMessages = () => {
     const query = {
       text: "SELECT * FROM messages",
     };
-  console.log("Mache ti???", isUserOwner(2))
+
   // console.log(query)
     return db
       .query(query)
