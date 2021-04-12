@@ -37,21 +37,6 @@ module.exports = (db) => {
       .catch((err) => err);
   };
 
-// WORK IN PROGRESS
-  const getMessagePosts = () => {
-    const query = {
-      text: `SELECT messages.id as user_id, first_name, last_name, email, posts.id as post_id, title, content
-      FROM messages
-      INNER JOIN posts
-      ON messages.id = posts.user_id`,
-    };
-
-    return db
-      .query(query)
-      .then((result) => result.rows)
-      .catch((err) => err);
-  };
-// WORK IN PROGRESS
   
   const getCities = () => {
     const query = {
@@ -98,7 +83,6 @@ module.exports = (db) => {
     getMessages,
     getMessageByUser,
     addMessage,
-    getMessagePosts,
     getCities,
     getRooms,
     getRenters
