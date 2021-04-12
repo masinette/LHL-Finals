@@ -8,11 +8,7 @@ module.exports = ({ getMessages, getMessagesByUser, addMessage, getMessageThread
   router.get("/", (req, res) => {
      console.log("QUERYONE",req.query)
     getMessages()
-      .then((messages) => {
-      // console.log("MESSAGES",messages)
-      res.json(messages)
-  })
-      // .then(res.send("Messages"))
+      .then((messages) => res.json(messages))
       .catch((err) =>
         res.json({
           error: err.message,
@@ -20,9 +16,9 @@ module.exports = ({ getMessages, getMessagesByUser, addMessage, getMessageThread
       );
   });
 
+  /*new message NEEDED body params: sender_id, receiver_id, message, room_id, applicant_id -- if I am owner and initiating the thread, room id null, applicant = me */
   router.post("/", (req, res) => {
     console.log("BODYYYYY", req.body)
-    //const [ sender, receiver, message ] = req.body;
 
     addMessage(req.body)
     .then((messages) => {
@@ -35,7 +31,7 @@ module.exports = ({ getMessages, getMessagesByUser, addMessage, getMessageThread
     );
   });
 
-//get all messages in users INBOX
+//get all messages in users INBOX possible sort function after gettMessages
  router.get("/:userid", (req, res) => {
    const userid = req.params.userid;
     getMessagesByUser(userid)
@@ -55,14 +51,16 @@ module.exports = ({ getMessages, getMessagesByUser, addMessage, getMessageThread
 //get conversation
 //  router.get("/thread/:userid/:roomid", (req, res) => {
 
-  router.get(`/thread/:userid/:roomid`, (req, res) => {
+  router.get(`/:userid/:searched_id`, (req, res) => {
 
    const userid = req.params.userid;
-   const roomid = req.params.roomid;
+   const searched_id = req.params.searched_id;
+   const is_owner = req.query.is_owner;
+   //const is_owner = JSON.parse(req.params.is_owner);
 
-   console.log("QUERY",req.query)
+   console.log("QUERY",is_owner)
 
-    getMessageThread(userid, roomid)
+    getMessageThread(userid, searched_id, parseInt(is_owner))
       .then((messages) => {
       // console.log("MESSAGES",messages)
       res.json(messages)})

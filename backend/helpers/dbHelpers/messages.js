@@ -29,9 +29,9 @@ module.exports = (db) => {
       .catch((err) => err);
   };
 
-  //still need to figure where we'take room/aplicant
+  //new message will need both a room id and and an applicant id if message sent by renter if room id is null and owner true = simple chat
   const addMessage = (body) => {
-    let { sender_id, receiver_id, message, room_id, applicant_id } = body;
+    let { sender_id, receiver_id, message, room_id, applicant_id, is_owner } = body;
     if(!applicant_id){
       applicant_id = null
     }
@@ -65,7 +65,7 @@ module.exports = (db) => {
   // };
 
 
-  // /:user_id/room or applicant id
+  // user_id/room or applicant id + is_owner in params to filter by applicanr, probably not the best way
   const getMessageThread = (userid, searched_id, is_owner) => {
     let queryString = `SELECT * FROM messages WHERE (sender_id = $1 or receiver_id = $1) and (room_id = $2);`
     if (is_owner) {
@@ -75,14 +75,13 @@ module.exports = (db) => {
     }
     const query = {
       // text: `SELECT * FROM messages WHERE sender_id = $1 or receiver_id = $1;`,
-      text: `SELECT * FROM messages WHERE (sender_id = $1 or receiver_id = $1) and (room_id = $2);`,
+      text: queryString,
       values: [userid, searched_id]
     };
 
     return db
       .query(query)
       .then((result) => result.rows)
-      console.log("RESULT",result)
       .catch((err) => err);
   };
 
