@@ -27,7 +27,7 @@ module.exports = (db) => {
   // Add new room
   const addRoom = (body) => {
     console.log(body)
-    const queryString = `INSERT INTO rooms `;
+    let queryString = `INSERT INTO rooms `;
     const queryParams = [];
     const keys =[];
     const values = [];
@@ -42,7 +42,7 @@ module.exports = (db) => {
     console.log("values: ", values)
     console.log("queryParams: ", queryParams)
 
-    queryString += `(${keys}) VALUES ($${values}) RETURNING *;`
+    queryString += `(${keys}) VALUES (${values}) RETURNING *;`
 
     console.log("query:", queryString)
 
