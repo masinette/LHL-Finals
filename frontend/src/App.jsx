@@ -11,7 +11,7 @@ import TopNav from "./components/layout/Navbar"
 import Hero from "./components/layout/Hero"
 
 
-import { Container, Row, Col } from 'react-bootstrap';
+import { Container} from 'react-bootstrap';
 
 
 const App = () => {
@@ -42,9 +42,9 @@ const App = () => {
       {/* <h1> Cities </h1> */}
       {/* {cityList}  */}
 
-
-      {/* <h1> Rooms </h1> */}
-      {/* <ul> {roomList} </ul> */}
+{/* 
+      <h1> Rooms </h1>
+      <ul> {roomList} </ul> */}
 
 {/* 
     <Messages />
