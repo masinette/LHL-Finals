@@ -1,7 +1,5 @@
 // const { use } = require("../../routes");
 
-const { param } = require("../../routes");
-
 module.exports = (db) => {
   // Get all rooms by params or no params - LEVELs may need its own db table?
   // api/rooms, api/rooms?active=true, api/rooms?active=true&city_id=1&level=1
@@ -144,11 +142,25 @@ module.exports = (db) => {
       .catch(err => console.error("error: ", err));
   }
 
+  // Owners can remove listing *note: owners can also turn active to false using the updateRooms put route*
+  const deleteRoom = (room_id) => {
+    const queryString = `DELETE FROM rooms WHERE rooms.id = $1;`
+    const query = {
+      text: queryString,
+      values: [room_id]
+    }
+
+    return db
+      .query(query)
+      .then(result => console.log("result:", result))
+      .catch(err => console.error("error: ", err));
+  }
 
   return {
     getRooms,
     getRoom,
     addRoom,
     updateRoom,
+    deleteRoom
   }
 }

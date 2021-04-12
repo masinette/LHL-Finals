@@ -9,7 +9,8 @@ module.exports = ({
   getRooms,
   getRoom,
   addRoom,
-  updateRoom
+  updateRoom,
+  deleteRoom
 }) => {
   router.get("/", (req, res) => {
     getRooms(req.query)
@@ -38,6 +39,15 @@ module.exports = ({
     console.log(req.params.id)
     updateRoom(req.body, req.params.id)
       .then(room => res.json(room))
+      .catch(err => res.json({
+        error: err
+      }))
+  })
+
+  router.post("/:id/delete", (req, res) => {
+    console.log(req.params.id);
+    deleteRoom(req.params.id)
+      .then(res.json({}))
       .catch(err => res.json({
         error: err
       }))
