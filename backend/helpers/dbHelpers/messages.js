@@ -1,10 +1,12 @@
 // const { use } = require("../../routes");
+const isUserOwner  = require("./isUserOwner");
 
 module.exports = (db) => {
   const getMessages = () => {
     const query = {
       text: "SELECT * FROM messages",
     };
+  console.log("Mache ti???", isUserOwner(2))
   // console.log(query)
     return db
       .query(query)
@@ -15,15 +17,15 @@ module.exports = (db) => {
   };
 
 //get all messages SENT BY user
-  const getMessagesByUser = (user) => {
+  const getMessagesByUser = (user, is_owner) => {
     const query = {
-      text: `SELECT * FROM messages WHERE sender_id = $1`,
+      text: `SELECT * FROM messages WHERE sender_id = $1 OR receiver_id = $1 order by applicant_id`,
       values: [user],
     };
 
     return db
       .query(query)
-      .then((result) => result.rows[0])
+      .then((result) => result.rows)
       .catch((err) => err);
   };
 
@@ -39,24 +41,6 @@ module.exports = (db) => {
     const query = {
       text: `INSERT INTO messages (sender_id, receiver_id, message, room_id, applicant_id ) VALUES ($1, $2, $3, $4, $5) RETURNING *`,
       values: [sender_id, receiver_id, message, room_id, applicant_id ],
-//get all messages SENT TO user
-  const getMessagesForUser = (user) => {
-    const query = {
-      text: `SELECT * FROM messages WHERE receiver_id = $1`,
-      values: [user],
-  };
-
-    return db
-      .query(query)
-      .then((result) => result.rows[0])
-      .catch((err) => err);
-  };
-
-//add new message 
-  const addMessage = (sender_id, receiver_id, message, sentDate ) => {
-    const query = {
-      text: `INSERT INTO messages (sender_id, receiver_id, message, sentDate ) VALUES ($1, $2, $3, $4) RETURNING *`,
-      values: [sender_id, receiver_id, message, sentDate],
     };
     console.log(query)
     return db
@@ -67,13 +51,32 @@ module.exports = (db) => {
       })
       .catch((err) => err);
   };
+//get all messages SENT TO user
+  // const getMessagesForUser = (user) => {
+  //   const query = {
+  //     text: `SELECT * FROM messages WHERE receiver_id = $1`,
+  //     values: [user],
+  // };
+
+  //   return db
+  //     .query(query)
+  //     .then((result) => result.rows[0])
+  //     .catch((err) => err);
+  // };
 
 
-  const getMessageThread = (userid, roomid) => {
+  // /:user_id/room or applicant id
+  const getMessageThread = (userid, searched_id, is_owner) => {
+    let queryString = `SELECT * FROM messages WHERE (sender_id = $1 or receiver_id = $1) and (room_id = $2);`
+    if (is_owner) {
+      queryString = `SELECT * FROM messages WHERE (sender_id = $1 or receiver_id = $1) and (applicant_id = $2);`
+    } else {
+
+    }
     const query = {
       // text: `SELECT * FROM messages WHERE sender_id = $1 or receiver_id = $1;`,
       text: `SELECT * FROM messages WHERE (sender_id = $1 or receiver_id = $1) and (room_id = $2);`,
-      values: [userid, roomid]
+      values: [userid, searched_id]
     };
 
     return db
@@ -88,7 +91,7 @@ module.exports = (db) => {
   return {
     getMessages,
     getMessagesByUser,
-    getMessagesForUser,
+    //getMessagesForUser,
     addMessage,
     getMessageThread
   };
