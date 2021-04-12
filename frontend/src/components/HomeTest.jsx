@@ -1,14 +1,9 @@
 import { React, useState } from 'react';
 import { Jumbotron, Button, Row, Col, ToggleButtonGroup, ToggleButton, ButtonGroup } from 'react-bootstrap';
+// import CityCards from "./components/cities/CityCards";
 
-
-
-export default function Hero(props) {
-
-  // const [value, setValue] = useState([1, 3]);
-  // const handleChange = (val) => setValue(val);
-
-  const [checked, setChecked] = useState(false);
+function HomeTest() {
+const [checked, setChecked] = useState(false);
   const [radioValue, setRadioValue] = useState('1');
 
   const radios = [
@@ -78,3 +73,5 @@ export default function Hero(props) {
     </Jumbotron>
   )
 }
+
+export default HomeTest;
