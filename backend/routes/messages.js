@@ -20,7 +20,6 @@ module.exports = ({ getMessages, getMessagesByUser, getMessagesForUser, addMessa
   });
 
 
-// ************ ONLY SHOWING THE FIRST MESSAGES RECEIVED BY USER ****************
 //get all messages in users INBOX
  router.get("/inbox/:userid", (req, res) => {
    const userid = req.params.userid;

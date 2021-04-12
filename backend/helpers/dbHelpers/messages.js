@@ -83,3 +83,6 @@ module.exports = (db) => {
 
 
 //select messages by room
+// SELECT * FROM messages WHERE sender_id = 1 or receiver_id = 1;
+
+// SELECT * FROM messages WHERE sender_id = 1 or receiver_id = 1 order BY room_id = 1;
