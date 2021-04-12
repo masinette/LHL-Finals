@@ -12,7 +12,7 @@ module.exports = ({
   updateRoom
 }) => {
   router.get("/", (req, res) => {
-    getRooms()
+    getRooms(req.query)
       .then(rooms => res.json(rooms))
       .catch(err => res.json({
         error: err

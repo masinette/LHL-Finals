@@ -1,10 +1,57 @@
 // const { use } = require("../../routes");
 
+const { param } = require("../../routes");
+
 module.exports = (db) => {
-  // Get all rooms
-  const getRooms = () => {
+  // Get all rooms by params or no params - LEVELs may need its own db table
+  // api/rooms, api/rooms?active=true, api/rooms?active=true&city_id=1
+  const getRooms = (params) => {
+    console.log("params: ", params);
+    console.log("params length: ", Object.keys(params).length);
+    const paramsArray = Object.keys(params);
+
+    let queryString = `SELECT rooms.* FROM rooms `;
+    const queryParams = [];
+    
+    if (params.level) {
+      queryString += `JOIN users ON rooms.user_id = users.id `;
+    }
+
+    if (paramsArray.length !== 0) {
+      queryString += `WHERE active = true `;
+
+      if (params.city_id) {
+        queryParams.push(params.city_id);
+        queryString += `AND rooms.city_id = $${queryParams.length} `;
+      }
+  
+      if (Array.isArray(params.level)) {
+        queryString += "AND ";
+        params.level.forEach((level, index) => {
+          queryParams.push(level);
+          queryString += `users.level = $${queryParams.length} `;
+          if (params.level[index + 1]) {
+            queryString += `OR `;
+          }
+        });
+      } else if (params.level) {
+        queryParams.push(params.level);
+        queryString += `AND users.level = $${queryParams.length} `;
+      }
+
+    }
+
+
+    // Query levels
+    // `SELECT rooms.* FROM rooms JOIN users ON rooms.user_id = users.id WHERE active = true AND rooms.city_id = 4 AND users.level = 1 ;`
+
+    queryString += `;`;
+    console.log("query: ", queryString);
+    console.log("queryparams: ", queryParams);
+
     const query = {
-      text: `SELECT * FROM rooms;`
+      text: queryString,
+      values: queryParams
     }
     return db
       .query(query)
@@ -98,10 +145,11 @@ module.exports = (db) => {
       .catch(err => console.error("error: ", err));
   }
 
-  // *TODO* - Get all rooms available for city. no city field in rooms table, should we link to cities table?
-  const getRoomsAvailableInCity = (city) => {
+  // Get all rooms available for city_id. /api/rooms?city_id=1
+  const getRoomsAvailableInCity = (params) => {
     const query = {
-      text: `SELECT * FROM rooms WHERE active=true AND city = $1;`
+      text: `SELECT * FROM rooms WHERE active=true AND city_id = $1;`,
+      values: city_id
     }
     return db
       .query(query)
@@ -115,6 +163,7 @@ module.exports = (db) => {
     getRooms,
     getRoom,
     addRoom,
-    updateRoom
+    updateRoom,
+    getRoomsAvailableInCity
   }
 }
