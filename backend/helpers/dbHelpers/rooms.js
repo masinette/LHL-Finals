@@ -3,7 +3,7 @@
 const { param } = require("../../routes");
 
 module.exports = (db) => {
-  // Get all rooms by params or no params - LEVELs may need its own db table
+  // Get all rooms by params or no params - LEVELs may need its own db table?
   // api/rooms, api/rooms?active=true, api/rooms?active=true&city_id=1
   const getRooms = (params) => {
     console.log("params: ", params);
@@ -26,12 +26,14 @@ module.exports = (db) => {
       }
   
       if (Array.isArray(params.level)) {
-        queryString += "AND ";
+        queryString += "AND (";
         params.level.forEach((level, index) => {
           queryParams.push(level);
           queryString += `users.level = $${queryParams.length} `;
           if (params.level[index + 1]) {
             queryString += `OR `;
+          } else {
+            queryString += `) `;
           }
         });
       } else if (params.level) {
@@ -44,6 +46,8 @@ module.exports = (db) => {
 
     // Query levels
     // `SELECT rooms.* FROM rooms JOIN users ON rooms.user_id = users.id WHERE active = true AND rooms.city_id = 4 AND users.level = 1 ;`
+    // `SELECT * FROM cities WHERE id = rooms.city_id`
+    // `SELECT * FROM cities WHERE id = params.city`
 
     queryString += `;`;
     console.log("query: ", queryString);
@@ -138,7 +142,6 @@ module.exports = (db) => {
     return db
       .query(query)
       .then(result => {
-        console.log(result)
         console.log(result.rows)  
         return result.rows
       })
