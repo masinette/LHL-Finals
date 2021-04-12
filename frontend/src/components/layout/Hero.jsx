@@ -1,11 +1,21 @@
-import React from 'react';
-import { Jumbotron, Button, Row, Col, ToggleButtonGroup, ToggleButton } from 'react-bootstrap';
+import { React, useState } from 'react';
+import { Jumbotron, Button, Row, Col, ToggleButtonGroup, ToggleButton, ButtonGroup } from 'react-bootstrap';
 
 
 
 export default function Hero(props) {
+
   // const [value, setValue] = useState([1, 3]);
   // const handleChange = (val) => setValue(val);
+
+  const [checked, setChecked] = useState(false);
+  const [radioValue, setRadioValue] = useState('1');
+
+  const radios = [
+    { name: 'Look for a rental', value: '1' },
+    { name: 'Look for a renter', value: '2' }
+  ];
+
 
   return (
     <Jumbotron  style={{ backgroundImage: `url('https://ychef.files.bbci.co.uk/1600x900/p08382zx.webp')`, backgroundPosition: 'top', minHeight: '300px' }}>
@@ -24,7 +34,7 @@ export default function Hero(props) {
         <p>&nbsp;</p>
       </div>
 
-      <Row>
+      {/* <Row>
         <Col md={3}>
         </Col>
         <Col xs={6} md={4}>
@@ -33,15 +43,36 @@ export default function Hero(props) {
         <Col xs={6} md={4}>
           <Button variant="success">Look for a renter</Button>
         </Col>
-      </Row>
-{/* 
-    <ToggleButtonGroup type="checkbox" value={value} onChange={handleChange}>
-      <ToggleButton value={1}>Option 1</ToggleButton>
-      <ToggleButton value={2}>Option 2</ToggleButton>
-      <ToggleButton value={3}>Option 3</ToggleButton>
-    </ToggleButtonGroup>
+      </Row> */}
 
- */}
+
+
+
+    <>
+      <ButtonGroup toggle className="mb-2">
+
+      </ButtonGroup>
+      <br />
+      <ButtonGroup toggle>
+        {radios.map((radio, idx) => (
+          <ToggleButton
+            key={idx}
+            type="radio"
+            variant="secondary"
+            name="radio"
+            value={radio.value}
+            checked={radioValue === radio.value}
+            onChange={(e) => setRadioValue(e.currentTarget.value)}
+          >
+            {radio.name}
+          </ToggleButton>
+        ))}
+      </ButtonGroup>
+    </>
+
+
+
+
 {/* if renter is selected, disable owner, and vice versa */}
 
     </Jumbotron>
