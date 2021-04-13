@@ -109,7 +109,7 @@ export default function useApplicationData() {
 
 
 //login
-  useEffect(() => {
+ /*  useEffect(() => {
 //get email and password from user input on login page
     axios({
       method: 'POST',
@@ -125,7 +125,7 @@ export default function useApplicationData() {
       });
     })
     .catch((err) => console.log(err));
-  }, []);
+  }, []); */
 
 
 

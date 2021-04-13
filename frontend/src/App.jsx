@@ -1,11 +1,12 @@
 // import logo from './logo.svg';
-import { React, useState } from 'react';
+import { React, useState, Link } from 'react';
 import './App.scss';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import useApplicationData from "./hooks/useApplicationData";
 
 import Messages from "./components/messages/MessagesList";
 import Users from "./components/users/Users";
+import UsersByCity from "./components/users/UsersByCity";
 
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import { NavigationTest, FooterTest, HomeTest, AboutTest, LoginTest, MessagesTest, SignUp } from "./components";
@@ -43,10 +44,11 @@ const App = () => {
           <Route path="/login" exact component={() => <LoginTest users={state.users} />} />
           <Route path="/signup" exact component={() => <SignUp users={state.users} />} />
           <Route path="/users" exact component={() => <Users users={state.users} cities={state.cities}/>} />
-          {/* <Route path="/users/:userId" exact component={() => <Users users={state.users} cities={state.cities}/>} /> */}
+         <Route path="/users/:cityId" exact component={() => <UsersByCity users={state.users} cities={state.cities}/>} /> 
 
           <Route path="/messages" exact component={() => <MessagesTest messages={state.messages} />} />
         </Switch>
+
         <FooterTest />
       </Router>
     </div>

@@ -47,16 +47,16 @@ export default function SearchInput({
 		console.log(response);
 		setResult(response)
 	};
-	const onClick = (e) => {
-		// console.log(value)
-		// setInputValue(value)
+	const onClick = (value) => {
+		console.log(value)
+		setInputValue(value)
 		// e.preventDefault();
 		// window.location.assign( '/about' )
 	}
 	const onSubmit = (e) => {
 		//console.log(value)
 		e.preventDefault();
-		window.location.assign( '/about' )
+		window.location.assign( '/about/${inputValue}' )
 	}
 	//value.API pour l'api
 	return (
@@ -68,7 +68,7 @@ export default function SearchInput({
 				placeholder={placeholder}
 			/>
 
-{/* 			<SuggestContainer>
+			<SuggestContainer>
 				<Ul>
 					{loading && <Li>Loading...</Li>}
 					{result && result.length > 0 &&
@@ -81,12 +81,8 @@ export default function SearchInput({
 								{value}
 							</Li>
 						))}
-<<<<<<< HEAD
-				</ul>
-			</SuggestContainer>
-=======
 				</Ul>
-			</SuggestContainer> */}
+			</SuggestContainer>
 
 		</div>
 	);
