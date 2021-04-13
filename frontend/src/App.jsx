@@ -4,9 +4,6 @@ import './App.scss';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import useApplicationData from "./hooks/useApplicationData";
 
-import firebase from "firebase/app";
-import "firebase/auth";
-
 import Messages from "./components/messages/MessagesList";
 import Users from "./components/users/Users";
 
