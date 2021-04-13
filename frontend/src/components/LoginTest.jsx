@@ -6,40 +6,32 @@ import axios from 'axios';
 
 function LoginTest(props) {
 
-  const [email, setEmail] = useState(props.email || "Not logged in");
-  const [password, setPassword] = useState(props.password || "");
-  const [error, setError] = useState("");
-
-
-  const emailRef = useRef()
-  const passwordRef = useRef()
-  const passwordConfirmRef = useRef()
-
-  useEffect(() => {
-    
-    axios({
-      method: 'POST',
-      url: '/api/users/login'
-    })
-    .then((response)=>
-    console.log(response)) 
-    .catch((err) => console.log(err))
-  }, []);
-
-
     const [userLogin, setUserLogin] = useState(
         { email: '', password: '' }
     );
 
+    //when form fields take user input. set the input to userLogin
     const handleChange = (event) => {
         setUserLogin({...userLogin, [event.target.name]: event.target.value})
     }
+   
 
-    const handleSubmit = (e) => {
-        e.preventDefault()
+    const handleSubmit = (event) => {
+      event.preventDefault()
+        axios({
+          method: 'POST',
+          url: '/api/users/login',
+          data: userLogin
+        })
+        .then((response)=>
+        console.log("RESPONSE",response.data.firstname)
+        ) 
+        .catch((err) => console.log(err))
     }
-    
 
+// if object is populated, login is successful, redirect to
+// userAuthenticated(true)
+// if object is empty, send alert to user that login failed. use msg from response for password
 
 
 
@@ -51,22 +43,16 @@ function LoginTest(props) {
 
 <Card>
   <Card.Body>
-    <Form>
+    <Form onSubmit={handleSubmit}>
       <Form.Group id="email">
         <Form.Label>Email</Form.Label>
-        <Form.Control type="email" ref={emailRef} required />
+        <Form.Control type="email" onChange={handleChange} value={userLogin.email} name="email" required />
       </Form.Group>
 
       <Form.Group id="password">
         <Form.Label>Password</Form.Label> 
-        <Form.Control type="password" ref={passwordRef} required />
+        <Form.Control type="password" onChange={handleChange} value={userLogin.password} name="password" required />
       </Form.Group>
-
-      <Form.Group id="password-confirm">
-        <Form.Label>Password Confirmation</Form.Label>
-        <Form.Control type="password" ref={passwordConfirmRef} required />
-      </Form.Group>
-    </Form>
 
     <Form.Text className="text-muted">
       Don't have an account? 
@@ -77,43 +63,10 @@ function LoginTest(props) {
       Log in 
     </Button>
 
+    </Form>
 
-    <h1>Logged in as: {props.email}</h1>
+    <h1>Logged in as: {}</h1>
 
-      {/* <Form onSubmit={event => event.preventDefault()}>
-        <Form.Group controlId="formBasicEmail">
-          <Form.Label>Email address</Form.Label>
-
-          <Form.Control 
-          type="email" 
-          placeholder="Enter email" 
-          email="" 
-          value={email}
-          onChange={event => setEmail(event.target.value)}
-          />
-
-        </Form.Group>
-
-        <Form.Group controlId="formBasicPassword">
-          <Form.Label>Password</Form.Label>
-          <Form.Control 
-          type="password" 
-          placeholder="Password" 
-          value="password"
-          onChange={event => setPassword(event.target.value)}
-
-          />
-        </Form.Group>
-
-          <Form.Text className="text-muted">
-            Don't have an account? 
-            <a href="register">Register here!</a>
-          </Form.Text>
-
-        <Button variant="primary" type="submit" onClick={(event) =>validate()}>
-          Sign in
-        </Button>
-      </Form> */}
   </Card.Body>
 </Card>
     </div>

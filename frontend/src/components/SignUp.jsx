@@ -58,7 +58,7 @@ function SignUp(props) {
     </Form.Text>
 
     <Button type="submit">
-      Log in 
+      Register
     </Button>
 
   </Card.Body>
