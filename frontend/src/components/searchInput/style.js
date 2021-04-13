@@ -2,7 +2,11 @@ import styled from 'styled-components';
 
 export const Input = styled.input`
 	width: 222px;
+<<<<<<< HEAD
 	height: 51px;
+=======
+ height: 51px;
+>>>>>>> faaa7464434d6c8da2603fbd8038ccaeea2c3253
 	padding: 10px;
 	background: #f3f3f3;
 	box-shadow: inset 0px 4px 4px rgba(0, 0, 0, 0.1);
@@ -29,7 +33,10 @@ export const Li = styled.ul`
 `;
 
 export const SuggestContainer = styled.div`
+<<<<<<< HEAD
 	height: 240px;
+=======
+>>>>>>> faaa7464434d6c8da2603fbd8038ccaeea2c3253
 	width: 242px;
 	overflow: scroll;
 	&::-webkit-scrollbar {

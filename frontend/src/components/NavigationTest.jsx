@@ -26,11 +26,15 @@ function NavigationTest(props) {
         <Button type="submit">Submit</Button>
 
       </Form> */}
+<<<<<<< HEAD
       <NavItem>Hello
       <SearchInput
           suggestions={['White', 'Black', 'Green', 'Blue', 'Yellow', 'Red']}
         />
         </NavItem>
+=======
+     <SearchInput />
+>>>>>>> faaa7464434d6c8da2603fbd8038ccaeea2c3253
       {/* <Form inline>
         <FormControl type="text" placeholder="Search" className="mr-sm-2" />
         <Button variant="outline-success">Search</Button>

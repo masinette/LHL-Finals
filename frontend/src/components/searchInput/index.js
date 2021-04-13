@@ -39,6 +39,10 @@ export default function SearchInput({
 	};
 	const onClick = (value) => {
 		console.log(value)
+<<<<<<< HEAD
+=======
+		//setResult(value)
+>>>>>>> faaa7464434d6c8da2603fbd8038ccaeea2c3253
 	}
 	//value.API pour l'api
 	return (
@@ -48,8 +52,13 @@ export default function SearchInput({
 				onChange={(input) => updateValue(input.target.value)}
 				placeholder={placeholder}
 			/>
+<<<<<<< HEAD
 			<SuggestContainer>
 				<ul>
+=======
+{/* 			<SuggestContainer>
+				<Ul>
+>>>>>>> faaa7464434d6c8da2603fbd8038ccaeea2c3253
 					{loading && <Li>Loading...</Li>}
 					{result && result.length > 0 &&
 						!loading &&
@@ -61,8 +70,13 @@ export default function SearchInput({
 								{value}
 							</Li>
 						))}
+<<<<<<< HEAD
 				</ul>
 			</SuggestContainer>
+=======
+				</Ul>
+			</SuggestContainer> */}
+>>>>>>> faaa7464434d6c8da2603fbd8038ccaeea2c3253
 		</div>
 	);
 }
