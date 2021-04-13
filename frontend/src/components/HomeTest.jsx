@@ -1,9 +1,10 @@
 import { React, useState } from 'react';
-import { Jumbotron, Button, Row, Col, ToggleButtonGroup, ToggleButton, ButtonGroup } from 'react-bootstrap';
-// import CityCards from "./components/cities/CityCards";
+import { Container, Jumbotron, Button, Row, Col, ToggleButtonGroup, ToggleButton, ButtonGroup } from 'react-bootstrap';
+import CityCards from "./CityCards";
 
-function HomeTest() {
-const [checked, setChecked] = useState(false);
+
+function HomeTest(props) {
+  const [checked, setChecked] = useState(false);
   const [radioValue, setRadioValue] = useState('1');
 
   const radios = [
@@ -13,6 +14,7 @@ const [checked, setChecked] = useState(false);
 
 
   return (
+    <>
     <Jumbotron  style={{ backgroundImage: `url('https://ychef.files.bbci.co.uk/1600x900/p08382zx.webp')`, backgroundPosition: 'top', minHeight: '300px' }}>
       <h1>Welcome to </h1>
       <h1>LivTogether!</h1>
@@ -68,9 +70,13 @@ const [checked, setChecked] = useState(false);
 
 
 
-{/* if renter is selected, disable owner, and vice versa */}
+  {/* if renter is selected, disable owner, and vice versa */}  
 
     </Jumbotron>
+
+    <CityCards cities={props.cities}/>
+
+  </>
   )
 }
 

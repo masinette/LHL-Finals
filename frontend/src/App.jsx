@@ -1,15 +1,17 @@
 // import logo from './logo.svg';
-import React from 'react';
+import { React, useState } from 'react';
 import './App.scss';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import useApplicationData from "./hooks/useApplicationData";
 
-import CityCards from "./components/cities/CityCards";
+import firebase from "firebase/app";
+import "firebase/auth";
+
 import Messages from "./components/messages/MessagesList";
 import Users from "./components/users/users";
 
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import { NavigationTest, FooterTest, HomeTest, AboutTest, LoginTest, MessagesTest } from "./components";
+import { NavigationTest, FooterTest, HomeTest, AboutTest, LoginTest, MessagesTest, SignUp } from "./components";
 
 
 // import { Container} from 'react-bootstrap';
@@ -21,21 +23,30 @@ const App = () => {
     dispatch
   } = useApplicationData();
 
-    const userList = state.users.map((user) => (<li key={user.id} > {user.firstname} {user.lastname} | {user.email} {user.is_owner} {user.level}</li>));
-    const roomList = state.rooms.map((room) => (<li key={room.id}> {room.title} {room.description} {room.price}</li>));
+// if user is not logged in, display login page
+  const [token, setToken] = useState();
+  if(!token) {
+    <LoginTest users={state.users} setToken={setToken} />
+  }
+
+
+  //   const userList = state.users.map((user) => (<li key={user.id} > {user.firstname} {user.lastname} | {user.email} {user.is_owner} {user.level}</li>));
+  //   const roomList = state.rooms.map((room) => (<li key={room.id}> {room.title} {room.description} {room.price}</li>));
+  //  const messageList = state.messages.map((message) => (<li key={message.id} > {message.sentdate} || {message.sender_id} | {message.receiver_id} | {message.message}</li>));
 
 
   return (
+    
     <div className="App">
       <Router>
         <NavigationTest />
         <Switch>
-          <Route path="/" exact component={() => <HomeTest />} />
+          <Route path="/" exact component={() => <HomeTest cities={state.cities} />} />
           <Route path="/about" exact component={() => <AboutTest />} />
-          <Route path="/login" exact component={() => <LoginTest />} />
-          <Route path="/messages" exact component={() => <MessagesTest messages={state.messages} />} />
+          <Route path="/login" exact component={() => <LoginTest users={state.users} />} />
+          <Route path="/signup" exact component={() => <SignUp users={state.users} />} />
 
-          {/* <Route path="/contact" exact component={() => <Test />} /> */}
+          <Route path="/messages" exact component={() => <MessagesTest messages={state.messages} />} />
         </Switch>
         <FooterTest />
       </Router>
