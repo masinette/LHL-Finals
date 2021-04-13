@@ -8,7 +8,7 @@ import firebase from "firebase/app";
 import "firebase/auth";
 
 import Messages from "./components/messages/MessagesList";
-import Users from "./components/users/users";
+import Users from "./components/users/Users";
 
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import { NavigationTest, FooterTest, HomeTest, AboutTest, LoginTest, MessagesTest, SignUp } from "./components";
@@ -45,6 +45,8 @@ const App = () => {
           <Route path="/about" exact component={() => <AboutTest />} />
           <Route path="/login" exact component={() => <LoginTest users={state.users} />} />
           <Route path="/signup" exact component={() => <SignUp users={state.users} />} />
+          <Route path="/users" exact component={() => <Users users={state.users} cities={state.cities}/>} />
+          {/* <Route path="/users/:userId" exact component={() => <Users users={state.users} cities={state.cities}/>} /> */}
 
           <Route path="/messages" exact component={() => <MessagesTest messages={state.messages} />} />
         </Switch>

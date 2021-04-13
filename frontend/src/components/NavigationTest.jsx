@@ -1,6 +1,7 @@
 import React from "react";
 import { Link, withRouter } from "react-router-dom";
 import { Navbar, Nav, NavItem, NavDropdown, Form, FormControl, Button } from 'react-bootstrap';
+import SearchInput from "./searchInput";
 
 function NavigationTest(props) {
   return (
@@ -20,6 +21,9 @@ function NavigationTest(props) {
           <NavDropdown.Item href="#action/3.4">Separated link</NavDropdown.Item>
         </NavDropdown>
       </Nav>
+
+      <SearchInput placeholder="Enter a city" name="search"/>
+
       {/* <Form inline>
         <FormControl type="text" placeholder="Search" className="mr-sm-2" />
         <Button variant="outline-success">Search</Button>

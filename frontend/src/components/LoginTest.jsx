@@ -49,6 +49,13 @@ userAuthenticated(userFirstName)
 // if object is empty, send alert to user that login failed. use msg from response for password
 
 
+const onSubmit = (e) => {
+    //console.log(value)
+    e.preventDefault();
+    window.location.assign( "/about" )
+  }
+
+
 
   return (
     <div className="contact">

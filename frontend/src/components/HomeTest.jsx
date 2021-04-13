@@ -8,9 +8,10 @@ function HomeTest(props) {
   const [radioValue, setRadioValue] = useState('1');
 
   const radios = [
-    { name: 'Look for a rental', value: '1' },
-    { name: 'Look for a renter', value: '2' }
+    { name: 'Look for a rental', value: false },
+    { name: 'Look for a renter', value: true }
   ];
+  console.log("OWNER?", radioValue)
 
 
   return (
