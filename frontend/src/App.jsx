@@ -8,13 +8,9 @@ import Messages from "./components/messages/MessagesList";
 import Users from "./components/users/Users";
 
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-<<<<<<< HEAD
-import { NavigationTest, FooterTest, HomeTest, AboutTest, LoginTest, MessagesTest } from "./components";
-import ListingsNewTest from './components/rooms/index';
-=======
 import { NavigationTest, FooterTest, HomeTest, AboutTest, LoginTest, MessagesTest, SignUp } from "./components";
->>>>>>> e14e9760a0f882b6a61a411491d7e96cbc166dc0
 
+import ListingsNewTest from './components/rooms/index';
 
 // import { Container} from 'react-bootstrap';
 
