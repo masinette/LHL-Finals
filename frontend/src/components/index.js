@@ -7,3 +7,6 @@ export { default as LoginTest } from "./LoginTest";
 export { default as MessagesTest } from "./MessagesTest";
 
 export { default as CityCards } from "./cities/CityCards";
+
+
+export { default as ListingsNewTest } from "./rooms/NewRoomForm";

@@ -10,6 +10,7 @@ import Users from "./components/users/users";
 
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import { NavigationTest, FooterTest, HomeTest, AboutTest, LoginTest, MessagesTest } from "./components";
+import ListingsNewTest from './components/rooms/index';
 
 
 // import { Container} from 'react-bootstrap';
@@ -34,6 +35,7 @@ const App = () => {
           <Route path="/about" exact component={() => <AboutTest />} />
           <Route path="/login" exact component={() => <LoginTest />} />
           <Route path="/messages" exact component={() => <MessagesTest messages={state.messages} />} />
+          <Route path="/listings/new" exact component={() => <ListingsNewTest />} />
 
           {/* <Route path="/contact" exact component={() => <Test />} /> */}
         </Switch>
