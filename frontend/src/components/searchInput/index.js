@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from 'react';
+import React, { useState, useCallback, useEffect } from 'react';
 import debounce from 'lodash.debounce';
 import axios from 'axios';
 //import { Input, Ul, Li, SuggestContainer } from './style';
@@ -6,18 +6,28 @@ import { Input, Ul, Li, SuggestContainer } from './style';
 
 export default function SearchInput({
 	options,
-	requests,
 	placeholder,
 }) {
 	const [inputValue, setInputValue] = useState('');
 	const [result, setResult] = useState([]);
 	const [loading, setLoading] = useState(false);
 
-	const debouncedSave = useCallback(
-		debounce((newValue) => requests(newValue), 1000),
-		[]
-	);
 
+	useEffect(() => {
+    const listener = event => {
+      if (event.code === "Enter" || event.code === "NumpadEnter") {
+        console.log("Enter key was pressed. Run your function.");
+        event.preventDefault();
+        window.location.assign( '/users' )
+      }
+    };
+    document.addEventListener('keydown', listener);
+    return () => {
+      document.removeEventListener('keydown', listener);
+    };
+  }, []);
+
+	//With api requests
 /* 	const updateValue = (newValue) => {
 		setInputValue(newValue);
 		//axios.get(`https://api.publicapis.org/entries?title=${newValue}`)
@@ -37,8 +47,16 @@ export default function SearchInput({
 		console.log(response);
 		setResult(response)
 	};
-	const onClick = (value) => {
-		console.log(value)
+	const onClick = (e) => {
+		// console.log(value)
+		// setInputValue(value)
+		// e.preventDefault();
+		// window.location.assign( '/about' )
+	}
+	const onSubmit = (e) => {
+		//console.log(value)
+		e.preventDefault();
+		window.location.assign( '/about' )
 		//setResult(value)
 	}
 	//value.API pour l'api
@@ -47,6 +65,7 @@ export default function SearchInput({
 			<Input
 				value={inputValue}
 				onChange={(input) => updateValue(input.target.value)}
+				onSubmit={onSubmit}
 				placeholder={placeholder}
 			/>
 {/* 			<SuggestContainer>

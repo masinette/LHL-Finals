@@ -21,12 +21,7 @@ function NavigationTest(props) {
           <NavDropdown.Item href="#action/3.4">Separated link</NavDropdown.Item>
         </NavDropdown>
       </Nav>
-{/*       <Form inline>
-        <FormControl type="text" placeholder="Enter a city" className=" mr-sm-2" />
-        <Button type="submit">Submit</Button>
-
-      </Form> */}
-     <SearchInput />
+      <SearchInput placeholder="Enter a city" name="search"/>
       {/* <Form inline>
         <FormControl type="text" placeholder="Search" className="mr-sm-2" />
         <Button variant="outline-success">Search</Button>

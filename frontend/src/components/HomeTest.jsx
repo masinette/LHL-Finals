@@ -10,7 +10,7 @@ const [checked, setChecked] = useState(false);
     { name: 'Look for a rental', value: false },
     { name: 'Look for a renter', value: true }
   ];
-  console.log("ALLLLO RADIO???", radioValue)
+  console.log("OWNER?", radioValue)
 
 
   return (
