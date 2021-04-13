@@ -1,7 +1,7 @@
 import React from "react";
 import { Link, withRouter } from "react-router-dom";
 import { Navbar, Nav, NavItem, NavDropdown, Form, FormControl, Button } from 'react-bootstrap';
-import  CitySearch  from './CitySearch';
+import SearchInput from "./searchInput";
 
 function NavigationTest(props) {
   return (
@@ -26,9 +26,7 @@ function NavigationTest(props) {
         <Button type="submit">Submit</Button>
 
       </Form> */}
-      <CitySearch
-          suggestions={['White', 'Black', 'Green', 'Blue', 'Yellow', 'Red']}
-        />
+     <SearchInput />
       {/* <Form inline>
         <FormControl type="text" placeholder="Search" className="mr-sm-2" />
         <Button variant="outline-success">Search</Button>
