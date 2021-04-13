@@ -57,7 +57,6 @@ export default function SearchInput({
 		//console.log(value)
 		e.preventDefault();
 		window.location.assign( '/about' )
-		//setResult(value)
 	}
 	//value.API pour l'api
 	return (
@@ -68,6 +67,7 @@ export default function SearchInput({
 				onSubmit={onSubmit}
 				placeholder={placeholder}
 			/>
+
 {/* 			<SuggestContainer>
 				<Ul>
 					{loading && <Li>Loading...</Li>}
@@ -81,8 +81,13 @@ export default function SearchInput({
 								{value}
 							</Li>
 						))}
+<<<<<<< HEAD
+				</ul>
+			</SuggestContainer>
+=======
 				</Ul>
 			</SuggestContainer> */}
+
 		</div>
 	);
 }
