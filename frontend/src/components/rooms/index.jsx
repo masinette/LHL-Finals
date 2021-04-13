@@ -1,14 +1,16 @@
 import React from "react";
 
 import NewRoomForm from  "./NewRoomForm"
-import UploadButton from "./UploadButton";
+import "./styles.scss";
 
 export default function ListingsNewTest(props) {
 
   return (
     <>
-    <NewRoomForm />
-    <UploadButton />
+    <div className="form__card" >
+      <NewRoomForm />
+
+    </div>
     </>
   )
 };
