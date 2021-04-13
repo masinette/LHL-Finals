@@ -12,7 +12,7 @@ function SignUp(props) {
 
   return (
     <div className="contact">
-      <div class="container">
+      <div className="container">
         <h1>Register</h1>
     </div>
 

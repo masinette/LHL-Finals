@@ -4,11 +4,14 @@ import axios from 'axios';
 
 // import { useAuth } from "../contexts/AuthContext"
 
-function LoginTest(props) {
+function LoginTest() {
 
     const [userLogin, setUserLogin] = useState(
         { email: '', password: '' }
     );
+
+    const [userFirstName, setUserFirstName] = useState("")
+
 
     //when form fields take user input. set the input to userLogin
     const handleChange = (event) => {
@@ -24,12 +27,24 @@ function LoginTest(props) {
           data: userLogin
         })
         .then((response)=>
-        console.log("RESPONSE",response.data.firstname)
+        setUserFirstName(response.data.firstname)
+        // console.log("RESPONSE",response.data)
         ) 
         .catch((err) => console.log(err))
     }
 
 // if object is populated, login is successful, redirect to
+const userAuthenticated = (userFirstName) =>{
+  if (!userFirstName) {
+    //alert user to login
+    console.log("prompt to try login again")
+  } else {
+    //redirect to new page
+    console.log("redirect")
+  }
+
+}
+userAuthenticated(userFirstName)
 // userAuthenticated(true)
 // if object is empty, send alert to user that login failed. use msg from response for password
 
@@ -37,7 +52,7 @@ function LoginTest(props) {
 
   return (
     <div className="contact">
-      <div class="container">
+      <div className="container">
         <h1>Login Page</h1>
       </div>
 
@@ -65,7 +80,7 @@ function LoginTest(props) {
 
     </Form>
 
-    <h1>Logged in as: {}</h1>
+    <h1>Logged in as: {userFirstName}</h1>
 
   </Card.Body>
 </Card>
