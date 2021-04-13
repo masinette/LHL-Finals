@@ -53,7 +53,9 @@ export default function useApplicationData() {
       });
     })
     .catch((err) => console.log(err));
+  }, []);
 
+  useEffect(() => {
     axios({
       method: 'GET',
       url: '/api/messages'
@@ -68,7 +70,9 @@ export default function useApplicationData() {
       });
     })
     .catch((err) => console.log(err));
+  }, []);
 
+  useEffect(() => {
     axios({
       method: 'GET',
       url: '/api/cities'
@@ -83,7 +87,9 @@ export default function useApplicationData() {
       });
     })
     .catch((err) => console.log(err));
+  }, []);
 
+  useEffect(() => {
     axios({
       method: 'GET',
       url: '/api/rooms'
@@ -102,6 +108,24 @@ export default function useApplicationData() {
   }, []);
 
 
+//login
+  useEffect(() => {
+//get email and password from user input on login page
+    axios({
+      method: 'POST',
+      url: '/api/users/login'
+    })
+    .then(({
+      data
+    }) => {
+      console.log("LOGIN DATA",data);
+      dispatch({
+        type: SET_USERS,
+        users: data
+      });
+    })
+    .catch((err) => console.log(err));
+  }, []);
 
 
 
