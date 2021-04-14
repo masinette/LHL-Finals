@@ -59,7 +59,7 @@ export default function SearchInput({
 				placeholder={placeholder}
 			/>
 
- 			<SuggestContainer>
+{/*  			<SuggestContainer>
 				<Ul>
 					{loading && <Li>Loading...</Li>}
 					{result && result.length > 0 &&
@@ -73,7 +73,7 @@ export default function SearchInput({
 							</Li>
 						))}
 				</Ul>
-			</SuggestContainer> 
+			</SuggestContainer>  */}
 		</div>
 	);
 }
