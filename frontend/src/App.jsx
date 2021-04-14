@@ -47,16 +47,12 @@ const App = () => {
             <Route path="/login" exact component={() => <LoginTest users={state.users} />} />
             <Route path="/signup" exact component={() => <SignUp users={state.users} />} />
             <Route path="/search/roommates" exact component={() => <RoommatesByCity users={state.users} cities={state.cities}/>} /> 
-<<<<<<< HEAD
             <Route path="/search/roommates/:user_id" exact component={() => <RoommateCard users={state.users} cities={state.cities}/>} /> 
-=======
-            <Route path="/search/roommates/:id" exact component={() => <RoommateCard users={state.users} cities={state.cities}/>} /> 
 
 
             <Route path="/search/rooms" exact component={() => <RoomsByCity users={state.users} cities={state.cities} rooms={state.rooms}/>} /> 
             <Route path="/search/rooms/:id" exact component={() => <RoomCard users={state.users} cities={state.cities} rooms={state.rooms}/>} /> 
 
->>>>>>> 86ed1afdd0377e134287327811dbd632aab2a714
             {/*    <Route path="/users/:cityId" exact component={() => <UsersByCity users={state.users} cities={state.cities}/>} />  */}
             {/*   <Route path="/users/cards/:renterId" exact component={() => <UserCard users={state.users} cities={state.cities}/>} />  */}
             <Route path="/listings/new" exact component={() => <ListingsNewTest />} />
