@@ -27,18 +27,14 @@ const UsersByCity = () => {
   console.log("USE LOCATION", useLocation(), "Bonne ville?", paramField )
   console.log("USE Params", useParams())
 
-/*   const redirect = (id) => {
-    console.log("Which id are you getting?", id)
-    //history.push(`/about`)
-    history.push(`/users/cards/${id}`)
-  }
-   */
-  //console.log("params", cityId, paramField)
+
+  const apiURL = paramField ? `/api/users?city=${paramField}` : `/api/users`
   useEffect(() => {
-    axios({
-      method: 'GET',
-      url: `/api/users?city=${paramField}`
-    })
+      axios({
+        method: 'GET',
+        url: apiURL
+        //url: `/api/users?city=${paramField}`
+      })
     .then(({
       data
     }) => {
