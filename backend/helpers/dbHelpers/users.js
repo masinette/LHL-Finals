@@ -6,12 +6,12 @@ module.exports = (db) => {
   const getUsers = (params) => {
     console.log("PAAARAMS", params.level)
     const queryParams = []
-    let queryString = `
-      SELECT * FROM users
-    `
+    let queryString = params.city ? "" : "SELECT * FROM users"
+
     if (params.city) {
       queryParams.push(params.city);
       queryString += `
+      SELECT users.id as id, firstname, lastname, is_owner, level, address, city_id, users.description as description, email, password, name, latitude, longitude, image FROM users
       JOIN cities ON users.city_id = cities.id
       WHERE name = $1`
     }
