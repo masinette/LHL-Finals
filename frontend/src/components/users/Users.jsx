@@ -2,14 +2,10 @@
 import './Users.scss';
 import UsersItem from './UsersItem';
 import { CardDeck } from 'react-bootstrap';
-import { useParams } from 'react';
-import useApplicationData from "../../hooks/useApplicationData";
 
-// import useApplicationData from "hooks/useApplicationData"
 
 const Users = (props) => {
   //const cityName = cities.filter(city => city.id === user.city_id)
-  let  cityId  = useParams();
   
   const citiesArray = ["Toronto", "Vancouver", "Calgary", "Montreal"];
 
@@ -29,10 +25,6 @@ const Users = (props) => {
       />
     )
   }) 
-
-
-  //console.log('de quoi ca lair', usersList)
-
 
   return (
    
