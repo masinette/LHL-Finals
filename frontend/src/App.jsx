@@ -1,9 +1,5 @@
 // import logo from './logo.svg';
-<<<<<<< HEAD
-import { React, useState, useContext, Redirect } from 'react';
-=======
-import { React, useState, Link } from 'react';
->>>>>>> origin
+import { React, useState, useContext, Redirect, Link } from 'react';
 import './App.scss';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import useApplicationData from "./hooks/useApplicationData";
