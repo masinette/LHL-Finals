@@ -1,6 +1,6 @@
-//import { CardDeck, Card, Button, Col, Row, Container } from 'react-bootstrap';
+import { Carousel } from 'react-bootstrap';
 
-export default function UserCard(props) {
+export default function RoommateCard(props) {
   console.log(props.city[0].name)
   return (
     <div>

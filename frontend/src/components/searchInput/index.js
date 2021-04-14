@@ -39,16 +39,16 @@ export default function SearchInput({
 
 		console.log("CLICK value", value)
 		setInputValue(value)
-	  window.location.assign( `/search/tenants/${value}` )
+	  window.location.assign( `/search/roommates/${value}` )
 		setInputValue("")
 		setResult("")
 	}
 	const onSubmit = (city) => {
 		console.log("SUBMIT", city)
-		history.push(`/search/tenants?city=${city}`)
+		history.push(`/search/roommates?city=${city}`)
 		setInputValue("")
 		setResult("")
-		//window.location.assign( `/search/tenants/${city}` )
+		window.location.assign( `/search/roommates?city=${city}` )
 	}
 
 	return (

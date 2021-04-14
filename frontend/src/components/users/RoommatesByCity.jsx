@@ -11,7 +11,7 @@ import { useHistory } from 'react-router-dom';
 
 // import useApplicationData from "hooks/useApplicationData"
 
-const UsersByCity = () => {
+const RoommatesByCity = () => {
   const history = useHistory();
   const [loading, setLoading] = useState(true);
   const [cityUsers, setCityUsers] = useState([]);
@@ -80,4 +80,4 @@ const UsersByCity = () => {
   
 };
 
-export default UsersByCity;
+export default RoommatesByCity;
