@@ -21,7 +21,7 @@ const UsersByCity = () => {
   const paramField = query.get('level');
   //const paramValue = query.get('value');
   
-  console.log("CLAVASSE", cityId, paramField)
+  //console.log("params", cityId, paramField)
   useEffect(() => {
     axios({
       method: 'GET',
@@ -30,7 +30,7 @@ const UsersByCity = () => {
     .then(({
       data
     }) => {
-      console.log("USERS BY CITY DATA",data);
+      //console.log("USERS BY CITY DATA",data);
       const usersList = data.map((user, index) => {
         //const userCity = props.cities.filter(city => city.id === user.city_id);
         //console.log("Users city", userCity)
@@ -44,7 +44,7 @@ const UsersByCity = () => {
           />
         )
       });
-      console.log("USERS LIST un moment donne?", usersList, loading)
+      //console.log("USERS LIST un moment donne?", usersList, loading)
       setLoading(false);
       setCityUsers(usersList)
       

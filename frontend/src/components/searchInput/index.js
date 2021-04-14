@@ -1,7 +1,4 @@
 import React, { useState, useCallback, useEffect } from 'react';
-import debounce from 'lodash.debounce';
-import axios from 'axios';
-//import { Input, Ul, Li, SuggestContainer } from './style';
 import { Input, Ul, Li, SuggestContainer } from './style';
 import { useHistory } from 'react-router-dom';
 
@@ -30,37 +27,21 @@ export default function SearchInput({
     };
   }, []);
 
-	//With api requests
-/* 	const updateValue = (newValue) => {
-		setInputValue(newValue);
-		//axios.get(`https://api.publicapis.org/entries?title=${newValue}`)
-		axios.get(`https://api.publicapis.org/entries?title=${newValue}`)
-			.then((response) => {
-				console.log("RESPONSE", response)
-				setResult(response.data.entries)
-			});
-	}; */
 
 	
 	const updateValue = (newValue) => {
 		setInputValue(newValue);
-		//axios.get(`https://api.publicapis.org/entries?title=${newValue}`)
 		const cities = ['Montreal', 'Toronto', 'Calgary', 'Vancouver'];
 		const response = cities.filter(city => city.toLowerCase().indexOf(newValue.toLowerCase()) > -1 ) ;
-		//console.log(response);
 		setResult(response)
 	};
-	const onClick = (e,value) => {
-		//let value = inputValue;
-		//e.preventDefault();
+	const onClick = (value) => {
+
 		console.log("CLICK value", value)
 		setInputValue(value)
-		//history.push(`/users/${value}`)
+	  window.location.assign( `/users/${value}` )
 		setInputValue("")
 		setResult("")
-		//history.push(`/users/Montreal`)
-		// e.preventDefault();
-	 window.location.assign( `/users/${value}` )
 	}
 	const onSubmit = (city) => {
 		console.log("SUBMIT", city)
@@ -69,7 +50,7 @@ export default function SearchInput({
 		setResult("")
 		window.location.assign( `/users/${city}` )
 	}
-	//value.API pour l'api
+
 	return (
 		<div>
 			<Input
@@ -78,8 +59,8 @@ export default function SearchInput({
 				onSubmit={onSubmit}
 				placeholder={placeholder}
 			/>
-
-			<SuggestContainer>
+{/* 
+ 			<SuggestContainer>
 				<Ul>
 					{loading && <Li>Loading...</Li>}
 					{result && result.length > 0 &&
@@ -87,15 +68,13 @@ export default function SearchInput({
 						result.map((value, index) => (
 							<Li
 								key={`${value}-${index}`}
-								onClick={(e) => onClick(e, value)}
-								/* onClick={() => onClick} */
+								onClick={() => onClick(value)}
 							>
 								{value}
 							</Li>
 						))}
 				</Ul>
-			</SuggestContainer>
-
+			</SuggestContainer>  */}
 		</div>
 	);
 }
