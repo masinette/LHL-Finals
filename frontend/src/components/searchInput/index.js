@@ -39,16 +39,16 @@ export default function SearchInput({
 
 		console.log("CLICK value", value)
 		setInputValue(value)
-	  window.location.assign( `/users/${value}` )
+	  window.location.assign( `/search/tenants/${value}` )
 		setInputValue("")
 		setResult("")
 	}
 	const onSubmit = (city) => {
 		console.log("SUBMIT", city)
-		history.push(`/users/${city}`)
+		history.push(`/search/tenants?city=${city}`)
 		setInputValue("")
 		setResult("")
-		window.location.assign( `/users/${city}` )
+		//window.location.assign( `/search/tenants/${city}` )
 	}
 
 	return (

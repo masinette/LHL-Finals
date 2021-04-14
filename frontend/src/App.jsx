@@ -44,8 +44,9 @@ const App = () => {
           <Route path="/login" exact component={() => <LoginTest users={state.users} />} />
           <Route path="/signup" exact component={() => <SignUp users={state.users} />} />
           <Route path="/users" exact component={() => <Users users={state.users} cities={state.cities}/>} />
-         <Route path="/users/:cityId" exact component={() => <UsersByCity users={state.users} cities={state.cities}/>} /> 
-         <Route path="/users/cards/:renterId" exact component={() => <UsersByCity users={state.users} cities={state.cities}/>} /> 
+         <Route path="/search/tenants" exact component={() => <UsersByCity users={state.users} cities={state.cities}/>} /> 
+      {/*    <Route path="/users/:cityId" exact component={() => <UsersByCity users={state.users} cities={state.cities}/>} />  */}
+       {/*   <Route path="/users/cards/:renterId" exact component={() => <UserCard users={state.users} cities={state.cities}/>} />  */}
 
           <Route path="/messages" exact component={() => <MessagesTest messages={state.messages} />} />
         </Switch>

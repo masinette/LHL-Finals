@@ -22,8 +22,10 @@ const UsersByCity = () => {
   
   const citiesArray = ["Toronto", "Vancouver", "Calgary", "Montreal"];
   const query = new URLSearchParams(search);
-  const paramField = query.get('level');
+  const paramField = query.get('city');
   //const paramValue = query.get('value');
+  console.log("USE LOCATION", useLocation(), "Bonne ville?", paramField )
+  console.log("USE Params", useParams())
 
 /*   const redirect = (id) => {
     console.log("Which id are you getting?", id)
@@ -35,16 +37,14 @@ const UsersByCity = () => {
   useEffect(() => {
     axios({
       method: 'GET',
-      url: `/api/users?city=${cityId}`
+      url: `/api/users?city=${paramField}`
     })
     .then(({
       data
     }) => {
       //console.log("USERS BY CITY DATA",data);
       const usersList = data.map((user, index) => {
-        console.log("Users ID????", user)
-        //const userCity = props.cities.filter(city => city.id === user.city_id);
-        //console.log("Users city", userCity)
+        //filtering out owners cause only owners searching will get here
         if (!user.is_owner){
           return (
             <UsersItem
