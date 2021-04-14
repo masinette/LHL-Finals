@@ -2,8 +2,14 @@ import React from "react";
 import { Link, withRouter } from "react-router-dom";
 import { Navbar, Nav, NavItem, NavDropdown, Form, FormControl, Button } from 'react-bootstrap';
 import SearchInput from "./searchInput";
+import { UserContext } from '../UserContext'
 
 function NavigationTest(props) {
+
+
+    // const {user, setUser} = UserContext(UserContext)
+
+
   return (
 
   <Navbar bg="light" expand="lg">

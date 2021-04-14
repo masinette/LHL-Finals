@@ -1,6 +1,5 @@
 import  React, { useState, useRef } from "react";
 import { Form, Button, Card, Alert, ButtonGroup } from 'react-bootstrap';
-// import { useAuth } from "../contexts/AuthContext"
 
 function SignUp(props) {
 

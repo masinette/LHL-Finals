@@ -109,23 +109,23 @@ export default function useApplicationData() {
 
 
 //login
-  useEffect(() => {
-//get email and password from user input on login page
-    axios({
-      method: 'POST',
-      url: '/api/users/login'
-    })
-    .then(({
-      data
-    }) => {
-      console.log("LOGIN DATA",data);
-      dispatch({
-        type: SET_USERS,
-        users: data
-      });
-    })
-    .catch((err) => console.log(err));
-  }, []);
+//   useEffect(() => {
+// //get email and password from user input on login page
+//     axios({
+//       method: 'POST',
+//       url: '/api/users/login'
+//     })
+//     .then(({
+//       data
+//     }) => {
+//       console.log("LOGIN DATA",data);
+//       dispatch({
+//         type: SET_USERS,
+//         users: data
+//       });
+//     })
+//     .catch((err) => console.log(err));
+//   }, []);
 
 
 

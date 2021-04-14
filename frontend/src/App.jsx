@@ -1,5 +1,5 @@
 // import logo from './logo.svg';
-import { React, useState } from 'react';
+import { React, useState, useContext } from 'react';
 import './App.scss';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import useApplicationData from "./hooks/useApplicationData";
@@ -7,9 +7,10 @@ import useApplicationData from "./hooks/useApplicationData";
 import Messages from "./components/messages/MessagesList";
 import Users from "./components/users/Users";
 
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import { BrowserRouter as Router, Route, Switch, useHistory } from "react-router-dom";
 import { NavigationTest, FooterTest, HomeTest, AboutTest, LoginTest, MessagesTest, SignUp } from "./components";
-
+import axios from 'axios';
+// import { UserContext } from './UserContext'
 
 // import { Container} from 'react-bootstrap';
 
@@ -21,11 +22,10 @@ const App = () => {
   } = useApplicationData();
 
 // if user is not logged in, display login page
-  const [token, setToken] = useState();
-  if(!token) {
-    <LoginTest users={state.users} setToken={setToken} />
-  }
-
+  const [user, setUser] = useState("");
+  // if(!token) {
+  //   <LoginTest users={state.users} setToken={setToken} />
+  // }
 
   //   const userList = state.users.map((user) => (<li key={user.id} > {user.firstname} {user.lastname} | {user.email} {user.is_owner} {user.level}</li>));
   //   const roomList = state.rooms.map((room) => (<li key={room.id}> {room.title} {room.description} {room.price}</li>));
@@ -38,19 +38,29 @@ const App = () => {
       <Router>
         <NavigationTest />
         <Switch>
-          <Route path="/" exact component={() => <HomeTest cities={state.cities} />} />
-          <Route path="/about" exact component={() => <AboutTest />} />
-          <Route path="/login" exact component={() => <LoginTest users={state.users} />} />
-          <Route path="/signup" exact component={() => <SignUp users={state.users} />} />
-          <Route path="/users" exact component={() => <Users users={state.users} cities={state.cities}/>} />
-          {/* <Route path="/users/:userId" exact component={() => <Users users={state.users} cities={state.cities}/>} /> */}
+          {/* <UserContext.Provider value={{user, setUser}}> */}
+            <Route path="/about" exact component={() => <AboutTest />} />
+            <Route path="/login" exact component={() => <LoginTest users={state.users} />} />
+            <Route path="/signup" exact component={() => <SignUp users={state.users} />} />
+            <Route path="/users" exact component={() => <Users users={state.users} cities={state.cities}/>} />
+            {/* <Route path="/users/:userId" exact component={() => <Users users={state.users} cities={state.cities}/>} /> */}
 
-          <Route path="/messages" exact component={() => <MessagesTest messages={state.messages} />} />
+            <Route path="/messages" exact component={() => <MessagesTest messages={state.messages} />} />
+            <Route path="/" exact component={() => <HomeTest cities={state.cities} />} />
+          {/* </UserContext.Provider> */}
+
         </Switch>
         <FooterTest />
       </Router>
     </div>
   );
+
+
+
+
+
+
+
 //     return (
 //     <div className="App" >
 
