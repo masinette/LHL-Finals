@@ -1,16 +1,19 @@
-import  React, { useState, useEffect, useRef } from "react";
+import  React, { useState, useEffect, useRef, useContext } from "react";
+import { useHistory } from 'react-router-dom';
 import { Form, Button, Card, Alert } from 'react-bootstrap';
 import axios from 'axios';
+import { UserContext } from '../UserContext'
 
-// import { useAuth } from "../contexts/AuthContext"
-
-function LoginTest() {
+function LoginTest(props) {
 
     const [userLogin, setUserLogin] = useState(
-        { email: '', password: '' }
+      { email: '', password: '' }
     );
 
-    const [userFirstName, setUserFirstName] = useState("")
+    const [userInfo, setUserInfo] = useState("")
+    const history = useHistory();
+
+    const {user, setUser} = useContext(UserContext)
 
 
     //when form fields take user input. set the input to userLogin
@@ -27,35 +30,36 @@ function LoginTest() {
           data: userLogin
         })
         .then((response)=>
-        setUserFirstName(response.data.firstname)
+        setUserInfo(response.data)
         // console.log("RESPONSE",response.data)
         ) 
         .catch((err) => console.log(err))
     }
 
 // if object is populated, login is successful, redirect to
-const userAuthenticated = (userFirstName) =>{
-  if (!userFirstName) {
+const userAuthenticated = (userInfo) =>{
+  if (!userInfo.firstname) {
     //alert user to login
-    console.log("prompt to try login again")
+    console.log(userInfo.msg)
+    return false;
   } else {
     //redirect to new page
-    console.log("redirect")
+    setUser(Object.values(userInfo))
+    history.push('/messages')
+    // console.log("USERINFO", user[3])
+    return true;
   }
-
 }
-userAuthenticated(userFirstName)
+
+
+userAuthenticated(userInfo)
+
+
+
+console.log("MSG",userInfo)
+console.log("AUTH",userAuthenticated(userInfo))
 // userAuthenticated(true)
 // if object is empty, send alert to user that login failed. use msg from response for password
-
-
-const onSubmit = (e) => {
-    //console.log(value)
-    e.preventDefault();
-    window.location.assign( "/about" )
-  }
-
-
 
   return (
     <div className="contact">
@@ -65,7 +69,9 @@ const onSubmit = (e) => {
 
 <Card>
   <Card.Body>
-    <Form onSubmit={handleSubmit}>
+    <Form onSubmit={handleSubmit} >
+    {/* <Form onSubmit={(event) =>handleSubmitUser(userLogin)}   > */}
+
       <Form.Group id="email">
         <Form.Label>Email</Form.Label>
         <Form.Control type="email" onChange={handleChange} value={userLogin.email} name="email" required />
@@ -87,7 +93,7 @@ const onSubmit = (e) => {
 
     </Form>
 
-    <h1>Logged in as: {userFirstName}</h1>
+    {/* <h1>Logged in as: {user}</h1> */}
 
   </Card.Body>
 </Card>
