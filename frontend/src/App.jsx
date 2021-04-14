@@ -5,8 +5,8 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import useApplicationData from "./hooks/useApplicationData";
 
 import Messages from "./components/messages/MessagesList";
-import RoommatesByCity from "./components/users/RoommatesByCity";
-import RoommateCard from "./components/users/RoommateCard";
+import RoommatesByCity from "./components/roommates/RoommatesByCity";
+import RoommateCard from "./components/roommates/RoommateCard";
 
 import { BrowserRouter as Router, Route, Switch, useHistory } from "react-router-dom";
 import { NavigationTest, FooterTest, HomeTest, AboutTest, LoginTest, MessagesTest, SignUp } from "./components";
