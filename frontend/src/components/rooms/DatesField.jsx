@@ -4,7 +4,9 @@ import { Form, Col } from "react-bootstrap";
 export default function DatesField({formData, handleInput}) {
   const {start_date, end_date} = formData;
 
-  const formattedStart = start_date.split("T")[0]
+  console.log(start_date);
+  const formattedStart = new Date(start_date).toString("YYYY-MM-DD")
+  console.log(formattedStart);
   return (
     <>
       <Form.Group>
@@ -23,7 +25,7 @@ export default function DatesField({formData, handleInput}) {
             <Form.Control
               type="date"
               name="end_date"
-              value={endDate || enddate}
+              value={end_date}
               onChange={handleInput}
             />
           </Col>
