@@ -1,7 +1,7 @@
 import { CardDeck, Card, Button, Col, Row, Container } from 'react-bootstrap';
 import { useHistory } from 'react-router-dom';
 
-export default function UsersItem(props) {
+export default function RoommatesItem(props) {
   const history = useHistory();
   //console.log("PROPS in item WTF CITY?", props.city)
   const redirect = (id) => {

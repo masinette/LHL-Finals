@@ -1,10 +1,14 @@
 import { Carousel } from 'react-bootstrap';
+import { useParams} from 'react-router-dom';
 import {Image, Video, Transformation, CloudinaryContext} from 'cloudinary-react';
 import './RoommateCard.scss';
 
 
 export default function RoommateCard(props) {
+  const { id } = useParams();
+  const roommate  = props.users.filter(user => user.id === id);
 
+  console.log("ROOMIIIIE", roommate, props.users)
 
   return (
 
@@ -14,6 +18,12 @@ export default function RoommateCard(props) {
       </Image> */}
       <div className="row" >
         <div className="column">
+          <div className="profilePic">
+            <Image cloudName="Ds3bokefg" publicId="users/1/702751_zr6enc.jpg" alt="guitar">
+                  <Transformation width="150" height="300" crop="fill" />
+            </Image>
+          </div>
+
 
 
         </div>

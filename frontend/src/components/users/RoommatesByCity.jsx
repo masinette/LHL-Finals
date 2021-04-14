@@ -1,5 +1,5 @@
 // import logo from './logo.svg';
-import UsersItem from './UsersItem';
+import RoommatesItem from './RoommatesItem';
 import { CardDeck } from 'react-bootstrap';
 import { React, useEffect, useState }  from 'react';
 import { useParams, useLocation } from 'react-router-dom';
@@ -42,7 +42,7 @@ const RoommatesByCity = () => {
         //filtering out owners cause only owners searching will get here
         if (!user.is_owner){
           return (
-            <UsersItem
+            <RoommatesItem
               key={index}
               id={user.id}
               name = {`${user.firstname} ${user.lastname}`}
