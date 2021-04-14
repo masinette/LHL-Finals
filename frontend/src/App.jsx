@@ -5,8 +5,10 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import useApplicationData from "./hooks/useApplicationData";
 
 import Messages from "./components/messages/MessagesList";
-import RoommatesByCity from "./components/users/RoommatesByCity";
-import RoommateCard from "./components/users/RoommateCard";
+import RoommatesByCity from "./components/roommates/RoommatesByCity";
+import RoommateCard from "./components/roommates/RoommateCard";
+import RoomsByCity from "./components/rooms/RoomsByCity";
+import RoomCard from "./components/rooms/RoomCard";
 
 import { BrowserRouter as Router, Route, Switch, useHistory } from "react-router-dom";
 import { NavigationTest, FooterTest, HomeTest, AboutTest, LoginTest, MessagesTest, SignUp } from "./components";
@@ -42,6 +44,11 @@ const App = () => {
             <Route path="/signup" exact component={() => <SignUp users={state.users} />} />
             <Route path="/search/roommates" exact component={() => <RoommatesByCity users={state.users} cities={state.cities}/>} /> 
             <Route path="/search/roommates/:id" exact component={() => <RoommateCard users={state.users} cities={state.cities}/>} /> 
+
+
+            <Route path="/search/rooms" exact component={() => <RoomsByCity users={state.users} cities={state.cities} rooms={state.rooms}/>} /> 
+            <Route path="/search/rooms/:id" exact component={() => <RoomCard users={state.users} cities={state.cities} rooms={state.rooms}/>} /> 
+
             {/*    <Route path="/users/:cityId" exact component={() => <UsersByCity users={state.users} cities={state.cities}/>} />  */}
             {/*   <Route path="/users/cards/:renterId" exact component={() => <UserCard users={state.users} cities={state.cities}/>} />  */}
 

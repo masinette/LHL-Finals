@@ -8,7 +8,7 @@ import { UserContext } from '../UserContext'
 
 function MessagesTest(props) {
   const {user, setUser} = useContext(UserContext)
-    const history = useHistory();
+  const history = useHistory();
 
   const messagesList = props.messages.map((message) => 
   (
