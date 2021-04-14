@@ -1,41 +1,44 @@
-import React from "react";
-import { Link, withRouter } from "react-router-dom";
+import  React, { useState, useEffect, useRef, useContext } from "react";
+import { Link, withRouter, useHistory } from "react-router-dom";
 import { Navbar, Nav, NavItem, NavDropdown, Form, FormControl, Button } from 'react-bootstrap';
 import SearchInput from "./searchInput";
 import { UserContext } from '../UserContext'
 
 function NavigationTest(props) {
 
+  // TypeError: Cannot destructure property 'user' of 'Object(...)(...)' as it is null.
+  const {user, setUser} = useContext(UserContext)
 
-    // const {user, setUser} = UserContext(UserContext)
-
+  const history = useHistory();
+  const handleSubmit = (event) => {
+    event.preventDefault()
+    setUser("empty")
+    history.push("/")
+  }  
 
   return (
 
   <Navbar bg="light" expand="lg">
-    <Navbar.Brand href="/" className= 'logo'>LivTogether</Navbar.Brand>
+    <Navbar.Brand as={Link} to="/" className= 'logo'>LivTogether</Navbar.Brand>
     <Navbar.Toggle aria-controls="basic-navbar-nav" />
     <Navbar.Collapse id="basic-navbar-nav">
       <Nav className="mr-auto">
-        <Nav.Link href="/">Home</Nav.Link>
-        <Nav.Link href="about">About</Nav.Link>
+        <Nav.Link as={Link} to="/">Home</Nav.Link>
+        <Nav.Link as={Link} to="/about">About</Nav.Link>
         <NavDropdown title="Dashboard" id="basic-nav-dropdown">
-          <NavDropdown.Item href="users">My Profile</NavDropdown.Item>
-          <NavDropdown.Item href="messages">My Messages</NavDropdown.Item>
-          <NavDropdown.Item href="rooms">My Listings</NavDropdown.Item>
+          <NavDropdown.Item><Nav.Link as={Link} to="/users">My Profile</Nav.Link></NavDropdown.Item>
+          <NavDropdown.Item><Nav.Link as={Link} to="/messages">My Messages</Nav.Link></NavDropdown.Item>
+          <NavDropdown.Item><Nav.Link as={Link} to="/rooms">My Listings</Nav.Link></NavDropdown.Item>
           <NavDropdown.Divider />
-          <NavDropdown.Item href="#action/3.4">Separated link</NavDropdown.Item>
         </NavDropdown>
       </Nav>
+      
+      {user !== "empty" && <p>Logged in as: {user[1]}</p>}
 
       <SearchInput placeholder="Enter a city" name="search"/>
 
-      {/* <Form inline>
-        <FormControl type="text" placeholder="Search" className="mr-sm-2" />
-        <Button variant="outline-success">Search</Button>
-      </Form> */}
-      <Button variant="outline-success" href="login">Login/Register</Button>
-      {/* <Button variant="outline-danger" href="/logout">Logout</Button> */}
+      {user === "empty" && <Button variant="outline-success" href="login">Login/Register</Button>}
+      {user !== "empty" && <Button onClick={handleSubmit} variant="outline-danger" href="/logout">Logout</Button>}
     </Navbar.Collapse>
   </Navbar>
 

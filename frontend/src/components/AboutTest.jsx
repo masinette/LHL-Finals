@@ -1,7 +1,10 @@
 
-import React from "react";
+import React, {useContext} from "react";
+import { UserContext } from '../UserContext'
 
 function AboutTest() {
+  const {user, setUser} = useContext(UserContext)
+
   return (
     <div className="about">
       <div className="container">
@@ -14,7 +17,7 @@ function AboutTest() {
             />
           </div>
           <div className="col-lg-5">
-            <h1 className="font-weight-light">About Us</h1>
+            <h1 className="font-weight-light">About Us</h1> 
             <p>
                 LivTogether started as solution to the current housing crisis in Canada, but has grown into a community initiative.
                 We match seniors looking for companionship and a little extra help, with youth looking to rent a safe space and foster new friendships. 

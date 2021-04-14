@@ -2,7 +2,7 @@ import  React, { useState, useEffect, useRef, useContext } from "react";
 import { useHistory } from 'react-router-dom';
 import { Form, Button, Card, Alert } from 'react-bootstrap';
 import axios from 'axios';
-// import { UserContext } from '../UserContext'
+import { UserContext } from '../UserContext'
 
 function LoginTest(props) {
 
@@ -13,7 +13,7 @@ function LoginTest(props) {
     const [userInfo, setUserInfo] = useState("")
     const history = useHistory();
 
-    // const {user, setUser} = UseContext(UserContext)
+    const {user, setUser} = useContext(UserContext)
 
 
     //when form fields take user input. set the input to userLogin
@@ -44,12 +44,18 @@ const userAuthenticated = (userInfo) =>{
     return false;
   } else {
     //redirect to new page
+    setUser(Object.values(userInfo))
     history.push('/messages')
-    // console.log("USERINFO",userInfo.firstname)
+    // console.log("USERINFO", user[3])
     return true;
   }
 }
+
+
 userAuthenticated(userInfo)
+
+
+
 console.log("MSG",userInfo)
 console.log("AUTH",userAuthenticated(userInfo))
 // userAuthenticated(true)
@@ -87,7 +93,7 @@ console.log("AUTH",userAuthenticated(userInfo))
 
     </Form>
 
-    {/* <h1>Logged in as: {userFirstName}</h1> */}
+    {/* <h1>Logged in as: {user}</h1> */}
 
   </Card.Body>
 </Card>

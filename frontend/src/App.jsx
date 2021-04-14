@@ -1,5 +1,5 @@
 // import logo from './logo.svg';
-import { React, useState, useContext } from 'react';
+import { React, useState, useContext, Redirect } from 'react';
 import './App.scss';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import useApplicationData from "./hooks/useApplicationData";
@@ -10,7 +10,7 @@ import Users from "./components/users/Users";
 import { BrowserRouter as Router, Route, Switch, useHistory } from "react-router-dom";
 import { NavigationTest, FooterTest, HomeTest, AboutTest, LoginTest, MessagesTest, SignUp } from "./components";
 import axios from 'axios';
-// import { UserContext } from './UserContext'
+import { UserContext } from './UserContext'
 
 // import { Container} from 'react-bootstrap';
 
@@ -22,10 +22,7 @@ const App = () => {
   } = useApplicationData();
 
 // if user is not logged in, display login page
-  const [user, setUser] = useState("");
-  // if(!token) {
-  //   <LoginTest users={state.users} setToken={setToken} />
-  // }
+  const [user, setUser] = useState("empty");
 
   //   const userList = state.users.map((user) => (<li key={user.id} > {user.firstname} {user.lastname} | {user.email} {user.is_owner} {user.level}</li>));
   //   const roomList = state.rooms.map((room) => (<li key={room.id}> {room.title} {room.description} {room.price}</li>));
@@ -36,9 +33,9 @@ const App = () => {
     
     <div className="App">
       <Router>
-        <NavigationTest />
         <Switch>
-          {/* <UserContext.Provider value={{user, setUser}}> */}
+          <UserContext.Provider value={{user, setUser}}>
+            <NavigationTest />
             <Route path="/about" exact component={() => <AboutTest />} />
             <Route path="/login" exact component={() => <LoginTest users={state.users} />} />
             <Route path="/signup" exact component={() => <SignUp users={state.users} />} />
@@ -47,7 +44,7 @@ const App = () => {
 
             <Route path="/messages" exact component={() => <MessagesTest messages={state.messages} />} />
             <Route path="/" exact component={() => <HomeTest cities={state.cities} />} />
-          {/* </UserContext.Provider> */}
+          </UserContext.Provider>
 
         </Switch>
         <FooterTest />
