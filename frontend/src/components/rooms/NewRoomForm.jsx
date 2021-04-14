@@ -15,7 +15,7 @@ export default function NewRoomForm(props) {
   const [formData, setFormData] = useState({
     title: "",
     description: "",
-    roomSize: null,
+    roomSize: 0,
     price: 0,
     startDate: "",
     endDate: "",
@@ -26,8 +26,6 @@ export default function NewRoomForm(props) {
     city_id: 1,
     user_id: 1
   })
-  const [search, setSearch] = useState("");
-
 
   const handleSubmit = event => {
 
@@ -40,7 +38,6 @@ export default function NewRoomForm(props) {
       .then((res) => {
         console.log(res)
         event.target.reset();
-        setSearch("");
       })
     const target = event.target
     console.log(target.name);
@@ -58,16 +55,18 @@ export default function NewRoomForm(props) {
 
   return (
     <>
-      <Form onSubmit={handleSubmit} >
-        <TitleField handleInput={handleInput} />
-        <DescriptionField handleInput={handleInput} />
-        <AddressField handleInput={handleInput} setFormData={setFormData} formData={formData} setSearch={setSearch} search={search} /> 
-        <SizePriceField handleInput={handleInput} />
-        <DatesField handleInput={handleInput} />
-        <PropertiesCheckbox handleInput={handleInput} />
-        <UploadButton />
-        <Button variant="primary" type="submit" >Create Room</Button>
-      </Form>
+      <div className="form__card" >
+        <Form onSubmit={handleSubmit} >
+          <TitleField handleInput={handleInput} formData={formData} />
+          <DescriptionField handleInput={handleInput} formData={formData} />
+          <AddressField handleInput={handleInput} setFormData={setFormData} formData={formData} /> 
+          <SizePriceField handleInput={handleInput} formData={formData} />
+          <DatesField handleInput={handleInput} formData={formData} />
+          <PropertiesCheckbox handleInput={handleInput} formData={formData} />
+          <UploadButton />
+          <Button variant="primary" type="submit" >Create Room</Button>
+        </Form>
+      </div>
     </>
   )
 }

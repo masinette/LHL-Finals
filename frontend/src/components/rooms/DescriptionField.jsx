@@ -5,7 +5,7 @@ export default function DescriptionField(props) {
 
   return (
     <>
-      <Form.Group controlId="exampleForm.ControlTextarea1">
+      <Form.Group>
         <Form.Label>Description</Form.Label>
         <Form.Control
           as="textarea"
@@ -13,6 +13,7 @@ export default function DescriptionField(props) {
           placeholder="Please enter a description of the room and home."
           name="description"
           onChange={props.handleInput}
+          value={props.formData.description}
         />
       </Form.Group>
     </>

@@ -10,25 +10,25 @@ export default function PropertiesCheckbox(props) {
         <Form.Check
           type="checkbox"
           label="Heating/AC"
-          name="hasHeating"
+          name="has_heating"
           onChange={props.handleInput}
         />
         <Form.Check
           type="checkbox"
           label="Parking"
-          name="hasParking"
+          name="has_parking"
           onChange={props.handleInput}
         />
         <Form.Check
           type="checkbox"
           label="Pet Friendly"
-          name="isPetFriendly"
+          name="is_pet_friendly"
           onChange={props.handleInput}
         />
         <Form.Check
           type="checkbox"
           label="Private Bath"
-          name="HasPrivateBath"
+          name="has_private_bath"
           onChange={props.handleInput}
         />
       </Form.Group>

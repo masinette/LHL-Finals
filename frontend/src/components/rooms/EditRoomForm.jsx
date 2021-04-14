@@ -16,14 +16,14 @@ export default function EditRoomForm(props) {
   const [formData, setFormData] = useState({
     title: "",
     description: "",
-    roomSize: null,
-    price: 0,
-    startDate: "",
-    endDate: "",
+    room_size: null,
+    price: null,
+    start_date: "",
+    end_date: "",
     address: "",
     latitude: null,
     longitude: null,
-    isPetFriendly: false,
+    is_pet_friendly: false,
     city_id: 1,
     user_id: 1
   })
@@ -34,17 +34,25 @@ export default function EditRoomForm(props) {
   useEffect(() => {
     axios({
       method: "GET",
-      url: `api/rooms/${roomId}`
+      url: `/api/rooms/${roomId}`
     })
-      .then(({data}) => console.log(`room ${roomId}:`, data))
+      .then(({data}) => {
+        console.log(`room ${roomId}:`, data[0])
+        setFormData(data[0]);
+      }) 
+      .catch(err => console.error("error: ", err))
   }, [])
 
-  const handleSubmit = event => {
+  // const allRooms = props.rooms
+  // console.log(allRooms);
+  console.log(formData);
 
+
+  const handleSubmit = event => {
     event.preventDefault()
     axios({
       method: "PUT",
-      url: "/api/rooms",
+      url: `/api/rooms/${roomId}`,
       data: formData
     })
       .then((res) => {
@@ -68,16 +76,18 @@ export default function EditRoomForm(props) {
 
   return (
     <>
-      <Form onSubmit={handleSubmit} >
-        <TitleField handleInput={handleInput} />
-        <DescriptionField handleInput={handleInput} />
-        <AddressField handleInput={handleInput} setFormData={setFormData} formData={formData} setSearch={setSearch} search={search} /> 
-        <SizePriceField handleInput={handleInput} />
-        <DatesField handleInput={handleInput} />
-        <PropertiesCheckbox handleInput={handleInput} />
-        <UploadButton />
-        <Button variant="primary" type="submit" >Create Room</Button>
-      </Form>
+      <div className="form__card">
+        <Form onSubmit={handleSubmit} >
+          <TitleField handleInput={handleInput} formData={formData} />
+          <DescriptionField handleInput={handleInput} formData={formData} />
+          <AddressField handleInput={handleInput} setFormData={setFormData} formData={formData} setSearch={setSearch} search={search} /> 
+          <SizePriceField handleInput={handleInput} formData={formData} />
+          <DatesField handleInput={handleInput} formData={formData} />
+          <PropertiesCheckbox handleInput={handleInput} formData={formData} />
+          <UploadButton />
+          <Button variant="primary" type="submit" >Create Room</Button>
+        </Form>
+      </div>
     </>
   )
 }

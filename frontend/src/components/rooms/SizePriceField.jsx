@@ -1,8 +1,16 @@
 import React from "react";
 import { Col, Form, InputGroup } from "react-bootstrap";
 
-export default function SizePriceField(props) {
-  console.log(props);
+export default function SizePriceField({
+  formData,
+  handleInput
+}) {
+  const {
+    roomSize,
+    roomsize,
+    price
+  } = formData
+
   return (
     <>
       <Form.Group>
@@ -14,8 +22,9 @@ export default function SizePriceField(props) {
                 type="number"
                 min="0"
                 placeholder="Size in Sqft"
-                name="roomSize"
-                onChange={props.handleInput}
+                name="room_size"
+                value={roomSize || roomsize}
+                onChange={handleInput}
               />
               <InputGroup.Append>
                 <InputGroup.Text>Sqft</InputGroup.Text>
@@ -24,7 +33,14 @@ export default function SizePriceField(props) {
           </Col>
           <Col>
             <Form.Label>Monthly Price</Form.Label>
-            <Form.Control type="number" min="0" placeholder="Price" name="price" onChange={props.handleInput} />
+            <Form.Control
+              type="number"
+              min="0"
+              placeholder="Price"
+              name="price"
+              value={price}
+              onChange={handleInput}
+            />
           </Col>
         </Form.Row>
       </Form.Group>

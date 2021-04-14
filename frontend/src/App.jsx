@@ -11,8 +11,8 @@ import UsersByCity from "./components/users/UsersByCity";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import { NavigationTest, FooterTest, HomeTest, AboutTest, LoginTest, MessagesTest, SignUp } from "./components";
 
-import ListingsNewTest from './components/rooms/index';
-import ListingsEditTest from './components/rooms';
+import ListingsNewTest from './components/rooms/NewRoomForm';
+import ListingsEditTest from './components/rooms/EditRoomForm';
 
 // import { Container} from 'react-bootstrap';
 
@@ -48,7 +48,7 @@ const App = () => {
           <Route path="/login" exact component={() => <LoginTest users={state.users} />} />
           <Route path="/signup" exact component={() => <SignUp users={state.users} />} />
           <Route path="/users" exact component={() => <Users users={state.users} cities={state.cities}/>} />
-         <Route path="/users/:cityId" exact component={() => <UsersByCity users={state.users} cities={state.cities}/>} /> 
+          <Route path="/users/:cityId" exact component={() => <UsersByCity users={state.users} cities={state.cities}/>} /> 
 
           <Route path="/messages" exact component={() => <MessagesTest messages={state.messages} />} />
         </Switch>

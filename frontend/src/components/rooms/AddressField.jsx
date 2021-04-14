@@ -12,12 +12,19 @@ export default function AddressField(props) {
   const handleSelect = async value => {
     const results = await geocodeByAddress(value);
     const latLng = await getLatLng(results[0]);
-    props.setSearch(value);
     props.setFormData({ ...props.formData,
       latitude: latLng.lat,
       longitude: latLng.lng,
       address: value
     });
+  }
+
+  // handle change funct
+  const handleChange = value => {
+    props.setFormData({ ...props.formData,
+      address: value
+    });
+    
   }
 
   const searchOptions = {
@@ -28,8 +35,8 @@ export default function AddressField(props) {
   return (
     <>
       <PlacesAutocomplete
-        value={props.search}
-        onChange={props.setSearch}
+        value={props.formData.address}
+        onChange={handleChange}
         onSelect={handleSelect}
         debounce={1000}
         searchOptions={searchOptions}
