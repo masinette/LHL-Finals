@@ -1,5 +1,4 @@
 // import logo from './logo.svg';
-import './Users.scss';
 import UsersItem from './UsersItem';
 import { CardDeck } from 'react-bootstrap';
 import { React, useEffect, useState }  from 'react';

@@ -7,7 +7,7 @@ export default function UsersItem(props) {
   const redirect = (id) => {
     console.log("Which id are you getting?", id)
     //history.push(`/about`)
-    history.push(`/users/cards/${id}`)
+    history.push(`/search/roommates/${id}`)
   }
   return (
     <Container fluid onClick={() => redirect(props.id)}>
