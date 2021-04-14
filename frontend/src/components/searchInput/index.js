@@ -3,6 +3,7 @@ import debounce from 'lodash.debounce';
 import axios from 'axios';
 //import { Input, Ul, Li, SuggestContainer } from './style';
 import { Input, Ul, Li, SuggestContainer } from './style';
+import { useHistory } from 'react-router-dom';
 
 export default function SearchInput({
 	options,
@@ -11,6 +12,7 @@ export default function SearchInput({
 	const [inputValue, setInputValue] = useState('');
 	const [result, setResult] = useState([]);
 	const [loading, setLoading] = useState(false);
+	const history = useHistory();
 
 
 	useEffect(() => {
@@ -18,7 +20,8 @@ export default function SearchInput({
       if (event.code === "Enter" || event.code === "NumpadEnter") {
         console.log("Enter key was pressed. Run your function.");
         event.preventDefault();
-        window.location.assign( '/users' )
+				console.log("state input", inputValue, "state result", result)
+        onSubmit("Montreal")
       }
     };
     document.addEventListener('keydown', listener);
@@ -44,7 +47,7 @@ export default function SearchInput({
 		//axios.get(`https://api.publicapis.org/entries?title=${newValue}`)
 		const cities = ['Montreal', 'Toronto', 'Calgary', 'Vancouver'];
 		const response = cities.filter(city => city.toLowerCase().indexOf(newValue.toLowerCase()) > -1 ) ;
-		console.log(response);
+		//console.log(response);
 		setResult(response)
 	};
 	const onClick = (value) => {
@@ -53,10 +56,13 @@ export default function SearchInput({
 		// e.preventDefault();
 		// window.location.assign( '/about' )
 	}
-	const onSubmit = (e) => {
-		//console.log(value)
-		e.preventDefault();
-		window.location.assign( '/about/${inputValue}' )
+	const onSubmit = (city) => {
+		console.log("SUBMIT", city)
+		console.log("state input", inputValue, "state result", result)
+		let patate = "Toronto";
+		//e.preventDefault();
+		history.push(`/users/${city}`)
+		//window.location.assign( '/about/${inputValue}' )
 	}
 	//value.API pour l'api
 	return (
@@ -68,7 +74,7 @@ export default function SearchInput({
 				placeholder={placeholder}
 			/>
 
-			<SuggestContainer>
+{/* 			<SuggestContainer>
 				<Ul>
 					{loading && <Li>Loading...</Li>}
 					{result && result.length > 0 &&
@@ -82,7 +88,7 @@ export default function SearchInput({
 							</Li>
 						))}
 				</Ul>
-			</SuggestContainer>
+			</SuggestContainer> */}
 
 		</div>
 	);
