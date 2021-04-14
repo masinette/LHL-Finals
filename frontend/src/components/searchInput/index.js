@@ -20,8 +20,8 @@ export default function SearchInput({
       if (event.code === "Enter" || event.code === "NumpadEnter") {
         console.log("Enter key was pressed. Run your function.");
         event.preventDefault();
-				console.log("state input", inputValue, "state result", result)
-        onSubmit("Montreal")
+				console.log("state input", inputValue, "state result", result, "EVENT?",  event.target.value)
+        onSubmit(event.target.value)
       }
     };
     document.addEventListener('keydown', listener);
@@ -50,19 +50,24 @@ export default function SearchInput({
 		//console.log(response);
 		setResult(response)
 	};
-	const onClick = (value) => {
-		console.log(value)
+	const onClick = (e,value) => {
+		//let value = inputValue;
+		//e.preventDefault();
+		console.log("CLICK value", value)
 		setInputValue(value)
+		//history.push(`/users/${value}`)
+		setInputValue("")
+		setResult("")
+		//history.push(`/users/Montreal`)
 		// e.preventDefault();
-		// window.location.assign( '/about' )
+	 window.location.assign( `/users/${value}` )
 	}
 	const onSubmit = (city) => {
 		console.log("SUBMIT", city)
-		console.log("state input", inputValue, "state result", result)
-		let patate = "Toronto";
-		//e.preventDefault();
 		history.push(`/users/${city}`)
-		//window.location.assign( '/about/${inputValue}' )
+		setInputValue("")
+		setResult("")
+		window.location.assign( `/users/${city}` )
 	}
 	//value.API pour l'api
 	return (
@@ -74,7 +79,7 @@ export default function SearchInput({
 				placeholder={placeholder}
 			/>
 
-{/* 			<SuggestContainer>
+			<SuggestContainer>
 				<Ul>
 					{loading && <Li>Loading...</Li>}
 					{result && result.length > 0 &&
@@ -82,13 +87,14 @@ export default function SearchInput({
 						result.map((value, index) => (
 							<Li
 								key={`${value}-${index}`}
-								onClick={() => onClick(value)}
+								onClick={(e) => onClick(e, value)}
+								/* onClick={() => onClick} */
 							>
 								{value}
 							</Li>
 						))}
 				</Ul>
-			</SuggestContainer> */}
+			</SuggestContainer>
 
 		</div>
 	);
