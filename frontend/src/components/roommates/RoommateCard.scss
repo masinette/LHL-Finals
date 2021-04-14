@@ -1,0 +1,33 @@
+.wholeComp {
+  color: aquamarine;
+}
+.row {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  width: 100%;
+}
+
+.column {
+  display: flex;
+  flex-direction: column;
+  flex-basis: 100%;
+  flex: 1;
+}
+
+.r2c1 {
+  background-color: blue;
+  height: 100px;
+}
+
+.r2c2 {
+  background-color: green;
+  height: 100px;
+}
+
+/* .carousel {
+  background-color: rgb(127, 192, 36);
+  width: 50%;
+  justify-content: left;
+  margin-top: 20em;
+} */

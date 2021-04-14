@@ -39,16 +39,15 @@ export default function SearchInput({
 
 		console.log("CLICK value", value)
 		setInputValue(value)
-	  window.location.assign( `/users/${value}` )
+		history.push(`/search/roommates?city=${value}`)
 		setInputValue("")
 		setResult("")
 	}
 	const onSubmit = (city) => {
 		console.log("SUBMIT", city)
-		history.push(`/users/${city}`)
+		history.push(`/search/roommates?city=${city}`)
 		setInputValue("")
 		setResult("")
-		window.location.assign( `/users/${city}` )
 	}
 
 	return (
@@ -59,8 +58,8 @@ export default function SearchInput({
 				onSubmit={onSubmit}
 				placeholder={placeholder}
 			/>
-{/* 
- 			<SuggestContainer>
+
+{/*  			<SuggestContainer>
 				<Ul>
 					{loading && <Li>Loading...</Li>}
 					{result && result.length > 0 &&
