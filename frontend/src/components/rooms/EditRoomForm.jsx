@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Form, Button } from "react-bootstrap";
 
 import TitleField from "./TitleField";
@@ -9,8 +9,9 @@ import DatesField from "./DatesField";
 import PropertiesCheckbox from "./PropertiesCheckbox";
 import UploadButton from "./UploadButton";
 import axios from "axios";
+import { useParams } from "react-router";
 
-export default function NewRoomForm(props) {
+export default function EditRoomForm(props) {
 
   const [formData, setFormData] = useState({
     title: "",
@@ -28,12 +29,21 @@ export default function NewRoomForm(props) {
   })
   const [search, setSearch] = useState("");
 
+  const {roomId} = useParams();
+
+  useEffect(() => {
+    axios({
+      method: "GET",
+      url: `api/rooms/${roomId}`
+    })
+      .then(({data}) => console.log(`room ${roomId}:`, data))
+  }, [])
 
   const handleSubmit = event => {
 
     event.preventDefault()
     axios({
-      method: "POST",
+      method: "PUT",
       url: "/api/rooms",
       data: formData
     })

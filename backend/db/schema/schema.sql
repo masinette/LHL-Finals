@@ -38,7 +38,7 @@ CREATE TABLE rooms (
   startDate DATE,
   endDate DATE,
   price INTEGER NOT NULL,
-  petFriendly BOOLEAN DEFAULT false,
+  isPetFriendly BOOLEAN DEFAULT false,
   active BOOLEAN DEFAULT false,
   city_id INTEGER REFERENCES cities(id) ON DELETE CASCADE,
   address VARCHAR(255) NOT NULL

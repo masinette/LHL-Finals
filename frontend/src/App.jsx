@@ -11,6 +11,7 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import { NavigationTest, FooterTest, HomeTest, AboutTest, LoginTest, MessagesTest, SignUp } from "./components";
 
 import ListingsNewTest from './components/rooms/index';
+import ListingsEditTest from './components/rooms';
 
 // import { Container} from 'react-bootstrap';
 
@@ -42,6 +43,7 @@ const App = () => {
           <Route path="/" exact component={() => <HomeTest cities={state.cities} />} />
           <Route path="/about" exact component={() => <AboutTest />} />
           <Route path="/listings/new" exact component={() => <ListingsNewTest />} />
+          <Route path="/listings/:roomId" exact component={() => <ListingsEditTest />} />
           <Route path="/login" exact component={() => <LoginTest users={state.users} />} />
           <Route path="/signup" exact component={() => <SignUp users={state.users} />} />
           <Route path="/users" exact component={() => <Users users={state.users} cities={state.cities}/>} />

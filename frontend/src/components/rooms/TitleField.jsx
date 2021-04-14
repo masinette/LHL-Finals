@@ -8,7 +8,7 @@ export default function TitleField(props) {
     <>
       <Form.Group controlId="exampleForm.ControlInput1">
         <Form.Label>Title</Form.Label>
-        <Form.Control type="text" placeholder="1 Bedroom Townhome" name="room_title" />
+        <Form.Control type="text" placeholder="1 Bedroom Townhome" name="title" onChange={props.handleInput} />
       </Form.Group>
     </>
   )

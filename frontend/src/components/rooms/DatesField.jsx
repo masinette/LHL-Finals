@@ -5,15 +5,15 @@ export default function DatesField(props) {
 
   return (
     <>
-      <Form.Group controlId="exampleForm.ControlInput3">
+      <Form.Group>
         <Form.Row>
           <Col>
             <Form.Label>Available Start Date</Form.Label>
-            <Form.Control type="date" name="room_startDate" />
+            <Form.Control type="date" name="startDate" onChange={props.handleInput} />
           </Col>
           <Col>
             <Form.Label>End Date</Form.Label>
-            <Form.Control type="date" name="room_endDate" />
+            <Form.Control type="date" name="endDate" onChange={props.handleInput} />
           </Col>
         </Form.Row>
       </Form.Group>

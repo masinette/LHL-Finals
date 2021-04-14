@@ -5,53 +5,40 @@ import PlacesAutocomplete, { geocodeByAddress, getLatLng } from "react-places-au
 
 export default function AddressField(props) {
   // value of the address input
-  const [search, setSearch] = useState("");
-  const [coordinates, setCoordinates] = useState({lat: null, lng: null});
-
-  // returns array of predictions
-  // const predictions = useAddressPrediction(search);
-
-  // // Promises
-  // const handleSelect = value => {
-  //   return new Promise((res, rej) => {
-  //     res(() => {
-  //       const results = geocodeByAddress(value);
-  //       return results;
-  //     })
-  //   })
-  // }
-  
-
-  // handleSelect
-  //   .then((results, value) => {
-  //     console.log(results)
-  //     const latLng = getLatLng(results[0])
-  //     setSearch(value);
-  //     setCoordinates(latLng);
-  //   })
-
+  // const [search, setSearch] = useState("");
+  // const [coordinates, setCoordinates] = useState({lat: null, lng: null});
 
   // async/await
   const handleSelect = async value => {
     const results = await geocodeByAddress(value);
-    console.log(results);
     const latLng = await getLatLng(results[0]);
-    setSearch(value);
-    setCoordinates(latLng);
+    props.setSearch(value);
+    props.setFormData({ ...props.formData,
+      latitude: latLng.lat,
+      longitude: latLng.lng,
+      address: value
+    });
   }
 
+  const searchOptions = {
+    types: ["address"],
+    componentRestrictions: { country: "ca" }
+  }
 
   return (
     <>
-      <PlacesAutocomplete value={search} onChange={setSearch} onSelect={handleSelect} >
+      <PlacesAutocomplete
+        value={props.search}
+        onChange={props.setSearch}
+        onSelect={handleSelect}
+        debounce={1000}
+        searchOptions={searchOptions}
+      >
         {({ getInputProps, suggestions, getSuggestionItemProps, loading }) => (
           <div>
-            <p>Lat, Lng: {coordinates.lat}, {coordinates.lng}</p>
-
-            {/* <input {...getInputProps({ placeholder: "Please enter an address" })} type="text"/> */}
             <Form.Group>
               <Form.Label>Address</Form.Label>
-              <Form.Control type="text" {...getInputProps({ placeholder: "Please enter an address", name: "room_address" })} />
+              <Form.Control type="text" onChange={props.handleInput} {...getInputProps({ placeholder: "Please enter an address", name: "address", autoComplete: "off" })} />
             </Form.Group>
             <div>
               {loading ? <div>Loading... </div> : null}
@@ -59,7 +46,7 @@ export default function AddressField(props) {
                 const style = {
                   backgroundColor: suggestion.active ? "#F1f1f1" : "#fff"
                 }
-                return <div {...getSuggestionItemProps(suggestion, {style})} >
+                return <div {...getSuggestionItemProps(suggestion, { style })} key={suggestion.placeId} >
                   {suggestion.description}
                 </div>
               })}
@@ -67,12 +54,6 @@ export default function AddressField(props) {
           </div>
         )}
       </PlacesAutocomplete>
-      {/* <input 
-        id="address-autocomplete"
-        type="text" placeholder="Enter Address"
-        value={search}
-        onChange={(event) => setSearch(event.target.value)}
-      /> */}
     </>
   )
 }

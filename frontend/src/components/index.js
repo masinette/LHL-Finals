@@ -10,3 +10,4 @@ export { default as SignUp } from "./SignUp";
 
 
 export { default as ListingsNewTest } from "./rooms/NewRoomForm";
+export { default as ListingsEditTest } from "./rooms/EditRoomForm";

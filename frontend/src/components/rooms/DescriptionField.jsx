@@ -7,7 +7,13 @@ export default function DescriptionField(props) {
     <>
       <Form.Group controlId="exampleForm.ControlTextarea1">
         <Form.Label>Description</Form.Label>
-        <Form.Control as="textarea" rows={3} placeholder="Please enter a description of the room and home." name="room_description" />
+        <Form.Control
+          as="textarea"
+          rows={3}
+          placeholder="Please enter a description of the room and home."
+          name="description"
+          onChange={props.handleInput}
+        />
       </Form.Group>
     </>
   )
