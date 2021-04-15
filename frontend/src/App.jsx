@@ -14,6 +14,7 @@ import RoomCard from "./components/rooms/RoomCard";
 import { BrowserRouter as Router, Route, Switch, useHistory } from "react-router-dom";
 import { NavigationTest, FooterTest, HomeTest, AboutTest, LoginTest, MessagesTest, SignUp } from "./components";
 
+import ProfileCard from './components/profile/index'
 import NewRoomForm from './components/rooms/NewRoomForm';
 import EditRoomForm from './components/rooms/EditRoomForm';
 import axios from 'axios';
@@ -57,6 +58,7 @@ const App = () => {
             {/*   <Route path="/users/cards/:renterId" exact component={() => <UserCard users={state.users} cities={state.cities}/>} />  */}
             <Route path="/listings/new" exact component={() => <NewRoomForm />} />
             <Route path="/listings/edit/:roomId" component={() => <EditRoomForm />} />
+            <Route path="/profile" exact component={() => <ProfileCard />} />
 
             <Route path="/messages" exact component={() => <MessagesTest messages={state.messages} />} />
             <Route path="/" exact component={() => <HomeTest cities={state.cities} />} />
