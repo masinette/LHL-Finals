@@ -9,25 +9,29 @@ import DatesField from "./DatesField";
 import PropertiesCheckbox from "./PropertiesCheckbox";
 import UploadButton from "./UploadButton";
 import axios from "axios";
-import { useParams } from "react-router";
+import { useHistory, useParams } from "react-router";
 
 export default function EditRoomForm(props) {
 
   const [formData, setFormData] = useState({
     title: "",
     description: "",
-    room_size: null,
-    price: null,
+    room_size: 0,
+    price: 0,
     start_date: "",
     end_date: "",
     address: "",
     latitude: null,
     longitude: null,
     is_pet_friendly: false,
+    has_heating: false,
+    has_parking: false,
+    has_private_bath: false,
     city_id: 1,
     user_id: 1
   })
-  const [search, setSearch] = useState("");
+
+  const history = useHistory();
 
   const {roomId} = useParams();
 
@@ -43,8 +47,6 @@ export default function EditRoomForm(props) {
       .catch(err => console.error("error: ", err))
   }, [])
 
-  // const allRooms = props.rooms
-  // console.log(allRooms);
   console.log(formData);
 
 
@@ -57,8 +59,7 @@ export default function EditRoomForm(props) {
     })
       .then((res) => {
         console.log(res)
-        event.target.reset();
-        setSearch("");
+        history.push(`/search/room/${roomId}`);
       })
     const target = event.target
     console.log(target.name);
@@ -80,12 +81,12 @@ export default function EditRoomForm(props) {
         <Form onSubmit={handleSubmit} >
           <TitleField handleInput={handleInput} formData={formData} />
           <DescriptionField handleInput={handleInput} formData={formData} />
-          <AddressField handleInput={handleInput} setFormData={setFormData} formData={formData} setSearch={setSearch} search={search} /> 
+          <AddressField handleInput={handleInput} setFormData={setFormData} formData={formData} /> 
           <SizePriceField handleInput={handleInput} formData={formData} />
           <DatesField handleInput={handleInput} formData={formData} />
           <PropertiesCheckbox handleInput={handleInput} formData={formData} />
           <UploadButton />
-          <Button variant="primary" type="submit" >Create Room</Button>
+          <Button variant="primary" type="submit" >Update Room</Button>
         </Form>
       </div>
     </>
