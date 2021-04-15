@@ -7,7 +7,6 @@ import { UserContext } from '../../UserContext'
 import axios from 'axios';
 
 
-
 export default function RoomCard(props) {
   const { room_id } = useParams();
   const room  = props.rooms.filter(room => room.id === room_id);
@@ -24,13 +23,15 @@ export default function RoomCard(props) {
 
   const {user, setUser} = useContext(UserContext)
 
-  const roomDetails = props.rooms[room_id-1]
-  
+  const roomDetails = props.rooms ? props.rooms[room_id-1] : null
+  // const roomDetails = props.rooms[room_id-1]
+
+
   const [index, setIndex] = useState(0);
 //sender_id, receiver_id, message, room_id, applicant_id
 const sender_id = user.id
   const [userMessage, setUserMessage] = useState(
-    { sender_id: user.id, receiver_id: roomDetails.user_id, message: '', room_id: room_id }
+    { sender_id: user.id, receiver_id: roomDetails?.user_id, message: '', room_id: room_id }
   );
   const handleChange = (event) => {
       setUserMessage({...userMessage, [event.target.name]: event.target.value})
@@ -54,6 +55,13 @@ const sender_id = user.id
         .catch((err) => console.log(err))
     }
 
+  const convertDate = (dateString) => {
+    const date = dateString.slice(0,10);
+    return date;
+  }
+  if(props.rooms.length === 0){
+    return 'loading';
+  }
 
   return (
 
@@ -124,40 +132,26 @@ const sender_id = user.id
         
       </div>
         <div className="column2" >
-                 <h3>Homeshare Details</h3>
+          <h3>Homeshare Details</h3>
+          <h5>{roomDetails.title}</h5>
+          <p>{roomDetails.description}</p>
         <ul>
-          <li>{roomDetails.title}</li>
-          <li>{roomDetails.description}</li>
-          <li>{roomDetails.room_size}</li>
-          <li>{roomDetails.start_date}</li>
-          <li>{roomDetails.end_date}</li>
-          <li>{roomDetails.price}</li>
+          <li>Room Size: {roomDetails.room_size} sqft</li>
+          <li>Preferred Start Date: {convertDate(roomDetails.start_date)}</li>
+          <li>Possible End Date: {convertDate(roomDetails.end_date)}</li>
+          <li>Rental Cost: ${roomDetails.price}</li>
         </ul>
-
-        </div>
-            <Form 
-            onSubmit={handleSubmit} 
-            >
-    {/* <Form onSubmit={(event) =>handleSubmitUser(userLogin)}   > */}
-
+      </div>
+  {/* -------------------MESSAGE BOX-------------- */}
+    <Form onSubmit={handleSubmit}>
       <Form.Group id="message">
         <Form.Label>Message</Form.Label>
-        <Form.Control type="text" 
-        onChange={handleChange} 
-        value={userMessage.message} 
-        name="message" required />
+        <Form.Control type="text" onChange={handleChange} value={userMessage.message} name="message" required />
       </Form.Group>
-
-
-    <Form.Text className="text-muted">
-
-    </Form.Text>
-
-    <Button type="submit" variant="outline-primary" size="lg" type="text" placeholder="Large text">
-      Submit 
-    </Button>
-
+      <Button type="submit" variant="outline-primary" size="lg" type="text" placeholder="Large text">Submit</Button>
     </Form>
+  {/* -------------------MESSAGE BOX-------------- */}
+
         </div>
       </div>
     </div>
@@ -165,6 +159,3 @@ const sender_id = user.id
   )
 }
 
-// TypeError: Cannot read property 'title' of undefined, ASK MENTOR, HAPPENS ON ROOM ID REFRESH
-//messages need a refresh to show up in inbox
-//css, bootstrap-react
