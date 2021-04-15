@@ -16,8 +16,8 @@ export default function EditRoomForm(props) {
   const [formData, setFormData] = useState({
     title: "",
     description: "",
-    room_size: null,
-    price: null,
+    room_size: 0,
+    price: 0,
     start_date: "",
     end_date: "",
     address: "",
@@ -58,7 +58,6 @@ export default function EditRoomForm(props) {
       .then((res) => {
         console.log(res)
         event.target.reset();
-        setSearch("");
       })
     const target = event.target
     console.log(target.name);
@@ -80,7 +79,7 @@ export default function EditRoomForm(props) {
         <Form onSubmit={handleSubmit} >
           <TitleField handleInput={handleInput} formData={formData} />
           <DescriptionField handleInput={handleInput} formData={formData} />
-          <AddressField handleInput={handleInput} setFormData={setFormData} formData={formData} setSearch={setSearch} search={search} /> 
+          <AddressField handleInput={handleInput} setFormData={setFormData} formData={formData} /> 
           <SizePriceField handleInput={handleInput} formData={formData} />
           <DatesField handleInput={handleInput} formData={formData} />
           <PropertiesCheckbox handleInput={handleInput} formData={formData} />

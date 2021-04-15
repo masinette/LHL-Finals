@@ -15,14 +15,14 @@ export default function NewRoomForm(props) {
   const [formData, setFormData] = useState({
     title: "",
     description: "",
-    roomSize: 0,
+    room_size: 0,
     price: 0,
-    startDate: "",
-    endDate: "",
+    start_date: "",
+    end_date: "",
     address: "",
     latitude: null,
     longitude: null,
-    isPetFriendly: false,
+    is_pet_friendly: false,
     city_id: 1,
     user_id: 1
   })

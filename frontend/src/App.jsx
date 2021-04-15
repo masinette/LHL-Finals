@@ -14,8 +14,8 @@ import RoomCard from "./components/rooms/RoomCard";
 import { BrowserRouter as Router, Route, Switch, useHistory } from "react-router-dom";
 import { NavigationTest, FooterTest, HomeTest, AboutTest, LoginTest, MessagesTest, SignUp } from "./components";
 
-import ListingsNewTest from './components/rooms/NewRoomForm';
-import ListingsEditTest from './components/rooms/EditRoomForm';
+import NewRoomForm from './components/rooms/NewRoomForm';
+import EditRoomForm from './components/rooms/EditRoomForm';
 import axios from 'axios';
 import { UserContext } from './UserContext'
 
@@ -43,22 +43,22 @@ const App = () => {
         <Switch>
           <UserContext.Provider value={{user, setUser}}>
             <NavigationTest />
-            <Route path="/about" exact component={() => <AboutTest />} />
-            <Route path="/login" exact component={() => <LoginTest users={state.users} />} />
-            <Route path="/signup" exact component={() => <SignUp users={state.users} />} />
-            <Route path="/search/roommates" exact component={() => <RoommatesByCity users={state.users} cities={state.cities}/>} /> 
-            <Route path="/search/roommates/:id" exact component={() => <RoommateCard users={state.users} cities={state.cities}/>} /> 
+            <Route path="/about" component={() => <AboutTest />} />
+            <Route path="/login" component={() => <LoginTest users={state.users} />} />
+            <Route path="/signup" component={() => <SignUp users={state.users} />} />
+            <Route path="/search/roommates" component={() => <RoommatesByCity users={state.users} cities={state.cities}/>} /> 
+            <Route path="/search/roommates/:id" component={() => <RoommateCard users={state.users} cities={state.cities}/>} /> 
 
 
-            <Route path="/search/rooms" exact component={() => <RoomsByCity users={state.users} cities={state.cities} rooms={state.rooms}/>} /> 
-            <Route path="/search/rooms/:id" exact component={() => <RoomCard users={state.users} cities={state.cities} rooms={state.rooms}/>} /> 
+            <Route path="/search/rooms" component={() => <RoomsByCity users={state.users} cities={state.cities} rooms={state.rooms}/>} /> 
+            <Route path="/search/rooms/:id" component={() => <RoomCard users={state.users} cities={state.cities} rooms={state.rooms}/>} /> 
 
-            {/*    <Route path="/users/:cityId" exact component={() => <UsersByCity users={state.users} cities={state.cities}/>} />  */}
-            {/*   <Route path="/users/cards/:renterId" exact component={() => <UserCard users={state.users} cities={state.cities}/>} />  */}
-            <Route path="/listings/new" exact component={() => <ListingsNewTest />} />
-            <Route path="/listings/:roomId" exact component={() => <ListingsEditTest />} />
+            {/*    <Route path="/users/:cityId" component={() => <UsersByCity users={state.users} cities={state.cities}/>} />  */}
+            {/*   <Route path="/users/cards/:renterId" component={() => <UserCard users={state.users} cities={state.cities}/>} />  */}
+            <Route path="/listings/new" component={() => <NewRoomForm />} />
+            <Route path="/listings/edit/:roomId" component={() => <EditRoomForm />} />
 
-            <Route path="/messages" exact component={() => <MessagesTest messages={state.messages} />} />
+            <Route path="/messages" component={() => <MessagesTest messages={state.messages} />} />
             <Route path="/" exact component={() => <HomeTest cities={state.cities} />} />
           </UserContext.Provider>
         </Switch>
