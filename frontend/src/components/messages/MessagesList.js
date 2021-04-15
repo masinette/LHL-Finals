@@ -48,6 +48,7 @@ export default function MessagesList(props) {
       }
     } */
     console.log("4- splitByConvos", splitByConvos)
+    return splitByConvos
   }
 
   function getFields(list, field, otherwise) {
@@ -74,26 +75,34 @@ export default function MessagesList(props) {
     data
   }) => {
     //console.log("USERS BY CITY DATA",data);
-    formatConvo(data)
-    const messagesList = data.map((message, index) => {
-      //filtering out owners cause only owners searching will get here
-      if (user_id){
-        return (
-          <MessagesListItem
-            key={index}
-            sender={message.sender_id}
-            receiver = {message.receiver_id}
-            message = {message.message}
-            sentDate = {message.room_id}
-            applicant = {message.applicant_id}
-            //onClick={() => redirect}
-          />
-        )
-      }
-    });
+    const convos = formatConvo(data)
+    console.log("CONVOS THEN", convos)
+    const convoArray = [];
+    let convo = [];
+    convos.forEach(() => {
+      convo = data.map((message, index) => {
+        //filtering out owners cause only owners searching will get here
+        if (user_id){
+          return (
+            <MessagesListItem
+              key={index}
+              sender={message.sender_id}
+              receiver = {message.receiver_id}
+              message = {message.message}
+              sentDate = {message.room_id}
+              applicant = {message.applicant_id}
+              //onClick={() => redirect}
+            />
+          )
+        }
+      })
+      console.log("CONVO TU SEUL?", convo[0], "mESSAGES LIST", messagesList)
+      //convoArray.push(convo)
+      
+    })
     //console.log("USERS LIST un moment donne?", usersList, loading)
     setLoading(false);
-    setMessagesList(messagesList)
+    setMessagesList(convoArray)
     })
     .catch((err) => console.log(err));
   }, []);
