@@ -6,8 +6,7 @@ export default function SizePriceField({
   handleInput
 }) {
   const {
-    roomSize,
-    roomsize,
+    room_size,
     price
   } = formData
 
@@ -23,7 +22,7 @@ export default function SizePriceField({
                 min="0"
                 placeholder="Size in Sqft"
                 name="room_size"
-                value={roomSize || roomsize}
+                value={room_size}
                 onChange={handleInput}
               />
               <InputGroup.Append>
