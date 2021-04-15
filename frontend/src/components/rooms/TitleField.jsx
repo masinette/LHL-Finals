@@ -6,7 +6,7 @@ export default function TitleField(props) {
 
   return (
     <>
-      <Form.Group controlId="exampleForm.ControlInput1">
+      <Form.Group controlId="title">
         <Form.Label>Title</Form.Label>
         <Form.Control
           type="text"

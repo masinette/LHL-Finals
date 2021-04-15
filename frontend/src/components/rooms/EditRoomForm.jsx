@@ -9,7 +9,7 @@ import DatesField from "./DatesField";
 import PropertiesCheckbox from "./PropertiesCheckbox";
 import UploadButton from "./UploadButton";
 import axios from "axios";
-import { useParams } from "react-router";
+import { useHistory, useParams } from "react-router";
 
 export default function EditRoomForm(props) {
 
@@ -27,7 +27,8 @@ export default function EditRoomForm(props) {
     city_id: 1,
     user_id: 1
   })
-  const [search, setSearch] = useState("");
+
+  const history = useHistory();
 
   const {roomId} = useParams();
 
@@ -43,8 +44,6 @@ export default function EditRoomForm(props) {
       .catch(err => console.error("error: ", err))
   }, [])
 
-  // const allRooms = props.rooms
-  // console.log(allRooms);
   console.log(formData);
 
 
@@ -57,7 +56,7 @@ export default function EditRoomForm(props) {
     })
       .then((res) => {
         console.log(res)
-        event.target.reset();
+        history.push(`/search/room/${roomId}`);
       })
     const target = event.target
     console.log(target.name);
@@ -84,7 +83,7 @@ export default function EditRoomForm(props) {
           <DatesField handleInput={handleInput} formData={formData} />
           <PropertiesCheckbox handleInput={handleInput} formData={formData} />
           <UploadButton />
-          <Button variant="primary" type="submit" >Create Room</Button>
+          <Button variant="primary" type="submit" >Update Room</Button>
         </Form>
       </div>
     </>
