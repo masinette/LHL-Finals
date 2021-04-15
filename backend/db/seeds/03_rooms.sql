@@ -10,4 +10,5 @@ INSERT INTO
 rooms( user_id, title, description, latitude, longitude, room_size, start_date, end_date, price, is_pet_friendly, active, address, city_id )
 VALUES
   (7, 'room for rent', 'cool room with 4 walls and a ceiling', 45.436824, -73.625063, 400, '2020-03-31', '2021-09-30', 450, false, true, '999 newman', 4),
-  (8, 'pretty room in historic Montreal', 'comfy room with a view', 45.502972, -73.696210, 400, '2021-03-31', '2022-09-30', 400, false, true, '999 bertrand', 4);
+  (8, 'pretty room in historic Montreal', 'comfy room with a view', 45.502972, -73.696210, 400, '2021-03-31', '2022-09-30', 400, false, true, '999 bertrand', 4),
+  (17, 'large room ', 'very large and with another room available for manual work or office work', 51.0447, -114.0719, 700, '2021-04-30', '2022-09-30', 400, true, true, '1330 8 St SW', 2);
