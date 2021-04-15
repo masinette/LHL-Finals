@@ -79,8 +79,8 @@ export default function MessagesList(props) {
     console.log("CONVOS THEN", convos)
     const convoArray = [];
     let convo = [];
-    convos.forEach(() => {
-      convo = data.map((message, index) => {
+    convos.forEach((thread) => {
+      convo = thread.map((message, index) => {
         //filtering out owners cause only owners searching will get here
         if (user_id){
           return (
@@ -97,12 +97,12 @@ export default function MessagesList(props) {
         }
       })
       console.log("CONVO TU SEUL?", convo[0], "mESSAGES LIST", messagesList)
-      //convoArray.push(convo)
+      convoArray.push(convo)
       
     })
     //console.log("USERS LIST un moment donne?", usersList, loading)
-    setLoading(false);
-    setMessagesList(convoArray)
+      setLoading(false);
+      setMessagesList(convoArray[1])
     })
     .catch((err) => console.log(err));
   }, []);
