@@ -11,7 +11,7 @@ export default function MessagesList(props) {
   const { user_id } = useParams();
   const [loading, setLoading] = useState(true);
   const [messagesList, setMessagesList] = useState([]);
-  console.log("J'ai tu un id??", user_id)
+  //console.log("J'ai tu un id??", user_id)
 
   const formatConvo = (messages, is_owner)  => {
     //console.log(" 1- KEYS", messages)
@@ -56,7 +56,7 @@ export default function MessagesList(props) {
   }) => {
     //console.log("USERS BY CITY DATA",data);
     const convos = formatConvo(data)
-    console.log("CONVOS THEN", convos)
+    //console.log("CONVOS THEN", convos)
     const convoArray = [];
     let convo = [];
     convos.forEach((thread) => {
@@ -71,12 +71,13 @@ export default function MessagesList(props) {
                 message = {message.message}
                 sentDate = {message.sentdate}
                 applicant = {message.applicant_id}
+                inboxUser = {user_id}
                 //onClick={() => redirect}
               />
           )
         }
       })
-      console.log("CONVO TU SEUL?", convo[0], "mESSAGES LIST", messagesList)
+      //console.log("CONVO TU SEUL?", convo[0], "mESSAGES LIST", messagesList)
       convoArray.push(<CardDeck>Your chat with {convo}</CardDeck>)
       
     })
@@ -87,16 +88,6 @@ export default function MessagesList(props) {
     .catch((err) => console.log(err));
   }, []);
 
-/* return (
-  <div>
-    {loading && <div>LOADING</div>}
-    {!loading &&  (
-      <CardDeck >
-        {cityUsers} 
-      </CardDeck>
-    )
-  }
-  </div> */
 
   
   return (

@@ -1,56 +1,67 @@
 // import logo from './logo.svg';
-import RoommatesItem from './RoommatesItem';
+import ConvoItem from './ConvoItem';
 import { CardDeck } from 'react-bootstrap';
 import { React, useEffect, useState }  from 'react';
 import { useParams, useLocation } from 'react-router-dom';
 import axios from 'axios';
 import { useHistory } from 'react-router-dom';
-//import users from '../../../../backend/routes/users';
 
 
-// import useApplicationData from "hooks/useApplicationData"
 
-const ConvoItem = () => {
-  const history = useHistory();
+
+const Convo = () => {
+
   const [loading, setLoading] = useState(true);
-  const [cityUsers, setCityUsers] = useState([]);
+  const [thread, setThread] = useState([]);
   
   //const cityName = cities.filter(city => city.id === user.city_id)
-  let { cityId } = useParams();
-  let { search } = useLocation();
+  let { user_id, interl_id } = useParams();
 
+  console.log("ALLO CONVO", user_id, interl_id)
   
   const citiesArray = ["Toronto", "Vancouver", "Calgary", "Montreal"];
 
-  //const paramValue = query.get('value');
-  // console.log("USE LOCATION", useLocation(), "Bonne ville?", paramField )
-  // console.log("USE Params", useParams())
 
+  useEffect(() => {
 
+    const apiURL = user_id ? `/api/messages/${user_id}/${interl_id}` : `/api/messages`;
+    axios({
+      method: 'GET',
+      url: apiURL
 
-      const messagesList = props.messages.map((message, index) => {
+    })
+    .then(({
+      data
+    }) => {
+      //console.log("USERS BY CITY DATA",data);
+      const messages = data.map((message, index) => {
         //filtering out owners cause only owners searching will get here
         if (true){
           return (
-            <MessagesListItem
+            <ConvoItem
               key={index}
               sender={message.sender_id}
               receiver = {message.receiver_id}
               message = {message.message}
-              sentDate = {message.room_id}
+              sentDate = {message.sentdate}
               applicant = {message.applicant_id}
-              //onClick={() => redirect}
             />
           )
         }
+      });
+      //console.log("USERS LIST un moment donne?", usersList, loading)
+      setLoading(false);
+      setThread(messages)
       })
+      .catch((err) => console.log(err));
+    }, []);
 
   return (
     <div>
       {loading && <div>LOADING</div>}
       {!loading &&  (
         <CardDeck >
-          {cityUsers} 
+          {thread} 
         </CardDeck>
       )
     }
@@ -59,4 +70,4 @@ const ConvoItem = () => {
   
 };
 
-export default ConvoItem;
+export default Convo;

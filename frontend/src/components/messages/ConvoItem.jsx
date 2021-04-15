@@ -1,62 +1,51 @@
-// import logo from './logo.svg';
-import RoommatesItem from './RoommatesItem';
-import { CardDeck } from 'react-bootstrap';
-import { React, useEffect, useState }  from 'react';
-import { useParams, useLocation } from 'react-router-dom';
-import axios from 'axios';
-import { useHistory } from 'react-router-dom';
-//import users from '../../../../backend/routes/users';
+import React from "react";
+import "./messages.css";
+import { CardDeck, Card, Button, Col, Row, Container } from 'react-bootstrap';
 
 
-// import useApplicationData from "hooks/useApplicationData"
+export default function ConvoItem(props) {
+  console.log("Props in meessage item", props)
 
-const Convo = () => {
-  const history = useHistory();
-  const [loading, setLoading] = useState(true);
-  const [cityUsers, setCityUsers] = useState([]);
+/*   const formatMessages = (props) => {
+    if (props === 0) {
+      return "no messages";
+    } else {
+      return `Here are your messages: ${props.messages}`;
+    }
+  }; */
+/*   Date.createFromMysql = function(mysql_string) {
+    var t, result = null;
+    if( typeof mysql_string === 'string' )
+    {
+        t = mysql_string.split(/[- :]/);
+        //when t[3], t[4] and t[5] are missing they defaults to zero
+        result = new Date(t[0], t[1] - 1, t[2], t[3] || 0, t[4] || 0, t[5] || 0);          
+    }
+    return result;   
+  } */
+  const dateFormatted = (sqlDate) => {
+    return sqlDate.split('T')[0] + " at " + sqlDate.split('T')[1].substr(0,8)
+  }
+  console.log("Veux ma date", dateFormatted, props.sentDate)
+
   
-  //const cityName = cities.filter(city => city.id === user.city_id)
-  let { cityId } = useParams();
-  let { search } = useLocation();
-
-  
-  const citiesArray = ["Toronto", "Vancouver", "Calgary", "Montreal"];
-
-  //const paramValue = query.get('value');
-  // console.log("USE LOCATION", useLocation(), "Bonne ville?", paramField )
-  // console.log("USE Params", useParams())
-
-
-
-      const messagesList = props.messages.map((message, index) => {
-        //filtering out owners cause only owners searching will get here
-        if (true){
-          return (
-            <MessagesListItem
-              key={index}
-              sender={message.sender_id}
-              receiver = {message.receiver_id}
-              message = {message.message}
-              sentDate = {message.room_id}
-              applicant = {message.applicant_id}
-              //onClick={() => redirect}
-            />
-          )
-        }
-      })
 
   return (
-    <div>
-      {loading && <div>LOADING</div>}
-      {!loading &&  (
-        <CardDeck >
-          {cityUsers} 
-        </CardDeck>
-      )
-    }
-    </div>
-  )
-  
-};
-
-export default Convo;
+    <Container fluid >
+      <Row> 
+        <Col >
+          <Card className="text-center">
+            <Card.Header>Thread with # {props.applicant}</Card.Header>
+            <Card.Body>
+              <Card.Title>{props.senderId}</Card.Title>
+              <Card.Text>
+                {props.message}
+              </Card.Text>
+            </Card.Body>
+            <Card.Footer className="text-muted">On {dateFormatted(props.sentDate)}</Card.Footer>
+          </Card>
+        </Col>
+      </Row>
+    </Container>
+  );
+}
