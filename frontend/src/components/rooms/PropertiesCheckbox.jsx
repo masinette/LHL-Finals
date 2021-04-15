@@ -23,6 +23,7 @@ export default function PropertiesCheckbox(props) {
           type="checkbox"
           label="Pet Friendly"
           name="is_pet_friendly"
+          checked={props.formData.is_pet_friendly}
           onChange={props.handleInput}
         />
         <Form.Check
