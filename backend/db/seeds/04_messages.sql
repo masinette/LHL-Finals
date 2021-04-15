@@ -6,7 +6,13 @@ VALUES
 (1, 2, 'Hi, I want to rent your place', '2021-04-11 17:12:17.488655', 1, 1 ),
 (4, 2, 'Hi, I want to rent your place please', '2021-04-11 17:14:17.488655', 1, 4),
 (2, 1, 'Awesome, I want you to rent my place', '2021-04-11 17:22:17.488655', 1, 1 ),
-(2, 4, 'Oh sorry, I already found someone', '2021-04-11 17:42:17.488655', 1, 4 );
+(2, 4, 'Oh sorry, I already found someone', '2021-04-11 17:42:17.488655', 1, 4 ),
+(20, 18, 'Hello Kenneth, I would like discuss with you', '2021-04-15 17:12:17.488655', 8, 18 ),
+(20, 15, 'Hello Allane, how are you today?', '2021-04-15 17:14:17.488655', 8, 15),
+(15, 20, 'Good, yourself?', '2021-04-16 17:22:17.488655', 8, 15 ),
+(20, 15, 'Amazing, I was wondering if you would be interested to rent my place', '2021-04-16 18:22:17.488655', 8, 15 ),
+(15, 20, 'I am currently discussing with someone else but for sure we can talk. What kind of help you need?', '2021-04-16 19:22:17.488655', 8, 15 ),
+(18, 20, 'Oh sorry, I already found a place', '2021-04-18 17:42:17.488655', 8, 18 );
 
   -- (1, 2, 'Hi, I want to rent your place', CURRENT_TIMESTAMP, 1),
   -- (2, 1, 'Awesome, I want you to rent my place', CURRENT_TIMESTAMP, 1),

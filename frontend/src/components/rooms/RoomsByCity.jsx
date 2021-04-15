@@ -1,12 +1,14 @@
 // import logo from './logo.svg';
 import RoomsItem from './RoomsItem';
-import { CardDeck, Container } from 'react-bootstrap';
+import { CardDeck, Container} from 'react-bootstrap';
+import SearchInput from "../searchInput";
 import { React, useEffect, useState, useContext }  from 'react';
 import { useParams, useLocation } from 'react-router-dom';
 import axios from 'axios';
 import { useHistory } from 'react-router-dom';
 import { UserContext } from '../../UserContext';
 import './RoomsByCity.scss';
+// import RoomMap from './RoomMap';
 
 //import users from '../../../../backend/routes/users';
 
@@ -22,6 +24,7 @@ const RoomsByCity = () => {
   let { cityId } = useParams();
   let { search } = useLocation();
 
+  console.log("USER",user)
   
   const citiesArray = ["Toronto", "Vancouver", "Calgary", "Montreal"];
 
@@ -60,6 +63,10 @@ const RoomsByCity = () => {
 
   return (
     <Container>
+    <div>
+    <h4>Search Rooms By City:</h4>
+    <SearchInput placeholder="Enter a city" name="search"></SearchInput>
+    </div>
     <div className="flexMe">
       <div>
         {loading && <div>LOADING</div>}
@@ -69,8 +76,8 @@ const RoomsByCity = () => {
           </CardDeck>
         )}
       </div>
-      <div className="mapWrapper">
-        <h1>MAP</h1>
+      <div className="map">
+        {/* <RoomMap /> */}
       </div>
     </div>
     </Container>

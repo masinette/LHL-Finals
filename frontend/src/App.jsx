@@ -19,6 +19,8 @@ import NewRoomForm from './components/rooms/NewRoomForm';
 import EditRoomForm from './components/rooms/EditRoomForm';
 import axios from 'axios';
 import { UserContext } from './UserContext'
+import MessagesList from './components/messages/MessagesList';
+import Convo from './components/messages/Convo';
 
 // import { Container} from 'react-bootstrap';
 
@@ -49,13 +51,14 @@ const App = () => {
             <Route path="/signup" exact component={() => <SignUp users={state.users} />} />
             <Route path="/search/roommates" exact component={() => <RoommatesByCity users={state.users} cities={state.cities}/>} /> 
             <Route path="/search/roommates/:user_id" exact component={() => <RoommateCard users={state.users} cities={state.cities}/>} /> 
+            <Route path="/messages/:user_id" exact component={() => <MessagesList users={state.users} messages={state.messages}/>} /> 
+            <Route path="/messages/:user_id/:interl_id" exact component={() => <Convo users={state.users} messages={state.messages}/>} /> 
 
 
             <Route path="/search/rooms" exact component={() => <RoomsByCity users={state.users} cities={state.cities} rooms={state.rooms}/>} /> 
-            <Route path="/search/rooms/:room_id" exact component={() => <RoomCard users={state.users} cities={state.cities} rooms={state.rooms}/>} /> 
+            <Route path="/search/rooms/:room_id" exact component={() => <RoomCard users={state.users} cities={state.cities} rooms={state.rooms} />} /> 
 
-            {/*    <Route path="/users/:cityId" exact component={() => <UsersByCity users={state.users} cities={state.cities}/>} />  */}
-            {/*   <Route path="/users/cards/:renterId" exact component={() => <UserCard users={state.users} cities={state.cities}/>} />  */}
+   
             <Route path="/listings/new" exact component={() => <NewRoomForm />} />
             <Route path="/listings/edit/:roomId" component={() => <EditRoomForm />} />
             <Route path="/users" exact component={() => <ProfileCard users={state.users} />} />
