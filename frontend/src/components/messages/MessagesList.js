@@ -12,6 +12,55 @@ export default function MessagesList(props) {
   const [messagesList, setMessagesList] = useState([]);
   console.log("J'ai tu un id??", user_id)
 
+  const formatConvo = (messages, is_owner)  => {
+    console.log(" 1- KEYS", messages)
+    const firstRecipientsArray = messages.reduce(function(firstRecipients, item) {
+      firstRecipients.push(item.applicant_id);
+      return firstRecipients;
+    }, [])
+    console.log("2- firstRecipients", firstRecipientsArray)
+    const firstRecipientsCleaned = [];
+    for(var value of firstRecipientsArray){
+      if(firstRecipientsCleaned.indexOf(value) === -1){
+          firstRecipientsCleaned.push(value);
+      }
+    }
+    console.log("3- recipientClean", firstRecipientsCleaned)
+    const splitByConvos = []
+      for (let i = 0; i < firstRecipientsCleaned.length; i++){
+        splitByConvos.push([])
+        for (let j = 0; j < messages.length; j++){
+          if(messages[j].applicant_id === firstRecipientsCleaned[i]){
+            console.log(messages[j].applicant_id, "equals", firstRecipientsCleaned[i])
+            console.log(messages[j])
+            splitByConvos[i].push(messages[j])
+            //splitByConvos[i].push(messages[j])
+          }
+        }
+      }
+
+/*     for (let i = 0; i < firstRecipientsCleaned.length; i++){
+      splitByConvos.push([])
+      for (let j = 0; j < messages.length; i++){
+        if(messages[j].applicant_id === firstRecipientsCleaned[i]){
+          splitByConvos[i].push(messages[j])
+        }
+      }
+    } */
+    console.log("4- splitByConvos", splitByConvos)
+  }
+
+  function getFields(list, field, otherwise) {
+    //  reduce the provided list to an array containing either the requested field or the alternative value
+    return list.reduce(function(carry, item) {
+        //  If item is an object and contains the field, add its value and the value of otherwise if not
+        carry.push(typeof item === 'object' && field in item ? item[field] : otherwise);
+
+        //  return the 'carry' (which is the list of matched field values)
+        return carry;
+    }, []);
+}
+
   useEffect(() => {
 /*     const query = new URLSearchParams(search);
     const paramField = query.get('city'); */
@@ -25,6 +74,7 @@ export default function MessagesList(props) {
     data
   }) => {
     //console.log("USERS BY CITY DATA",data);
+    formatConvo(data)
     const messagesList = data.map((message, index) => {
       //filtering out owners cause only owners searching will get here
       if (user_id){
