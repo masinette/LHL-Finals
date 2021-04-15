@@ -16,16 +16,8 @@ export default function RoommateCard(props) {
     }
   });
   const roommate = roommateSearch[0];
+  //console.log("ROOMIIIIE", roommate?.firstname, "ID", user_id, "PROPS", typeof(props.users[2]) )
 
-
-
-  console.log("ROOMIIIIE", roommate?.firstname, "ID", user_id, "PROPS", typeof(props.users[2]) )
- 
- 
- 
- 
- 
- 
  
   const picture1publicId = `users/${user_id}/u${user_id}_p1`
   const picture2publicId = `users/${user_id}/u${user_id}_p2`
@@ -37,24 +29,14 @@ export default function RoommateCard(props) {
   return (
 
     <div className ="wholeComp">
-{/*       <Image cloudName="Ds3bokefg" publicId="users/1/mark.jpg" >
-        <Transformation width="150" height="300" crop="fill" />
-      </Image> */}
       <div className="row" >
         <div className="column alignJustCenter">
           <div className="profilePic">
             <Image cloudName="Ds3bokefg"  publicId={picture1publicId}>
-     {/*          <Transformation width="400" height="400" gravity="face" radius="max" crop="crop" /> */}
+             {/*  <Transformation width="400" height="400" gravity="face" radius="max" crop="crop" />  */}
               <Transformation width="200" crop="fill" />
             </Image>
-           
-          
-    
-          
           </div>
-
-
-
         </div>
         <div className="column alignJustCenter">
           <div className="descText">
@@ -88,8 +70,6 @@ export default function RoommateCard(props) {
       <div className="column justCenter">
         <div name="contact">
           <ContactRoommate></ContactRoommate>
-          
-
         </div>
       </div>
     </div>
