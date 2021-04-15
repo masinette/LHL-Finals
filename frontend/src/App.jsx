@@ -58,7 +58,7 @@ const App = () => {
             {/*   <Route path="/users/cards/:renterId" exact component={() => <UserCard users={state.users} cities={state.cities}/>} />  */}
             <Route path="/listings/new" exact component={() => <NewRoomForm />} />
             <Route path="/listings/edit/:roomId" component={() => <EditRoomForm />} />
-            <Route path="/profile" exact component={() => <ProfileCard />} />
+            <Route path="/users" exact component={() => <ProfileCard users={state.users} />} />
 
             <Route path="/messages" exact component={() => <MessagesTest messages={state.messages} />} />
             <Route path="/" exact component={() => <HomeTest cities={state.cities} />} />
