@@ -1,6 +1,6 @@
 import React, {useState, useContext} from 'react'
 import { Carousel, Container, Col, Row, Button, Form } from 'react-bootstrap';
-import { useParams} from 'react-router-dom';
+import { useParams, useHistory} from 'react-router-dom';
 import {Image, Video, Transformation, CloudinaryContext} from 'cloudinary-react';
 import './RoomCard.scss';
 import { UserContext } from '../../UserContext'
@@ -11,6 +11,7 @@ import axios from 'axios';
 export default function RoomCard(props) {
   const { room_id } = useParams();
   const room  = props.rooms.filter(room => room.id === room_id);
+  const history = useHistory();
 
   const roomSearch = props.rooms.filter(rooms => {
     if (room.id === parseInt(room_id)){
@@ -29,7 +30,7 @@ export default function RoomCard(props) {
 //sender_id, receiver_id, message, room_id, applicant_id
 const sender_id = user.id
   const [userMessage, setUserMessage] = useState(
-    { sender_id: user.id, receiver_id: roomDetails.user_id, message: '', room_id: room_id, applicant_id: sender_id }
+    { sender_id: user.id, receiver_id: roomDetails.user_id, message: '', room_id: room_id }
   );
   const handleChange = (event) => {
       setUserMessage({...userMessage, [event.target.name]: event.target.value})
@@ -46,9 +47,10 @@ const sender_id = user.id
           data: userMessage
         })
         .then((response)=>
-        // setUserMessage(response.data)
-        console.log("RESPONSE",response.data)
+        setUserMessage(response.data)
+        // console.log("RESPONSE",response.data)
         ) 
+        .then(()=> history.push("/search/rooms"))
         .catch((err) => console.log(err))
     }
 
@@ -164,3 +166,5 @@ const sender_id = user.id
 }
 
 // TypeError: Cannot read property 'title' of undefined, ASK MENTOR, HAPPENS ON ROOM ID REFRESH
+//messages need a refresh to show up in inbox
+//css, bootstrap-react

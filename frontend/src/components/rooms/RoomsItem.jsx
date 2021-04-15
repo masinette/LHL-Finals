@@ -1,6 +1,7 @@
 import { CardDeck, Card, Button, Col, Row, Container } from 'react-bootstrap';
 import { useHistory, useParams, useLocation  } from 'react-router-dom';
 import {Image, Video, Transformation, CloudinaryContext} from 'cloudinary-react';
+import './RoomsItem.scss';
 
 
 export default function RoomsItem(props) {
@@ -31,13 +32,18 @@ console.log("PROPS", props)
             <Card className="text-center">
               <Card.Header>Listing # {props.id}, {props.name}</Card.Header>
               <Card.Body>
-                <Image cloudName="Ds3bokefg"  publicId={`rooms/${room.id}/r${room.id}_p1.jpg`} className="d-block w-100" className="img">
-                  <Transformation width="200" height="200" crop="fill" />
-                </Image>
-                <Card.Title onClick={() => redirect(props.id)}>{props.name}</Card.Title>
-                <Card.Text>
-                  {props.description}
-                </Card.Text>
+              <div className="card-body">
+                  <Image cloudName="Ds3bokefg"  publicId={`rooms/${room.id}/r${room.id}_p1.jpg`} className="d-block w-100" className="img">
+                    <Transformation width="200" height="200" crop="fill" />
+                  </Image>
+                                
+                  <div className="card-body">
+                    <Card.Title onClick={() => redirect(props.id)}>{props.name}</Card.Title>
+                    <Card.Text>
+                      {props.description}
+                    </Card.Text>
+                  </div>
+                </div>
               </Card.Body>
               <Card.Footer className="text-muted">Home share located in: {props.city}</Card.Footer>
             </Card>
