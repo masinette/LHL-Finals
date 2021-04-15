@@ -48,8 +48,8 @@ module.exports = ({ getMessages, getMessagesByUser, addMessage, getMessageThread
   });
 
 
-//get conversation
-//  router.get("/thread/:userid/:roomid", (req, res) => {
+//get conversation interl_id === When first message is sent, the id of the user who receives it. Currently stored in applicant_id
+//  router.get("/thread/:userid/:interl_id", (req, res) => {
 
   router.get(`/:userid/:searched_id`, (req, res) => {
 
@@ -58,9 +58,9 @@ module.exports = ({ getMessages, getMessagesByUser, addMessage, getMessageThread
    const is_owner = req.query.is_owner;
    //const is_owner = JSON.parse(req.params.is_owner);
 
-   console.log("QUERY",is_owner)
+   console.log("QUERY thread",is_owner)
 
-    getMessageThread(userid, searched_id, parseInt(is_owner))
+    getMessageThread(userid, searched_id, true)
       .then((messages) => {
       // console.log("MESSAGES",messages)
       res.json(messages)})

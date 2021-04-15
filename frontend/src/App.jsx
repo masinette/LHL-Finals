@@ -19,6 +19,7 @@ import EditRoomForm from './components/rooms/EditRoomForm';
 import axios from 'axios';
 import { UserContext } from './UserContext'
 import MessagesList from './components/messages/MessagesList';
+import Convo from './components/messages/Convo';
 
 // import { Container} from 'react-bootstrap';
 
@@ -50,6 +51,7 @@ const App = () => {
             <Route path="/search/roommates" exact component={() => <RoommatesByCity users={state.users} cities={state.cities}/>} /> 
             <Route path="/search/roommates/:user_id" exact component={() => <RoommateCard users={state.users} cities={state.cities}/>} /> 
             <Route path="/messages/:user_id" exact component={() => <MessagesList users={state.users} messages={state.messages}/>} /> 
+            <Route path="/messages/:user_id/interl_id" exact component={() => <Convo users={state.users} messages={state.messages}/>} /> 
 
 
             <Route path="/search/rooms" exact component={() => <RoomsByCity users={state.users} cities={state.cities} rooms={state.rooms}/>} /> 
