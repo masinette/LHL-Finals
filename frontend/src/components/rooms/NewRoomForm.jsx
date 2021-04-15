@@ -24,6 +24,9 @@ export default function NewRoomForm(props) {
     latitude: 0,
     longitude: 0,
     is_pet_friendly: false,
+    has_heating: false,
+    has_parking: false,
+    has_private_bath: false,
     city_id: 1,
     user_id: 1
   })
