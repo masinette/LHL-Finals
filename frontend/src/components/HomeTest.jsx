@@ -1,17 +1,45 @@
 import { React, useState } from 'react';
 import { Container, Jumbotron, Button, Row, Col, ToggleButtonGroup, ToggleButton, ButtonGroup } from 'react-bootstrap';
 import CityCards from "./CityCards";
+import { useHistory } from 'react-router-dom';
 
 
 function HomeTest(props) {
-  const [checked, setChecked] = useState(false);
-  const [radioValue, setRadioValue] = useState('1');
+  // const [checked, setChecked] = useState(false);
+  // const [radioValue, setRadioValue] = useState('1');
 
-  const radios = [
-    { name: 'Look for a rental', value: false },
-    { name: 'Look for a renter', value: true }
-  ];
-  console.log("OWNER?", radioValue)
+  // const radios = [
+  //   { name: 'Look for a rental', value: false },
+  //   { name: 'Look for a renter', value: true }
+  // ];
+  // console.log("OWNER?", radioValue)
+
+  const history = useHistory();
+  
+  const handleSubmit = (event) => {
+    // if (radios[0].name === 'Look for a rental'){
+    // history.push('/search/rooms')
+    // } 
+    // if (radios[0].name === 'Look for a renter'){
+    // history.push('search/roommates')
+    // }
+//     if (Button.name="renter"){
+// history.push('/search/roommates')
+//     }
+//     if (Button.name="rental"){
+// history.push('/search/rooms')
+//     }
+  }
+  // console.log("RADIOS", radios)
+
+  const handleRenter = () => {
+    history.push('/search/roommates')
+  }
+  const handleRental = () => {
+    history.push('/search/rooms')
+  }
+
+
 
 
   return (
@@ -32,22 +60,20 @@ function HomeTest(props) {
         <p>&nbsp;</p>
       </div>
 
-      {/* <Row>
+      <Row>
         <Col md={3}>
         </Col>
         <Col xs={6} md={4}>
-          <Button variant="success">Look for a rental</Button>
+          <Button variant="primary" name="rental" type="submit" onClick={handleRental}>Look for a rental</Button>
         </Col>
         <Col xs={6} md={4}>
-          <Button variant="success">Look for a renter</Button>
+          <Button variant="primary" name="renter" type="submit" onClick={handleRenter}>Look for a renter</Button>
         </Col>
-      </Row> */}
-
-
+      </Row>
 
 
     <>
-      <ButtonGroup toggle className="mb-2">
+      {/* <ButtonGroup toggle className="mb-2">
 
       </ButtonGroup>
       <br />
@@ -61,11 +87,12 @@ function HomeTest(props) {
             value={radio.value}
             checked={radioValue === radio.value}
             onChange={(e) => setRadioValue(e.currentTarget.value)}
+            onClick={handleSubmit}
           >
             {radio.name}
           </ToggleButton>
         ))}
-      </ButtonGroup>
+      </ButtonGroup> */}
     </>
 
 

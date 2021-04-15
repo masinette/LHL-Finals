@@ -1,11 +1,13 @@
 // import logo from './logo.svg';
 import RoomsItem from './RoomsItem';
-import { CardDeck } from 'react-bootstrap';
+import { CardDeck, Container } from 'react-bootstrap';
 import { React, useEffect, useState, useContext }  from 'react';
 import { useParams, useLocation } from 'react-router-dom';
 import axios from 'axios';
 import { useHistory } from 'react-router-dom';
-import { UserContext } from '../../UserContext'
+import { UserContext } from '../../UserContext';
+import './RoomsByCity.scss';
+
 //import users from '../../../../backend/routes/users';
 
 
@@ -25,12 +27,12 @@ const RoomsByCity = () => {
 
   useEffect(() => {
       const query = new URLSearchParams(search);
-      const cityName = query.get('city');
-      const paramField = cityName ? (citiesArray.indexOf(cityName) + 1) : null
-      const apiURL = paramField ? `/api/rooms?city_id=${paramField}` : `/api/rooms`;
+      const paramField = query.get('city');
+      const apiURL = paramField ? `/api/rooms?city=${paramField}` : `/api/rooms`;
       axios({
         method: 'GET',
         url: apiURL
+        //url: `/api/rooms?city=${paramField}`
       })
     .then(({
       data
@@ -57,15 +59,21 @@ const RoomsByCity = () => {
   }, [search]);
 
   return (
-    <div>
-      {loading && <div>LOADING</div>}
-      {!loading &&  (
-        <CardDeck >
-          {cityRooms} 
-        </CardDeck>
-      )
-    }
+    <Container>
+    <div className="flexMe">
+      <div>
+        {loading && <div>LOADING</div>}
+        {!loading &&  (
+          <CardDeck >
+            {cityRooms} 
+          </CardDeck>
+        )}
+      </div>
+      <div className="mapWrapper">
+        <h1>MAP</h1>
+      </div>
     </div>
+    </Container>
   )
   
 };
