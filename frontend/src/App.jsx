@@ -21,6 +21,7 @@ import axios from 'axios';
 import { UserContext } from './UserContext'
 import MessagesList from './components/messages/MessagesList';
 import Convo from './components/messages/Convo';
+import EditProfileForm from './components/profile/EditProfileForm';
 
 // import { Container} from 'react-bootstrap';
 
@@ -62,6 +63,7 @@ const App = () => {
             <Route path="/listings/new" exact component={() => <NewRoomForm />} />
             <Route path="/listings/edit/:roomId" component={() => <EditRoomForm />} />
             <Route path="/users" exact component={() => <ProfileCard users={state.users} />} />
+            <Route path="/users/:userId/edit" exact component={() => <EditProfileForm users={state.users} />} />
 
             <Route path="/messages" exact component={() => <MessagesTest messages={state.messages} />} />
             <Route path="/" exact component={() => <HomeTest cities={state.cities} />} />

@@ -13,7 +13,7 @@ export default function ProfileImage(props) {
       <Container>
         <Row>
           <Col xs={6} md={4}>
-            <Image cloudName="Ds3bokefg" publicId={picture1publicId}>
+            <Image cloudName="Ds3bokefg" publicId={picture1publicId} >
               <Transformation width="200" crop="fill" radius="40" />
             </Image>
           </Col>

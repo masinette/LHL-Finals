@@ -2,6 +2,7 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { Col, Container, Row } from "react-bootstrap";
 import { Link } from "react-router-dom";
+import EditProfileBtn from "./EditProfileBtn";
 
 import "./styles.scss"
 
@@ -40,7 +41,7 @@ export default function ProfileInfoCard(props) {
             <Col className="profile__card-label" >Level:</Col>
             <Col>{user[4]}</Col>
           </Row>
-
+          <EditProfileBtn user={user} />
         </Container>
         
       </div>

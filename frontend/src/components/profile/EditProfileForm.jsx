@@ -2,22 +2,15 @@ import React, { useState, useContext, useEffect } from "react";
 import { Form, Button } from "react-bootstrap";
 import { UserContext } from "../../UserContext";
 
-import { useProfileVisual } from "../../hooks/useProfileVisual"
+
 import CreateListingsBtn from "./CreateListingsBtn";
-import ProfileInfoCard from "./ProfileInfoCard";
-import ProfileInfoEditCard from "./ProfileInfoEditCard";
+import EditProfileBtn from "./EditProfileBtn";
 import ProfileImage from "./ProfileImage";
+import ProfileInfoEditCard from "./ProfileInfoEditCard";
 
-const SHOW = "SHOW";
-const EDIT = "EDIT";
-
-
-export default function ProfileView(props) {
+export default function EditProfileForm(props) {
   const {user, setUser} = useContext(UserContext)
-
-  const { mode, transition, back } = useProfileVisual("SHOW");
   
-
   // const [currentUser, setCurrentUser] = useState({
 
   // })
@@ -32,8 +25,7 @@ export default function ProfileView(props) {
   return (
     <>
       <ProfileImage user_id={user[0]} />
-      { mode === SHOW && <ProfileInfoCard user={user} />}
-      { mode === EDIT && <ProfileInfoEditCard user={user} />}
+      <ProfileInfoEditCard user={user} />
       <CreateListingsBtn />
     </>
   )

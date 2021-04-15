@@ -9,6 +9,21 @@ import "./styles.scss"
 export default function ProfileInfoEditCard(props) {
   const user = props.user;
 
+  const handleChange = (e) => {
+    e.preventDefault();
+  }
+
+  const editPath = `/api/users/${user.id}`;
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    axios({
+      method: "PUT",
+      url: editPath
+    })
+    .then(res => {
+
+    })
+  }
 
   console.log(user);
 
@@ -19,18 +34,23 @@ export default function ProfileInfoEditCard(props) {
           <Row>
             <Col className="profile__card-label" >First Name:</Col>
             <Col>
-              {user[1]}
               <Form.Control 
                 type="text"
                 name="firstname"
                 value={user[1]}
+                onChange={handleChange}
               />
             </Col>
           </Row>
           <Row>
             <Col className="profile__card-label" >Last Name:</Col>
             <Col>
-              {user[2]}
+              <Form.Control 
+                type="text"
+                name="lastname"
+                value={user[2]}
+                onChange={handleChange}
+              />
             </Col>
           </Row>
           <Row>
@@ -57,7 +77,7 @@ export default function ProfileInfoEditCard(props) {
               {user[4]}
             </Col>
           </Row>
-
+          
         </Form>
         
       </div>
