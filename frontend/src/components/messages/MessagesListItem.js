@@ -13,7 +13,7 @@ export default function MessagesListItem(props) {
 
   return (
     <li>
-      <h2>Messages {props.message}</h2>
+      <h2>{props.message}</h2>
     </li>
   );
 }
