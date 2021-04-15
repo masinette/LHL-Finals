@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import { Form, Button } from "react-bootstrap";
 import { UserContext } from "../../UserContext";
 
@@ -10,8 +10,16 @@ import ProfileImage from "./ProfileImage";
 
 export default function ProfileView(props) {
   const {user, setUser} = useContext(UserContext)
+  
+  // const [currentUser, setCurrentUser] = useState({
+
+  // })
 
   console.log(user);
+
+  // useEffect(() => {
+
+  // }, [currentUser])
   
   
   return (
