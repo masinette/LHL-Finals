@@ -1,0 +1,121 @@
+// import {roomList} from '../../App'
+// import React, {useState, useContext, Component} from 'react'
+// import { useParams, useHistory} from 'react-router-dom';
+// import axios from 'axios';
+// import {GoogleApiWrapper, Map , Marker, InfoWindow} from 'google-maps-react';
+// import { Container} from 'react-bootstrap';
+
+// require('dotenv').config();
+
+// const API_KEY = process.env.REACT_APP_GOOGLE_MAPS_API_KEY;
+
+// // const roomList = props.rooms.map((room) => (<li key={room.id}> {room.title} {room.description} {room.price}</li>));
+
+// // console.log("Open sesame",API_KEY)
+//   // console.log("ROOMLIST", roomList)
+
+// export class MapContainer extends Component {
+//   state = {
+//     showingInfoWindow: false,
+//     activeMarker: {},
+//     selectedPlace: {},
+//     rooms: [],
+
+// //center map on Toronto for now
+//     mapPosition: {
+//       lat: 43.65364946930945, 
+//       lng: -79.38413301761516
+//     }
+//   };
+ 
+//    componentDidMount() {
+//     axios.get('/api/rooms')
+//       .then(res => {
+//         const rooms = res.data;
+//         this.setState({ rooms });
+//       }).then((rooms)=>{
+//         // const roomsList = this.state.rooms.map(room => key={room.id}, {room.title}, {room.description}, {room.price},);
+//         console.log("ROOMSONMOUNT", this.state.rooms);
+//       })
+//   }
+//       // const roomList = state.rooms.map((room) => (<li key={room.id}> {room.title} {room.description} {room.price}</li>));
+
+
+//   onMarkerClick = (props, marker, e) =>
+//     this.setState({
+//       selectedPlace: props,
+//       activeMarker: marker,
+//       showingInfoWindow: true
+//     });
+ 
+//   onMapClicked = (props) => {
+//     if (this.state.showingInfoWindow) {
+//       this.setState({
+//         showingInfoWindow: false,
+//         activeMarker: null
+//       })
+//     }
+//   console.log("PROPS",props, "STATE", this.state);
+//   // console.log("ROOMS", this.state.rooms)
+
+//   //  this.state.rooms.map(room => <li>{room.id}</li>)
+//   };
+
+//   render() {
+//     return (
+// <Container>
+//       {/* <div>
+//         { this.state.rooms.map(room => <p>{room.id}{room.title}{room.latitude}{room.longitude}</p>)}
+//       </div> */}
+//         { this.state.rooms.map(room => 
+//         <Marker
+//           title={room.id}
+//           name={room.title}
+//           position={{
+//             // lat:{...room.latitude}, 
+//             // lng:{...room.longitude}
+//             lat:Number({...this.state.rooms[4].latitude}), 
+//             lng:Number({...this.state.rooms[4].longitude})
+//           }}
+//         />
+//         )}
+
+//       <Map google={this.props.google}
+//           // onClick={this.onMapClicked}
+//           initialCenter={{
+//             lat: this.state.mapPosition.lat,
+//             lng: this.state.mapPosition.lng
+//           }}
+//           >
+//         {/* <Marker onClick={this.onMarkerClick}
+//                 name={'Current location'} /> */}
+ 
+//   {/* <Marker
+//     title={'The marker`s title will appear as a tooltip.'}
+//     name={'SOMA'}
+//     position={{lat:45.509114666140036, lng: -73.5544183328989}} /> 
+
+//   <Marker
+//     name={'Dolores park'}
+//     position={{lat: 43.762510, lng: -79.366102 }} /> */}
+   
+
+
+
+//         <InfoWindow
+//           marker={this.state.activeMarker}
+//           visible={this.state.showingInfoWindow}>
+//             <div>
+//               <h1>{this.state.selectedPlace.name}</h1>
+//             </div>
+//         </InfoWindow>
+//       </Map>
+// </Container>
+
+//     )
+//   }
+// }
+ 
+// export default GoogleApiWrapper({
+//   apiKey: (API_KEY)
+// })(MapContainer)
