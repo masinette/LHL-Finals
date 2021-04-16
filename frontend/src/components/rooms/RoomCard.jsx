@@ -20,8 +20,6 @@ export default function RoomCard(props) {
   });
 
 
-  //console.log("ROOMS OBJECT", props.rooms[room_id-1])
-
 
   const roomDetails = props.rooms ? props.rooms[room_id-1] : null
   // const roomDetails = props.rooms[room_id-1]

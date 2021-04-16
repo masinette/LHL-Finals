@@ -8,7 +8,7 @@ import axios from 'axios';
 import { useHistory } from 'react-router-dom';
 import { UserContext } from '../../UserContext';
 import './RoomsByCity.scss';
-// import RoomMap from './RoomMap';
+import RoomMap from './RoomMap';
 
 //import users from '../../../../backend/routes/users';
 
@@ -20,18 +20,22 @@ const RoomsByCity = () => {
   const [loading, setLoading] = useState(true);
   const [cityRooms, setCityRooms] = useState([]);
   const {user, setUser} = useContext(UserContext)
+  const [cityName, setCityName] = useState("");
   //const cityName = cities.filter(city => city.id === user.city_id)
   let { cityId } = useParams();
   let { search } = useLocation();
 
-  console.log("USER",user)
+  // console.log("USER",user)
   
   const citiesArray = ["Toronto", "Vancouver", "Calgary", "Montreal"];
+
 
   useEffect(() => {
       const query = new URLSearchParams(search);
       //const paramField = query.get('city');
-      const cityName = query.get('city');
+      const cityNameX = query.get('city');
+      setCityName(cityNameX);
+      console.log("citynameX", cityNameX)
       const paramField = cityName ? (citiesArray.indexOf(cityName) + 1) : null
       const apiURL = paramField ? `/api/rooms?city_id=${paramField}` : `/api/rooms`;
       console.log("SEARCH is changing!!", search, paramField)
@@ -43,22 +47,10 @@ const RoomsByCity = () => {
     .then(({
       data
     }) => {
-      const roomsList = data.map((room, index) => {
-        //filtering out owners cause only owners searching will get here
-        // if (!user.is_owner){
-          return (
-            <RoomsItem
-              key={index}
-              id={room.id}
-              name = {`${room.title}`}
-              description = {room.description}
-              city = {citiesArray[room.city_id - 1]}
-            />
-          )
-        // }
-      });
+      // console.log("DATA",data)
+      
       setLoading(false);
-      setCityRooms(roomsList)
+      setCityRooms(data)
       
     })
     .catch((err) => console.log(err));
@@ -71,12 +63,25 @@ const RoomsByCity = () => {
         {loading && <div>LOADING</div>}
         {!loading &&  (
           <CardDeck >
-            {cityRooms} 
+            {cityRooms.map((room, index) => {
+        //filtering out owners cause only owners searching will get here
+        // if (!user.is_owner){
+          return (
+            <RoomsItem
+              key={index}
+              id={room.id}
+              name = {`${room.title}`}
+              description = {room.description}
+              city = {citiesArray[room.city_id - 1]}
+            />
+          )
+        // }
+      })} 
           </CardDeck>
         )}
       </div>
       <div className="map">
-        {/* <RoomMap /> */}
+        <RoomMap city={cityName} cityRooms={cityRooms}/>
       </div>
     </div>
     </Container>

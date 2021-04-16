@@ -46,7 +46,7 @@ export default function useApplicationData() {
     .then(({
       data
     }) => {
-      console.log("USERS DATA",data);
+      // console.log("USERS DATA",data);
       dispatch({
         type: SET_USERS,
         users: data
@@ -63,7 +63,7 @@ export default function useApplicationData() {
     .then(({
       data
     }) => {
-      console.log("MESSAGES DATA",data);
+      // console.log("MESSAGES DATA",data);
       dispatch({
         type: SET_MESSAGES,
         messages: data
@@ -80,7 +80,7 @@ export default function useApplicationData() {
     .then(({
       data
     }) => {
-      console.log("CITIES DATA",data);
+      // console.log("CITIES DATA",data);
       dispatch({
         type: SET_CITIES,
         cities: data
@@ -97,7 +97,7 @@ export default function useApplicationData() {
     .then(({
       data
     }) => {
-      console.log("ROOMS DATA",data);
+      // console.log("ROOMS DATA",data);
       dispatch({
         type: SET_ROOMS,
         rooms: data
