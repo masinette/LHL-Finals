@@ -18,15 +18,11 @@ const Convo = () => {
   //cheat here, I should pass props from Messages to Convo but using redirect now and don't know how to get out
   const [roomId, setRoomId] = useState(null);
   const [applicantId, setApplicantId] = useState(null);
-  const [destination, setDestination] = useState(null);
-
-  
-  //const cityName = cities.filter(city => city.id === user.city_id)
-  let { user_id, recipient_id } = useParams();
-
-  console.log("ALLO CONVO", user_id, recipient_id)
-  
+  const [destination, setDestination] = useState(20);
+  //const [threadWith, setThreadWith] = useState(null);
+  const { user_id, recipient_id } = useParams();
   const citiesArray = ["Toronto", "Vancouver", "Calgary", "Montreal"];
+  
 
 
 
@@ -42,11 +38,12 @@ const Convo = () => {
       data
     }) => {
       if (parseInt(user_id) === data[0].applicant_id) {
-        setDestination(data[0].sender_id)
+        console.log("te rends-tu")
+        data[0].sender_id ? setDestination(data[0].sender_id) : setDestination(2)
       } else {
         setDestination(data[0].applicant_id)
       }
-      console.log("PIIIIS", parseInt(user_id), data[0].applicant_id, destination)
+      console.log("PIIIIS", typeof(parseInt(user_id)), typeof(data[0].applicant_id), destination)
       const messages = data.map((message, index) => {
         //filtering out owners cause only owners searching will get here
         if (true){
@@ -62,6 +59,7 @@ const Convo = () => {
               sentDate = {message.sentdate}
               room = {message.room_id}
               applicant = {message.applicant_id}
+              //threadWith = {destination}
  
             />
           )

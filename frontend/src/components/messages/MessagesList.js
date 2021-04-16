@@ -1,5 +1,5 @@
 import { React, useEffect, useState, useContext } from "react";
-import { useParams, useHistory } from 'react-router-dom';
+import { useParams, useHistory, useLocation } from 'react-router-dom';
 import MessagesListItem from './MessagesListItem';
 import axios from 'axios';
 import { CardDeck } from 'react-bootstrap';
@@ -15,6 +15,7 @@ export default function MessagesList(props) {
   const {user, setUser} = useContext(UserContext)
   const history = useHistory()
   //console.log("J'ai tu un id??", user_id)
+  console.log("LOCATION", useLocation())
 
   const formatConvo = (messages, is_owner)  => {
     //console.log(" 1- KEYS", messages)
@@ -100,7 +101,7 @@ export default function MessagesList(props) {
       setMessagesList(convoArray)
     })
     .catch((err) => console.log(err));
-  }, []);
+  }, [user_id]);
 
 
   
