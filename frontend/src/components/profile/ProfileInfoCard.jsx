@@ -1,9 +1,10 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { Col, Container, Row } from "react-bootstrap";
+import { Col, Container, Row, Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import EditProfileBtn from "./EditProfileBtn";
 
+import { FaRegEdit } from "react-icons/fa";
 import "./styles.scss"
 
 
@@ -19,29 +20,30 @@ export default function ProfileInfoCard(props) {
         <Container>
           <Row>
             <Col className="profile__card-label" >First Name:</Col>
-            <Col>{user[1]}</Col>
+            <Col>{user.firstname}</Col>
           </Row>
           <Row>
             <Col className="profile__card-label" >Last Name:</Col>
-            <Col>{user[2]}</Col>
-          </Row>
-          <Row>
-            <Col className="profile__card-label" >Email:</Col>
-            <Col>{user[8]}</Col>
+            <Col>{user.lastname}</Col>
           </Row>
           <Row>
             <Col className="profile__card-label" >Description:</Col>
-            <Col>{user[7]}</Col>
+            <Col>{user.description}</Col>
           </Row>
           <Row>
             <Col className="profile__card-label" >Address:</Col>
-            <Col>{user[5]}</Col>
+            <Col>{user.address}</Col>
           </Row>
           <Row>
             <Col className="profile__card-label" >Level:</Col>
-            <Col>{user[4]}</Col>
+            <Col>{user.level}</Col>
           </Row>
-          <EditProfileBtn user={user} />
+          <Row>
+            <div className="btn btn-gradient" onClick={props.onEdit}>
+              <FaRegEdit />
+            </div>
+          </Row>
+          
         </Container>
         
       </div>
