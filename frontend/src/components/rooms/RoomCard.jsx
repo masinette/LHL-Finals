@@ -29,7 +29,7 @@ export default function RoomCard(props) {
 //sender_id, receiver_id, message, room_id, applicant_id
   const sender_id = user.id
   const [userMessage, setUserMessage] = useState(
-    { sender_id: user[0], receiver_id: roomDetails?.user_id, message: '', room_id: room_id, applicant_id: roomDetails.user_id }
+    { sender_id: user.id, receiver_id: roomDetails?.user_id, message: '', room_id: room_id, applicant_id: roomDetails.user_id }
   );
   const handleChange = (event) => {
       setUserMessage({...userMessage, [event.target.name]: event.target.value})

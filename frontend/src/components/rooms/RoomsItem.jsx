@@ -32,12 +32,12 @@ export default function RoomsItem(props) {
             <Card className="text-center">
               <Card.Header>Listing # {props.id}, {props.name}</Card.Header>
               <Card.Body>
-              <div className="card-body">
+              <div className="something">
                   <Image cloudName="Ds3bokefg"  publicId={`rooms/${room.id}/r${room.id}_p1.jpg`} className="d-block w-100" className="img">
                     <Transformation width="200" height="200" crop="fill" />
                   </Image>
                                 
-                  <div className="card-body">
+                  <div className="something">
                     <Card.Title onClick={() => redirect(props.id)}>{props.name}</Card.Title>
                     <Card.Text>
                       {props.description}

@@ -81,43 +81,39 @@ console.log("CITYCOORDS", citiesCoords[props.city])
   console.log("DEFAULTCENTER",props.cityRooms)
   return (
 <Container>
+  <LoadScript
+      googleMapsApiKey={API_KEY}>
+    <GoogleMap
+        mapContainerStyle={mapStyles}
+        zoom={13}
+        center={defaultCenter}>
+        {
+          props.cityRooms.map(item => {
 
-     <LoadScript
-       googleMapsApiKey={API_KEY}>
-
-        <GoogleMap
-          mapContainerStyle={mapStyles}
-          zoom={13}
-          center={defaultCenter}>
-         {
-            props.cityRooms.map(item => {
-
-              return (
-              <Marker key={item.id} position={{
-                lat: Number(item.latitude),
-                lng: Number(item.longitude)
-              }}
-              // onClick={() => onSelect(item)}
-              />
-              )
-            })
-         }
-                 {/* {
-            selected.location && 
-            (
-              <InfoWindow
-              position={selected.location}
-              clickable={true}
-              onCloseClick={() => setSelected({})}
-            >
-              <p>{selected.name}</p>
-            </InfoWindow>
+            return (
+            <Marker key={item.id} position={{
+              lat: Number(item.latitude),
+              lng: Number(item.longitude)
+            }}
+            // onClick={() => onSelect(item)}
+            />
             )
-         } */}
-     </GoogleMap>
-
-     </LoadScript>
-
+          })
+        }
+                {/* {
+          selected.location && 
+          (
+            <InfoWindow
+            position={selected.location}
+            clickable={true}
+            onCloseClick={() => setSelected({})}
+          >
+            <p>{selected.name}</p>
+          </InfoWindow>
+          )
+        } */}
+    </GoogleMap>
+    </LoadScript>
 </Container>
 
   )

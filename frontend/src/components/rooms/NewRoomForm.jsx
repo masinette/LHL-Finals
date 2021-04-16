@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import { Form, Button } from "react-bootstrap";
 import axios from "axios";
 import { useHistory } from "react-router";
@@ -32,7 +32,7 @@ export default function NewRoomForm(props) {
     has_parking: false,
     has_private_bath: false,
     city_id: 1,
-    user_id: user[0]
+    user_id: user.id
   })
 
   // const history = useHistory();
