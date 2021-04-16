@@ -36,7 +36,7 @@ const App = () => {
   const [user, setUser] = useState("empty");
 
   //   const userList = state.users.map((user) => (<li key={user.id} > {user.firstname} {user.lastname} | {user.email} {user.is_owner} {user.level}</li>));
-  //   const roomList = state.rooms.map((room) => (<li key={room.id}> {room.title} {room.description} {room.price}</li>));
+    // const roomList = state.rooms.map((room) => (<li key={room.id}> {room.title} {room.description} {room.price}</li>));
   //  const messageList = state.messages.map((message) => (<li key={message.id} > {message.sentdate} || {message.sender_id} | {message.receiver_id} | {message.message}</li>));
 
 
@@ -53,7 +53,7 @@ const App = () => {
             <Route path="/search/roommates" exact component={() => <RoommatesByCity users={state.users} cities={state.cities}/>} /> 
             <Route path="/search/roommates/:user_id" exact component={() => <RoommateCard users={state.users} cities={state.cities}/>} /> 
             <Route path="/messages/:user_id" exact component={() => <MessagesList users={state.users} messages={state.messages}/>} /> 
-            <Route path="/messages/:user_id/:interl_id" exact component={() => <Convo users={state.users} messages={state.messages}/>} /> 
+            <Route path="/messages/:user_id/:recipient_id" exact component={() => <Convo users={state.users} messages={state.messages}/>} /> 
 
 
             <Route path="/search/rooms" exact component={() => <RoomsByCity users={state.users} cities={state.cities} rooms={state.rooms}/>} /> 

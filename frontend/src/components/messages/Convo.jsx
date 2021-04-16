@@ -1,10 +1,12 @@
 // import logo from './logo.svg';
 import ConvoItem from './ConvoItem';
 import { CardDeck } from 'react-bootstrap';
-import { React, useEffect, useState }  from 'react';
+import { React, useEffect, useState, Fragment}  from 'react';
 import { useParams, useLocation } from 'react-router-dom';
 import axios from 'axios';
+
 import { useHistory } from 'react-router-dom';
+import ReplyForm from './ReplyForm';
 
 
 
@@ -13,18 +15,20 @@ const Convo = () => {
 
   const [loading, setLoading] = useState(true);
   const [thread, setThread] = useState([]);
-  
-  //const cityName = cities.filter(city => city.id === user.city_id)
-  let { user_id, interl_id } = useParams();
-
-  console.log("ALLO CONVO", user_id, interl_id)
-  
+  //cheat here, I should pass props from Messages to Convo but using redirect now and don't know how to get out
+  const [roomId, setRoomId] = useState(null);
+  const [applicantId, setApplicantId] = useState(null);
+  const [destination, setDestination] = useState(20);
+  //const [threadWith, setThreadWith] = useState(null);
+  const { user_id, recipient_id } = useParams();
   const citiesArray = ["Toronto", "Vancouver", "Calgary", "Montreal"];
+  
+
 
 
   useEffect(() => {
 
-    const apiURL = user_id ? `/api/messages/${user_id}/${interl_id}` : `/api/messages`;
+    const apiURL = user_id ? `/api/messages/${user_id}/${recipient_id}` : `/api/messages`;
     axios({
       method: 'GET',
       url: apiURL
@@ -33,10 +37,19 @@ const Convo = () => {
     .then(({
       data
     }) => {
-      //console.log("USERS BY CITY DATA",data);
+      if (parseInt(user_id) === data[0].applicant_id) {
+        console.log("te rends-tu")
+        data[0].sender_id ? setDestination(data[0].sender_id) : setDestination(2)
+      } else {
+        setDestination(data[0].applicant_id)
+      }
+      console.log("PIIIIS", typeof(parseInt(user_id)), typeof(data[0].applicant_id), destination)
       const messages = data.map((message, index) => {
         //filtering out owners cause only owners searching will get here
         if (true){
+          
+          setRoomId(message.room_id);
+          setApplicantId(message.applicant_id)
           return (
             <ConvoItem
               key={index}
@@ -44,7 +57,10 @@ const Convo = () => {
               receiver = {message.receiver_id}
               message = {message.message}
               sentDate = {message.sentdate}
+              room = {message.room_id}
               applicant = {message.applicant_id}
+              //threadWith = {destination}
+ 
             />
           )
         }
@@ -60,11 +76,20 @@ const Convo = () => {
     <div>
       {loading && <div>LOADING</div>}
       {!loading &&  (
-        <CardDeck >
-          {thread} 
-        </CardDeck>
+        <Fragment>
+          <CardDeck >
+            {thread} 
+          </CardDeck>
+          <ReplyForm
+            userLogged={user_id}
+            recipient={destination}
+            room={roomId}
+            applicant={applicantId}
+          >
+          </ReplyForm>
+        </Fragment>
       )
-    }
+      }
     </div>
   )
   
