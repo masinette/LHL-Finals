@@ -93,7 +93,12 @@ export default function ProfileInfoEditCard(props) {
           <Row>
             <Col className="profile__card-label" >Address:</Col>
             <Col>
-              {userData.address}
+              <Form.Control 
+                type="text"
+                name="address"
+                value={userData.address}
+                onChange={handleChange}
+              />
             </Col>
           </Row>
           <Row>
@@ -127,12 +132,12 @@ export default function ProfileInfoEditCard(props) {
           </Row>
           <Row>
             <Col>
-              <Button className="btn-gradient" type="submit" >
+              <Button className="btn btn-success" type="submit" >
                 Save
               </Button>
             </Col>
             <Col>
-              <Button className="btn-gradient" onClick={props.onCancel} >
+              <Button className="btn btn-danger" onClick={props.onCancel} >
                 Cancel
               </Button>
             </Col>
