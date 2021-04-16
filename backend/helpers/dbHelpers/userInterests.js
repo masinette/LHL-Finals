@@ -1,4 +1,21 @@
 module.exports = (db) => {
+  const getUserInterests = (user_id) => {
+    const queryString = `SELECT users_interests.*, interests.name 
+      FROM users_interests 
+      JOIN interests ON interests.id = interest_id
+      WHERE user_id = $1;`;
+    
+    const query = {
+      text: queryString,
+      values: [user_id]
+    }
+
+    return db
+      .query(query)
+      .then(results => results.rows)
+      .catch(err => err)
+  }
+
   // Create the interests linked to user
   const addUserInterests = (user_id, interests) => {
     const queryString = `INSERT INTO users_interests (user_id, interest_id) VALUES ($1, $2);`;
@@ -56,7 +73,8 @@ module.exports = (db) => {
   }
 
   return {
-    addUserInterests
+    addUserInterests,
+    getUserInterests
   }
 }
 

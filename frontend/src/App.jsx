@@ -14,12 +14,15 @@ import RoomCard from "./components/rooms/RoomCard";
 import { BrowserRouter as Router, Route, Switch, useHistory } from "react-router-dom";
 import { NavigationTest, FooterTest, HomeTest, AboutTest, LoginTest, MessagesTest, SignUp } from "./components";
 
+import ProfileCard from './components/profile/index'
 import NewRoomForm from './components/rooms/NewRoomForm';
 import EditRoomForm from './components/rooms/EditRoomForm';
 import axios from 'axios';
 import { UserContext } from './UserContext'
 import MessagesList from './components/messages/MessagesList';
 import Convo from './components/messages/Convo';
+import EditProfileForm from './components/profile/EditProfileForm';
+
 // import { Container} from 'react-bootstrap';
 
 
@@ -50,7 +53,7 @@ const App = () => {
             <Route path="/search/roommates" exact component={() => <RoommatesByCity users={state.users} cities={state.cities}/>} /> 
             <Route path="/search/roommates/:user_id" exact component={() => <RoommateCard users={state.users} cities={state.cities}/>} /> 
             <Route path="/messages/:user_id" exact component={() => <MessagesList users={state.users} messages={state.messages}/>} /> 
-            <Route path="/messages/:user_id/:interl_id" exact component={() => <Convo users={state.users} messages={state.messages}/>} /> 
+            <Route path="/messages/:user_id/:recipient_id" exact component={() => <Convo users={state.users} messages={state.messages}/>} /> 
 
 
             <Route path="/search/rooms" exact component={() => <RoomsByCity users={state.users} cities={state.cities} rooms={state.rooms}/>} /> 
@@ -59,6 +62,8 @@ const App = () => {
    
             <Route path="/listings/new" exact component={() => <NewRoomForm />} />
             <Route path="/listings/edit/:roomId" component={() => <EditRoomForm />} />
+            <Route path="/users" exact component={() => <ProfileCard users={state.users} />} />
+            <Route path="/users/:userId/edit" exact component={() => <EditProfileForm users={state.users} />} />
 
             <Route path="/messages" exact component={() => <MessagesTest messages={state.messages} />} />
             <Route path="/" exact component={() => <HomeTest cities={state.cities} />} />

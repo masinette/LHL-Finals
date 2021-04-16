@@ -58,7 +58,7 @@ module.exports = ({ getMessages, getMessagesByUser, addMessage, getMessageThread
    const is_owner = req.query.is_owner;
    //const is_owner = JSON.parse(req.params.is_owner);
 
-   console.log("QUERY thread",is_owner)
+   //console.log("QUERY thread",is_owner)
 
     getMessageThread(userid, searched_id, true)
       .then((messages) => {

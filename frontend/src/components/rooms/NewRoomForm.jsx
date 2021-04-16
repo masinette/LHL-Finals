@@ -1,5 +1,7 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { Form, Button } from "react-bootstrap";
+import axios from "axios";
+import { useHistory } from "react-router";
 
 import TitleField from "./TitleField";
 import DescriptionField from "./DescriptionField";
@@ -8,10 +10,12 @@ import SizePriceField from "./SizePriceField";
 import DatesField from "./DatesField";
 import PropertiesCheckbox from "./PropertiesCheckbox";
 import UploadButton from "./UploadButton";
-import axios from "axios";
-import { useHistory } from "react-router";
+
+import { UserContext } from "../../UserContext";
+
 
 export default function NewRoomForm(props) {
+  const {user, setUser} = useContext(UserContext)
 
   const [formData, setFormData] = useState({
     title: "",
@@ -28,7 +32,7 @@ export default function NewRoomForm(props) {
     has_parking: false,
     has_private_bath: false,
     city_id: 1,
-    user_id: 1
+    user_id: user[0]
   })
 
   // const history = useHistory();

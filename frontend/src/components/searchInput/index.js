@@ -1,23 +1,27 @@
-import React, { useState, useCallback, useEffect } from 'react';
+import React, { useState, useCallback, useEffect, useContext } from 'react';
 import { Input, Ul, Li, SuggestContainer } from './style';
 import { useHistory } from 'react-router-dom';
+import { UserContext } from '../../UserContext';
 
 export default function SearchInput({
 	options,
 	placeholder,
+	loggedUser
 }) {
 	const [inputValue, setInputValue] = useState('');
 	const [result, setResult] = useState([]);
 	const [loading, setLoading] = useState(false);
 	const history = useHistory();
+	const {user, setUser} = useContext(UserContext)
 
 
 	useEffect(() => {
     const listener = event => {
-      if (event.code === "Enter" || event.code === "NumpadEnter") {
+      if ((event.code === "Enter" || event.code === "NumpadEnter") && event.target.value) {
         console.log("Enter key was pressed. Run your function.");
         event.preventDefault();
 				console.log("state input", inputValue, "state result", result, "EVENT?",  event.target.value)
+				console.log("on submit", user)
         onSubmit(event.target.value)
       }
     };
@@ -25,7 +29,7 @@ export default function SearchInput({
     return () => {
       document.removeEventListener('keydown', listener);
     };
-  }, []);
+  }, [loggedUser]);
 
 
 	
@@ -44,10 +48,16 @@ export default function SearchInput({
 		setResult("")
 	}
 	const onSubmit = (city) => {
-		console.log("SUBMIT", city)
-		history.push(`/search/roommates?city=${city}`)
-		setInputValue("")
-		setResult("")
+		console.log("SUBMIT", city, user, loggedUser)
+		if(loggedUser[3] === true || loggedUser[3] === true){
+			history.push(`/search/roommates?city=${city}`)
+			setInputValue("")
+			setResult("")
+		} else {
+			history.push(`/search/rooms?city=${city}`)
+			setInputValue("")
+			setResult("")
+		}
 	}
 
 	return (

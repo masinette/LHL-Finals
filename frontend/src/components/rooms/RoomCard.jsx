@@ -11,6 +11,7 @@ export default function RoomCard(props) {
   const { room_id } = useParams();
   const room  = props.rooms.filter(room => room.id === room_id);
   const history = useHistory();
+  const {user, setUser} = useContext(UserContext)
 
   const roomSearch = props.rooms.filter(rooms => {
     if (room.id === parseInt(room_id)){
@@ -19,9 +20,6 @@ export default function RoomCard(props) {
   });
 
 
-  // console.log("ROOMS OBJECT", props.rooms[room_id-1])
-
-  const {user, setUser} = useContext(UserContext)
 
   const roomDetails = props.rooms ? props.rooms[room_id-1] : null
   // const roomDetails = props.rooms[room_id-1]
@@ -29,31 +27,32 @@ export default function RoomCard(props) {
 
   const [index, setIndex] = useState(0);
 //sender_id, receiver_id, message, room_id, applicant_id
-const sender_id = user.id
+  const sender_id = user.id
   const [userMessage, setUserMessage] = useState(
-    { sender_id: user.id, receiver_id: roomDetails?.user_id, message: '', room_id: room_id }
+    { sender_id: user[0], receiver_id: roomDetails?.user_id, message: '', room_id: room_id, applicant_id: roomDetails.user_id }
   );
   const handleChange = (event) => {
       setUserMessage({...userMessage, [event.target.name]: event.target.value})
   }
   const handleSelect = (selectedIndex, e) => {
     setIndex(selectedIndex);
-    }
+  }
 
-    const handleSubmit = (event) => {
-      event.preventDefault()
-        axios({
-          method: 'POST',
-          url: '/api/messages',
-          data: userMessage
-        })
-        .then((response)=>
-        setUserMessage(response.data)
-        // console.log("RESPONSE",response.data)
-        ) 
-        .then(()=> history.push("/search/rooms"))
-        .catch((err) => console.log(err))
-    }
+  const handleSubmit = (event) => {
+    console.log("INSIDE SUBMIT", userMessage)
+    event.preventDefault()
+      axios({
+        method: 'POST',
+        url: '/api/messages',
+        data: userMessage
+      })
+      .then((response)=>
+      setUserMessage(response.data)
+      // console.log("RESPONSE",response.data)
+      ) 
+      .then(()=> history.push("/search/rooms"))
+      .catch((err) => console.log(err))
+  }
 
   const convertDate = (dateString) => {
     const date = dateString.slice(0,10);
