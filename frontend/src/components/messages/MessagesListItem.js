@@ -6,7 +6,7 @@ import { useHistory } from 'react-router-dom';
 
 export default function MessagesListItem(props) {
   const history = useHistory();
-  console.log("Props in meessage item", props)
+  //console.log("Props in meessage item", props)
 
 
   const dateFormatted = (sqlDate) => {

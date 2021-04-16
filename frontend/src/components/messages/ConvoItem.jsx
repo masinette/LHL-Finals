@@ -4,7 +4,7 @@ import { CardDeck, Card, Button, Col, Row, Container } from 'react-bootstrap';
 
 
 export default function ConvoItem(props) {
-  console.log("Props in meessage item", props)
+  //console.log("Props in meessage item", props)
 
 /*   const formatMessages = (props) => {
     if (props === 0) {

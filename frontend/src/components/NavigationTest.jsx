@@ -27,7 +27,7 @@ function NavigationTest(props) {
         <Nav.Link as={Link} to="/about">About</Nav.Link>
         <NavDropdown title="Dashboard" id="basic-nav-dropdown">
           <NavDropdown.Item><Nav.Link as={Link} to="/users">My Profile</Nav.Link></NavDropdown.Item>
-          <NavDropdown.Item><Nav.Link as={Link} to="/messages">My Messages</Nav.Link></NavDropdown.Item>
+          <NavDropdown.Item><Nav.Link as={Link} to={`/messages/${user[0]}`}>My Messages</Nav.Link></NavDropdown.Item>
           <NavDropdown.Item><Nav.Link as={Link} to="/rooms">My Listings</Nav.Link></NavDropdown.Item>
           <NavDropdown.Divider />
         </NavDropdown>
@@ -35,7 +35,7 @@ function NavigationTest(props) {
       
       {user !== "empty" && <p>Logged in as: {user[1]}</p>}
 
-      <SearchInput placeholder="Enter a city" name="search"/>
+      <SearchInput placeholder="Enter a city" name="search" loggedUser={user}/>
 
       {user === "empty" && <Button variant="outline-success" href="/login">Login/Register</Button>}
       {user !== "empty" && <Button onClick={handleSubmit} variant="outline-danger" href="/logout">Logout</Button>}
