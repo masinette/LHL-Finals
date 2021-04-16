@@ -35,9 +35,9 @@ function NavigationTest(props) {
       
       {user !== "empty" && <p>Logged in as: {user[1]}</p>}
 
-      <SearchInput placeholder="Enter a city" name="search"/>
+      <SearchInput placeholder="Enter a city" name="search" loggedUser={user}/>
 
-      {user === "empty" && <Button variant="outline-success" href="login">Login/Register</Button>}
+      {user === "empty" && <Button variant="outline-success" href="/login">Login/Register</Button>}
       {user !== "empty" && <Button onClick={handleSubmit} variant="outline-danger" href="/logout">Logout</Button>}
     </Navbar.Collapse>
   </Navbar>
