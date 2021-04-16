@@ -8,7 +8,7 @@ import axios from 'axios';
 import { useHistory } from 'react-router-dom';
 import { UserContext } from '../../UserContext';
 import './RoomsByCity.scss';
-// import RoomMap from './RoomMap';
+import RoomMap from './RoomMap';
 
 //import users from '../../../../backend/routes/users';
 
@@ -24,7 +24,7 @@ const RoomsByCity = () => {
   let { cityId } = useParams();
   let { search } = useLocation();
 
-  console.log("USER",user)
+  // console.log("USER",user)
   
   const citiesArray = ["Toronto", "Vancouver", "Calgary", "Montreal"];
 
@@ -77,7 +77,7 @@ const RoomsByCity = () => {
         )}
       </div>
       <div className="map">
-        {/* <RoomMap /> */}
+        <RoomMap />
       </div>
     </div>
     </Container>

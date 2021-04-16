@@ -19,7 +19,7 @@ export default function RoomCard(props) {
   });
 
 
-  console.log("ROOMS OBJECT", props.rooms[room_id-1])
+  // console.log("ROOMS OBJECT", props.rooms[room_id-1])
 
   const {user, setUser} = useContext(UserContext)
 
