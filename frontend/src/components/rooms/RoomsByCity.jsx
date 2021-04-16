@@ -36,9 +36,9 @@ const RoomsByCity = () => {
       const cityNameX = query.get('city');
       setCityName(cityNameX);
       console.log("citynameX", cityNameX)
-      const paramField = cityName ? (citiesArray.indexOf(cityName) + 1) : null
+      const paramField = cityNameX ? (citiesArray.indexOf(cityNameX) + 1) : null
       const apiURL = paramField ? `/api/rooms?city_id=${paramField}` : `/api/rooms`;
-      console.log("SEARCH is changing!!", search, paramField)
+      console.log("SEARCH is changing!!", search, paramField, cityName)
       axios({
         method: 'GET',
         url: apiURL
