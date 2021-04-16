@@ -4,7 +4,7 @@ import './App.scss';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import useApplicationData from "./hooks/useApplicationData";
 
-import Messages from "./components/messages/MessagesList";
+import Messages from "./components/messages/ThreadList";
 import RoommatesByCity from "./components/roommates/RoommatesByCity";
 import RoommateCard from "./components/roommates/RoommateCard";
 import RoomsByCity from "./components/rooms/RoomsByCity";
@@ -19,7 +19,7 @@ import NewRoomForm from './components/rooms/NewRoomForm';
 import EditRoomForm from './components/rooms/EditRoomForm';
 import axios from 'axios';
 import { UserContext } from './UserContext'
-import MessagesList from './components/messages/MessagesList';
+import ThreadList from './components/messages/ThreadList';
 import Convo from './components/messages/Convo';
 import EditProfileForm from './components/profile/EditProfileForm';
 
@@ -52,7 +52,7 @@ const App = () => {
             <Route path="/signup" exact component={() => <SignUp users={state.users} />} />
             <Route path="/search/roommates" exact component={() => <RoommatesByCity users={state.users} cities={state.cities}/>} /> 
             <Route path="/search/roommates/:user_id" exact component={() => <RoommateCard users={state.users} cities={state.cities}/>} /> 
-            <Route path="/messages/:user_id" exact component={() => <MessagesList users={state.users} messages={state.messages}/>} /> 
+            <Route path="/messages/:user_id" exact component={() => <ThreadList users={state.users} messages={state.messages}/>} /> 
             <Route path="/messages/:user_id/:recipient_id" exact component={() => <Convo users={state.users} messages={state.messages}/>} /> 
 
 
