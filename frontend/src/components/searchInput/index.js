@@ -15,8 +15,16 @@ export default function SearchInput({
 	const {user, setUser} = useContext(UserContext)
 
 
-	useEffect(() => {
+	// useEffect(() => {
+
+  //   document.addEventListener('keydown', listener);
+  //   return () => {
+  //     document.removeEventListener('keydown', listener);
+  //   };
+  // }, [loggedUser]);
+
     const listener = event => {
+			event.preventDefault();
       if ((event.code === "Enter" || event.code === "NumpadEnter") && event.target.value) {
         console.log("Enter key was pressed. Run your function.");
         event.preventDefault();
@@ -25,13 +33,6 @@ export default function SearchInput({
         onSubmit(event.target.value)
       }
     };
-    document.addEventListener('keydown', listener);
-    return () => {
-      document.removeEventListener('keydown', listener);
-    };
-  }, [loggedUser]);
-
-
 	
 	const updateValue = (newValue) => {
 		setInputValue(newValue);
@@ -47,7 +48,8 @@ export default function SearchInput({
 		setInputValue("")
 		setResult("")
 	}
-	const onSubmit = (city) => {
+	const onSubmit = (evt, city) => {
+		evt.preventDefault();
 		console.log("SUBMIT", city, user, loggedUser)
 		if(loggedUser[3] === true || loggedUser[3] === true){
 			history.push(`/search/roommates?city=${city}`)
@@ -61,11 +63,10 @@ export default function SearchInput({
 	}
 
 	return (
-		<div>
+		<form onSubmit={(evt)=>onSubmit(evt, inputValue)}>
 			<Input
 				value={inputValue}
 				onChange={(input) => updateValue(input.target.value)}
-				onSubmit={onSubmit}
 				placeholder={placeholder}
 			/>
 
@@ -84,6 +85,6 @@ export default function SearchInput({
 						))}
 				</Ul>
 			</SuggestContainer>  */}
-		</div>
+		</form>
 	);
 }
