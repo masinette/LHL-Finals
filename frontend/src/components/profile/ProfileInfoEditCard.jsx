@@ -32,6 +32,8 @@ export default function ProfileInfoEditCard(props) {
   const editPath = `/api/users/${props.user.id}`;
   const handleSubmit = (e) => {
     e.preventDefault();
+    console.log("updated userData: ", userData)
+    console.log(props.user)
     axios({
       method: "PUT",
       url: editPath,
@@ -39,7 +41,11 @@ export default function ProfileInfoEditCard(props) {
     })
     .then(res => {
       console.log(res);
+      props.setUser({
+        ...userData
+      })
       props.onSubmit();
+      
     })
     .catch(err => console.error("update error: ", err))
   }
