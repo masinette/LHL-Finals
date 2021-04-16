@@ -22,8 +22,10 @@ import { UserContext } from './UserContext'
 import ThreadList from './components/messages/ThreadList';
 import Convo from './components/messages/Convo';
 import EditProfileForm from './components/profile/EditProfileForm';
+import { LoadScript } from '@react-google-maps/api';
 
 // import { Container} from 'react-bootstrap';
+const API_KEY = process.env.REACT_APP_GOOGLE_MAPS_API_KEY;
 
 
 const App = () => {
@@ -44,6 +46,8 @@ const App = () => {
     
     <div className="App">
       <Router>
+      
+          
         <Switch>
           <UserContext.Provider value={{user, setUser}}>
             <NavigationTest />
@@ -71,6 +75,7 @@ const App = () => {
         </Switch>
 
         <FooterTest />
+     
       </Router>
     </div>
   );

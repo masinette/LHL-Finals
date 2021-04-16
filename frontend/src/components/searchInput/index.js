@@ -69,10 +69,10 @@ export default function SearchInput({
 				onChange={(input) => updateValue(input.target.value)}
 				placeholder={placeholder}
 			/>
-
-{/*  			<SuggestContainer>
+{/* 
+ 			<SuggestContainer>
 				<Ul>
-					{loading && <Li>Loading...</Li>}
+					{loading && <Li>LoadingPATATATA...</Li>}
 					{result && result.length > 0 &&
 						!loading &&
 						result.map((value, index) => (

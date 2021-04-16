@@ -38,3 +38,4 @@ export const SuggestContainer = styled.div`
 	-ms-overflow-style: none; /* IE and Edge */
 	scrollbar-width: none; /* Firefox */
 `;
+

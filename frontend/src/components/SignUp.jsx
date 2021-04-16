@@ -1,5 +1,6 @@
 import  React, { useState, useRef } from "react";
 import { Form, Button, Card, Alert, ButtonGroup } from 'react-bootstrap';
+import styled from 'styled-components';
 
 function SignUp(props) {
 
@@ -8,6 +9,11 @@ function SignUp(props) {
   const passwordRef = useRef()
   const passwordConfirmRef = useRef()
 
+  const SignUpDiv = styled.div`
+    display:block;
+    
+
+  `
 
   return (
     <div className="contact">
@@ -16,6 +22,7 @@ function SignUp(props) {
     </div>
 
 <Card>
+  <SignUpDiv>
   <Card.Body>
 
 
@@ -61,6 +68,7 @@ function SignUp(props) {
     </Button>
 
   </Card.Body>
+  </SignUpDiv>
 </Card>
     </div>
   );

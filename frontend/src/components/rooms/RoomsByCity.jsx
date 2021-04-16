@@ -81,7 +81,7 @@ const RoomsByCity = () => {
         )}
       </div>
       <div className="map">
-        <RoomMap city={cityName} cityRooms={cityRooms}/>
+        { cityRooms.length && <RoomMap city={cityName} cityRooms={cityRooms}/>}
       </div>
     </div>
     </Container>
