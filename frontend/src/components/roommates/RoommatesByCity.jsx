@@ -44,7 +44,7 @@ const RoommatesByCity = () => {
       //console.log("USERS BY CITY DATA",data);
       const usersList = data.map((user, index) => {
         //filtering out owners cause only owners searching will get here
-          if(user.is_owner){
+          if(!user.is_owner){
             return (
               <RoommatesItem
                 key={index}
