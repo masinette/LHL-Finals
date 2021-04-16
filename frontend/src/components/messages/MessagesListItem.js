@@ -21,7 +21,7 @@ export default function MessagesListItem(props) {
       <Row> 
         <Col >
           <Card className="text-center">
-            <Card.Header>Thread with # {props.applicant}</Card.Header>
+            <Card.Header>Thread with # {props.recipient}</Card.Header>
             <Card.Body>
               <Card.Title>{props.senderId}</Card.Title>
               <Card.Text>

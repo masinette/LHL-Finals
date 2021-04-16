@@ -62,7 +62,16 @@ export default function MessagesList(props) {
     //console.log("CONVOS THEN", convos)
     const convoArray = [];
     let convo = [];
-    convos.forEach((thread) => {
+    convos.forEach((thread, index) => {
+      console.log("THRE", thread, index)
+      let writeTo = null
+      console.log("shoulb pas allan pis allan", thread[0].sender_id, typeof(user_id), typeof(thread[0].applicant_id))
+      if (parseInt(user_id) === thread[0].applicant_id){
+        writeTo = thread[0].sender_id
+      } else {
+        writeTo = thread[0].receiver_id
+      }
+      console.log("WRITE TO", writeTo)
       convo = thread.map((message, index) => {
         //filtering out owners cause only owners searching will get here
         if (user_id){
@@ -75,13 +84,14 @@ export default function MessagesList(props) {
                 sentDate = {message.sentdate}
                 applicant = {message.applicant_id}
                 inboxUser = {user_id}
+                recipient = {writeTo}
                 //onClick={() => redirect}
               />
           )
         }
       })
       //console.log("CONVO TU SEUL?", convo[0], "mESSAGES LIST", messagesList)
-      convoArray.push(<CardDeck>Your chat with {convo}</CardDeck>)
+      convoArray.push(<CardDeck key={index} >Your chat with {convo}</CardDeck>)
       
     })
     //console.log("USERS LIST un moment donne?", usersList, loading)
