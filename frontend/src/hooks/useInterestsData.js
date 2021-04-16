@@ -5,7 +5,7 @@ export function useInterestsData() {
 
   const setUserInterests = (userId) => {
     const allInterests = "/api/interests"
-    const userInterests = "/api/user_interests"
+    const userInterests = `/api/user_interests/${userId}`
 
     useEffect(() => {
       axios({
