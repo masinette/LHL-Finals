@@ -37,7 +37,7 @@ export default function ReplyForm(props) {
       })
       .then((response)=> {
         console.log("RESPONSE",response.data)
-        history.push(`/messages/${user[0]}`)
+        history.push(`/messages/${user.id}`)
 
       }) 
       .then()

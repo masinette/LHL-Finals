@@ -4,7 +4,7 @@ users(firstName, lastName, description, is_owner, level, address, city_id, email
 VALUES
     ('Mario', 'Bros', 'nice guy who likes red hats and has a lot of stories to tell', true, 3, '123 Nintendo Drive.', 1, 'mario@nintendo.com', 'test'),
     ('Luigi', 'Bros','always willing to help', false, 3, '456 Nintendo Drive', 1, 'luigi@nintendo.com', 'test'),
-    ('Mike', 'Sawyer','studying medicine', false, 2, '777 wellington', 4, 'mik@tralala.com', 'test'),
+    ('Mike', 'Sawyer','studying medicine', false, 2, '777 Yonge street', 1, 'mik@tralala.com', 'test'),
     ('Julie', 'Leclerc','I wish to move to Montreal', false, 1, '968 durand', 4, 'julec@tralala.com', 'test'),
     ('Greg', 'Trahan','happily retired', true, 2, '999 newman', 4, 'greg@tmail.com', 'test'),
     ('Ginette', 'Smith','happyly retired', true, 1, '569 allard', 4, 'ginette@tmail.com', 'test'),

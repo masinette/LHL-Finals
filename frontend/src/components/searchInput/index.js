@@ -51,7 +51,7 @@ export default function SearchInput({
 	const onSubmit = (evt, city) => {
 		evt.preventDefault();
 		console.log("SUBMIT", city, user, loggedUser)
-		if(loggedUser[3] === true || loggedUser[3] === true){
+		if(loggedUser.is_owner === true || loggedUser[3] === true){
 			history.push(`/search/roommates?city=${city}`)
 			setInputValue("")
 			setResult("")
