@@ -1,8 +1,9 @@
-import { React, useEffect, useState } from "react";
-import { useParams } from 'react-router-dom';
+import { React, useEffect, useState, useContext } from "react";
+import { useParams, useHistory } from 'react-router-dom';
 import MessagesListItem from './MessagesListItem';
 import axios from 'axios';
 import { CardDeck } from 'react-bootstrap';
+import { UserContext } from '../../UserContext';
 // import MessagesListItem from "components/MessagesListItem";
 
 
@@ -11,6 +12,8 @@ export default function MessagesList(props) {
   const { user_id } = useParams();
   const [loading, setLoading] = useState(true);
   const [messagesList, setMessagesList] = useState([]);
+  const {user, setUser} = useContext(UserContext)
+  const history = useHistory()
   //console.log("J'ai tu un id??", user_id)
 
   const formatConvo = (messages, is_owner)  => {
@@ -92,8 +95,11 @@ export default function MessagesList(props) {
   
   return (
     <section>
-      <h4> Messages</h4>
-      <ul>{ messagesList }</ul>
+      {user === "empty" && history.push("/login")}
+      {user !== "empty" && <span>      
+        <h4> Messages</h4>
+        <ul>{ messagesList }</ul>
+        </span>}
     </section>
   )
 }

@@ -30,9 +30,11 @@ const RoomsByCity = () => {
 
   useEffect(() => {
       const query = new URLSearchParams(search);
-      const paramField = query.get('city');
-      const apiURL = paramField ? `/api/rooms?city=${paramField}` : `/api/rooms`;
-      console.log("SEARCH is changing!!", search)
+      //const paramField = query.get('city');
+      const cityName = query.get('city');
+      const paramField = cityName ? (citiesArray.indexOf(cityName) + 1) : null
+      const apiURL = paramField ? `/api/rooms?city_id=${paramField}` : `/api/rooms`;
+      console.log("SEARCH is changing!!", search, paramField)
       axios({
         method: 'GET',
         url: apiURL
