@@ -77,7 +77,7 @@ module.exports = ({
     });
 
     //edit user
-    router.post('/:userid', (req, res) => {
+    router.put('/:userid', (req, res) => {
         const { params } = req.body;
         updateUserDetails(req.params.userid, req.body)
             .then(user => {

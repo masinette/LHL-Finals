@@ -21,14 +21,12 @@ export default function ProfileInfoEditCard(props) {
   }
 
   const handleOptionChange = (e) => {
+    const target = e.target;
+    const value = target.value;
     setUserData({
       ...userData,
-      [e.target.name]: e.target.value
+      [target.name]: value
     })
-  }
-
-  const handleCancel = () => {
-    props.onCancel();
   }
 
   const editPath = `/api/users/${props.user.id}`;
@@ -36,11 +34,14 @@ export default function ProfileInfoEditCard(props) {
     e.preventDefault();
     axios({
       method: "PUT",
-      url: editPath
+      url: editPath,
+      data: userData
     })
     .then(res => {
-
+      console.log(res);
+      props.onSubmit();
     })
+    .catch(err => console.error("update error: ", err))
   }
 
   console.log(props.user);
@@ -48,7 +49,7 @@ export default function ProfileInfoEditCard(props) {
   return (
     <>
       <div className="profile__card" >
-        <Form>
+        <Form onSubmit={handleSubmit} >
           <Row>
             <Col className="profile__card-label" >First Name:</Col>
             <Col>
@@ -120,12 +121,12 @@ export default function ProfileInfoEditCard(props) {
           </Row>
           <Row>
             <Col>
-              <Button className="btn-gradient" onClick={props.onSubmit} >
+              <Button className="btn-gradient" type="submit" >
                 Save
               </Button>
             </Col>
             <Col>
-              <Button className="btn-gradient" onClick={handleCancel} >
+              <Button className="btn-gradient" onClick={props.onCancel} >
                 Cancel
               </Button>
             </Col>
