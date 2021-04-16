@@ -9,11 +9,7 @@ export default function RoomsItem(props) {
   const redirect = (id) => {
     history.push(`/search/rooms/${id}`)
   }
-<<<<<<< HEAD
-// console.log("PROPS", props)
-=======
-  //console.log("PROPS", props)
->>>>>>> origin
+
 
   const { room_id } = useParams();
   // const room  = props.rooms.filter(room => room.id === room_id);
