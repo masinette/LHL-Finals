@@ -83,6 +83,7 @@ export default function MessagesList(props) {
                 message = {message.message}
                 sentDate = {message.sentdate}
                 applicant = {message.applicant_id}
+                room = {message.room_id}
                 inboxUser = {user_id}
                 recipient = {writeTo}
                 //onClick={() => redirect}

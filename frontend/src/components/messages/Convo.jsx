@@ -18,6 +18,7 @@ const Convo = () => {
   //cheat here, I should pass props from Messages to Convo but using redirect now and don't know how to get out
   const [roomId, setRoomId] = useState(null);
   const [applicantId, setApplicantId] = useState(null);
+  const [destination, setDestination] = useState(null);
 
   
   //const cityName = cities.filter(city => city.id === user.city_id)
@@ -26,6 +27,7 @@ const Convo = () => {
   console.log("ALLO CONVO", user_id, recipient_id)
   
   const citiesArray = ["Toronto", "Vancouver", "Calgary", "Montreal"];
+
 
 
   useEffect(() => {
@@ -39,7 +41,12 @@ const Convo = () => {
     .then(({
       data
     }) => {
-      console.log("ALL CONVOS",data);
+      if (parseInt(user_id) === data[0].applicant_id) {
+        setDestination(data[0].sender_id)
+      } else {
+        setDestination(data[0].applicant_id)
+      }
+      console.log("PIIIIS", parseInt(user_id), data[0].applicant_id, destination)
       const messages = data.map((message, index) => {
         //filtering out owners cause only owners searching will get here
         if (true){
@@ -55,6 +62,7 @@ const Convo = () => {
               sentDate = {message.sentdate}
               room = {message.room_id}
               applicant = {message.applicant_id}
+ 
             />
           )
         }
@@ -76,7 +84,7 @@ const Convo = () => {
           </CardDeck>
           <ReplyForm
             userLogged={user_id}
-            recipient={recipient_id}
+            recipient={destination}
             room={roomId}
             applicant={applicantId}
           >

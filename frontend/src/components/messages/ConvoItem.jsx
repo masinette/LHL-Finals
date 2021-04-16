@@ -4,6 +4,7 @@ import { CardDeck, Card, Button, Col, Row, Container } from 'react-bootstrap';
 
 
 export default function ConvoItem(props) {
+  console.log("PROPS in convoItem", props)
   //console.log("Props in meessage item", props)
 
 /*   const formatMessages = (props) => {
@@ -35,7 +36,7 @@ export default function ConvoItem(props) {
       <Row> 
         <Col >
           <Card className="text-center">
-            <Card.Header>Thread with # {props.applicant}</Card.Header>
+            <Card.Header>Thread with # {props.sender}</Card.Header>
             <Card.Body>
               <Card.Title>{props.senderId}</Card.Title>
               <Card.Text>
