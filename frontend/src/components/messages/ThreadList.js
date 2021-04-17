@@ -2,7 +2,8 @@ import { React, useEffect, useState, useContext, Fragment } from "react";
 import { useParams, useHistory, useLocation } from 'react-router-dom';
 import MessagesListItem from './MessagesListItem';
 import axios from 'axios';
-import { CardDeck } from 'react-bootstrap';
+import { BsPencil } from 'react-icons/bs';
+import { Button } from 'react-bootstrap';
 import { UserContext } from '../../UserContext';
 import ThreadItem from './ThreadItem'
 import "./ThreadList.scss";
@@ -51,6 +52,18 @@ export default function MessagesList(props) {
       }
     return splitByConvos
   }
+
+  //if I have time someday api fix 3/20
+/*   const handleOnClick = (event, recipient) => {
+      event.preventDefault();
+      console.log( "in thread list", user_id, recipient.id)
+      if(parseInt(user_id) === recipient.id){
+        history.push(`/messages/${user_id}/${recipient.id}`)
+      }else {
+        history.push(`/messages/${user_id}/${user_id}`)
+      }
+
+  } */
 
   useEffect(() => {
     /*     const query = new URLSearchParams(search);
@@ -106,7 +119,9 @@ export default function MessagesList(props) {
                   recipientUser = {props.users[writeTo-1]}
                 />
               </div> 
-              <div className="messages" key={index} >{convo}</div>
+              <div className="messages" key={index} >{convo}
+              </div>
+      
             </div>
           )
       
