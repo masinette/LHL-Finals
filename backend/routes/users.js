@@ -7,7 +7,8 @@ module.exports = ({
     getUserByEmail,
     checkUserLogin,
     addUser,
-    updateUserDetails
+    updateUserDetails,
+    getUserRooms
 }) => {
     /* GET users listing with query params http://localhost:3001/api/users?city=Montreal&level=2 
     multiple levels http://localhost:3001/api/users?city=Montreal&level=1&level=2&level=3
@@ -95,6 +96,16 @@ module.exports = ({
                 error: err.message
             }));
     })
+    router.get("/rooms/:userId", (req, res) => {
+        getUserRooms(req.params.userId)
+          .then(rooms => res.json(rooms))
+          .catch(err => res.json({
+            error: err
+          }))
+      })
+    
+    
+    
 
     return router;
 };
