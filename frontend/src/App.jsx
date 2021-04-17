@@ -41,7 +41,6 @@ const App = () => {
     // const roomList = state.rooms.map((room) => (<li key={room.id}> {room.title} {room.description} {room.price}</li>));
   //  const messageList = state.messages.map((message) => (<li key={message.id} > {message.sentdate} || {message.sender_id} | {message.receiver_id} | {message.message}</li>));
 
-
   return (
     
     <div className="App">
@@ -53,7 +52,7 @@ const App = () => {
             <NavigationTest />
             <Route path="/about" exact component={() => <AboutTest />} />
             <Route path="/login" exact component={() => <LoginTest users={state.users} />} />
-            <Route path="/signup" exact component={() => <SignUp users={state.users} />} />
+            <Route path="/signup" exact component={() => <SignUp users={state.users} interests={state.surveyInterests}/>} />
             <Route path="/search/roommates" exact component={() => <RoommatesByCity users={state.users} cities={state.cities}/>} /> 
             <Route path="/search/roommates/:user_id" exact component={() => <RoommateCard users={state.users} cities={state.cities}/>} /> 
             <Route path="/messages/:user_id" exact component={() => <ThreadList users={state.users} messages={state.messages}/>} /> 
