@@ -27,10 +27,12 @@ function SignUp(props) {
     .catch((err) => console.log(err));
   }, []); 
 
+  const InterestButton = styled.div`
+    // padding: 10px;
+  `
   const interestsLists = interestsList.map((interest) => (
     <Button variant="outline-info" className="interestButton">{interest.name}</Button>
   ));
-
 
 // -----------------------------------------STYLING------------------------------------------//
   const SignUpDiv = styled.div`

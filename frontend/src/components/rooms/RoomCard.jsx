@@ -74,12 +74,13 @@ export default function RoomCard(props) {
       <div className="row">
         <div className="column">
           {/* <Carousel className="carousel"> */}
-      <Container className="carouselContainer">
+      <Container className="room-carousel-container">
 
-        <Carousel activeIndex={index} onSelect={handleSelect} className="carousel">
+        <Carousel activeIndex={index} onSelect={handleSelect} className="room-carousel">
           <Carousel.Item interval={1000}>
             <Image cloudName="Ds3bokefg"  publicId={`rooms/${room_id}/r${room_id}_p1.jpg`} className="d-block w-100" className="img">
-              {/* <Transformation width="300" height="300" crop="fill" /> */}
+              <Transformation width="300" height="300" 
+              crop="scale" />
             </Image>
             <Carousel.Caption>
               {/* <h3>First slide label</h3>
@@ -89,16 +90,18 @@ export default function RoomCard(props) {
 
           <Carousel.Item interval={1000}>
             <Image cloudName="Ds3bokefg"  publicId={`rooms/${room_id}/r${room_id}_p2.jpg`} className="d-block w-100" className="img">
-              {/* <Transformation width="300" height="300" crop="fill" /> */}
+              <Transformation width="300" height="300" 
+              crop="scale" />
             </Image>
             <Carousel.Caption>
               {/* <h3>First slide label</h3>
               <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p> */}
             </Carousel.Caption>
           </Carousel.Item>          
-          <Carousel.Item interval={1000}>
+          <Carousel.Item interval={1000} className="img">
             <Image cloudName="Ds3bokefg"  publicId={`rooms/${room_id}/r${room_id}_p3.jpg`} className="d-block w-100" className="img">
-              {/* <Transformation width="300" height="300" crop="fill" /> */}
+              <Transformation width="300" height="300" 
+              crop="scale" />
             </Image>
             <Carousel.Caption>
               {/* <h3>First slide label</h3>
@@ -107,30 +110,30 @@ export default function RoomCard(props) {
           </Carousel.Item>          
         </Carousel>
 
+        <Container className="thumbnails">
+          <Row>
+            <Col xs={6} md={4}>
+              <Image className="img" cloudName="Ds3bokefg"  publicId={`rooms/${room_id}/r${room_id}_p1.jpg`} rounded >
+                <Transformation width="200" height="200" crop="fill" />
+              </Image>
+            </Col>
+            <Col xs={6} md={4}>
+              <Image className="img" cloudName="Ds3bokefg"  publicId={`rooms/${room_id}/r${room_id}_p2.jpg`} rounded >
+                <Transformation width="200" height="200" crop="fill" />
+              </Image>
+            </Col>
+            <Col xs={6} md={4}>
+              <Image className="img" cloudName="Ds3bokefg"  publicId={`rooms/${room_id}/r${room_id}_p3.jpg`} rounded >
+                <Transformation width="200" height="200" crop="fill" />
+              </Image>
+            </Col>
+          </Row>
+        </Container>
 
-<Container className="thumbnails">
-  <Row>
-    <Col xs={6} md={4}>
-      <Image className="img" cloudName="Ds3bokefg"  publicId={`rooms/${room_id}/r${room_id}_p1.jpg`} rounded >
-        <Transformation width="200" height="200" crop="fill" />
-      </Image>
-    </Col>
-    <Col xs={6} md={4}>
-      <Image className="img" cloudName="Ds3bokefg"  publicId={`rooms/${room_id}/r${room_id}_p2.jpg`} rounded >
-        <Transformation width="200" height="200" crop="fill" />
-      </Image>
-    </Col>
-    <Col xs={6} md={4}>
-      <Image className="img" cloudName="Ds3bokefg"  publicId={`rooms/${room_id}/r${room_id}_p3.jpg`} rounded >
-        <Transformation width="200" height="200" crop="fill" />
-      </Image>
-    </Col>
-  </Row>
-</Container>
       </Container>
         
       </div>
-        <div className="column2" >
+        <div className="room-column2" >
           <h3>Homeshare Details</h3>
           <h5>{roomDetails.title}</h5>
           <p>{roomDetails.description}</p>
@@ -140,16 +143,16 @@ export default function RoomCard(props) {
           <li>Possible End Date: {convertDate(roomDetails.end_date)}</li>
           <li>Rental Cost: ${roomDetails.price}</li>
         </ul>
+        {/* -------------------MESSAGE BOX-------------- */}
+        <Form onSubmit={handleSubmit}>
+          <Form.Group id="message">
+            <Form.Label>Message</Form.Label>
+            <Form.Control type="text" onChange={handleChange} value={userMessage.message} name="message" required />
+          </Form.Group>
+          <Button type="submit" variant="outline-primary" size="lg" type="text" placeholder="Large text">Submit</Button>
+        </Form>
+        {/* -------------------MESSAGE BOX-------------- */}
       </div>
-  {/* -------------------MESSAGE BOX-------------- */}
-    <Form onSubmit={handleSubmit}>
-      <Form.Group id="message">
-        <Form.Label>Message</Form.Label>
-        <Form.Control type="text" onChange={handleChange} value={userMessage.message} name="message" required />
-      </Form.Group>
-      <Button type="submit" variant="outline-primary" size="lg" type="text" placeholder="Large text">Submit</Button>
-    </Form>
-  {/* -------------------MESSAGE BOX-------------- */}
 
         </div>
       </div>
