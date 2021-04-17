@@ -19,19 +19,19 @@ export default function MessagesList(props) {
   console.log("LOCATION", useLocation())
 
   const formatConvo = (messages, is_owner)  => {
-    //console.log(" 1- KEYS", messages)
+    console.log(" 1- KEYS", messages)
     const firstRecipientsArray = messages.reduce(function(firstRecipients, item) {
       firstRecipients.push(item.applicant_id);
       return firstRecipients;
     }, [])
-    //console.log("2- firstRecipients", firstRecipientsArray)
+    console.log("2- firstRecipients", firstRecipientsArray)
     const firstRecipientsCleaned = [];
     for(var value of firstRecipientsArray){
       if(firstRecipientsCleaned.indexOf(value) === -1){
           firstRecipientsCleaned.push(value);
       }
     }
-    //console.log("3- recipientClean", firstRecipientsCleaned)
+    console.log("3- recipientClean", firstRecipientsCleaned)
     const splitByConvos = []
       for (let i = 0; i < firstRecipientsCleaned.length; i++){
         splitByConvos.push([])
@@ -60,7 +60,7 @@ export default function MessagesList(props) {
     }) => {
       //console.log("USERS BY CITY DATA",data);
       const convos = formatConvo(data)
-      //console.log("CONVOS THEN", convos)
+      console.log("CONVOS THEN", convos)
       const convoArray = [];
       let convo = [];
       convos.forEach((thread, index) => {
@@ -109,7 +109,6 @@ export default function MessagesList(props) {
     <section>
       {user === "empty" && history.push("/login")}
       {user !== "empty" && <span>      
-        <h4> Messages</h4>
         <ul>{ messagesList }</ul>
         </span>}
     </section>
