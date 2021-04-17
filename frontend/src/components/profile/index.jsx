@@ -2,6 +2,7 @@ import React, { useState, useContext, useEffect } from "react";
 import { Form, Button } from "react-bootstrap";
 import { UserContext } from "../../UserContext";
 import axios from "axios";
+import { useHistory } from "react-router-dom";
 
 import { useProfileVisual } from "../../hooks/useProfileVisual"
 import CreateListingsBtn from "./CreateListingsBtn";
@@ -22,7 +23,10 @@ export default function ProfileView(props) {
   const [rooms, setRooms] = useState([]);
   const { mode, transition, back } = useProfileVisual("SHOW");
   
-
+  const history = useHistory()
+  if (!props.user_id) {
+    history.push("/login");
+  }
 
   useEffect(() => {
     const userRooms = `/api/users/rooms/${user.id}`
