@@ -7,11 +7,13 @@ import axios from 'axios';
 
 import { useHistory } from 'react-router-dom';
 import ReplyForm from './ReplyForm';
+import PropertiesCheckbox from '../rooms/PropertiesCheckbox';
+import { propTypes } from 'react-bootstrap/esm/Image';
 
 
 
 
-const Convo = () => {
+const Convo = (props) => {
 
   const [loading, setLoading] = useState(true);
   const [thread, setThread] = useState([]);
@@ -23,6 +25,8 @@ const Convo = () => {
   const { user_id, recipient_id } = useParams();
   const citiesArray = ["Toronto", "Vancouver", "Calgary", "Montreal"];
   
+  let writeTo = null
+  const allUsers = 
 
 
 
@@ -45,7 +49,13 @@ const Convo = () => {
       }
       console.log("PIIIIS", typeof(parseInt(user_id)), typeof(data[0].applicant_id), destination)
       const messages = data.map((message, index) => {
-        //filtering out owners cause only owners searching will get here
+        if (parseInt(user_id) === data[0].applicant_id){
+          writeTo = data[0].sender_id
+        } else {
+           writeTo = data[0].receiver_id
+          //writeTo = thread[0].sender_id
+        }
+        console.log("QOUAAAAAA", props.users[writeTo-1])
         if (true){
           
           setRoomId(message.room_id);
@@ -59,7 +69,8 @@ const Convo = () => {
               sentDate = {message.sentdate}
               room = {message.room_id}
               applicant = {message.applicant_id}
-              //threadWith = {destination}
+              recipient_name = {props.users[writeTo-1].firstname}
+              
  
             />
           )

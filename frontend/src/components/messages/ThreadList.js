@@ -46,9 +46,8 @@ export default function MessagesList(props) {
     return splitByConvos
   }
 
-
   useEffect(() => {
-/*     const query = new URLSearchParams(search);
+    /*     const query = new URLSearchParams(search);
     const paramField = query.get('city'); */
     const apiURL = user_id ? `/api/messages/${user_id}` : `/api/messages`;
     axios({
@@ -56,43 +55,45 @@ export default function MessagesList(props) {
       url: apiURL
       //url: `/api/users?city=${paramField}`
     })
-  .then(({
-    data
-  }) => {
-    //console.log("USERS BY CITY DATA",data);
-    const convos = formatConvo(data)
-    //console.log("CONVOS THEN", convos)
-    const convoArray = [];
-    let convo = [];
-    convos.forEach((thread, index) => {
-      let writeTo = null
-      if (parseInt(user_id) === thread[0].applicant_id){
-        writeTo = thread[0].sender_id
-      } else {
-        writeTo = thread[0].receiver_id
-      }
-
-      convo = thread.map((message, index) => {
-        //filtering out owners cause only owners searching will get here
-        if (user_id){
-          return (
-              <MessagesListItem
-                key={index}
-                sender={message.sender_id}
-                receiver = {message.receiver_id}
-                message = {message.message}
-                sentDate = {message.sentdate}
-                applicant = {message.applicant_id}
-                room = {message.room_id}
-                inboxUser = {user_id}
-                recipient = {writeTo}
-                //onClick={() => redirect}
-              />
-          )
+    .then(({
+      data
+    }) => {
+      //console.log("USERS BY CITY DATA",data);
+      const convos = formatConvo(data)
+      //console.log("CONVOS THEN", convos)
+      const convoArray = [];
+      let convo = [];
+      convos.forEach((thread, index) => {
+        let writeTo = null
+        if (parseInt(user_id) === thread[0].applicant_id){
+          writeTo = thread[0].sender_id
+        } else {
+          writeTo = thread[0].receiver_id
+          //writeTo = thread[0].sender_id
         }
-      })
-      //console.log("CONVO TU SEUL?", convo[0], "mESSAGES LIST", messagesList)
-      convoArray.push(<CardDeck key={index} >Your chat with {convo}</CardDeck>)
+        console.log("WRITETO", writeTo)
+        convo = thread.map((message, index) => {
+          //filtering out owners cause only owners searching will get here
+          if (user_id){
+            return (
+              <MessagesListItem
+              key={index}
+              sender={message.sender_id}
+              receiver = {message.receiver_id}
+              message = {message.message}
+              sentDate = {message.sentdate}
+              applicant = {message.applicant_id}
+              room = {message.room_id}
+              inboxUser = {user_id}
+              recipient = {writeTo}
+              //onClick={() => redirect}
+              />
+              )
+            }
+          })
+          //console.log("CONVO TU SEUL?", convo[0], "mESSAGES LIST", messagesList)
+          console.log("PRORRORRPRORPRKIPWOIRPOWI", props.users[writeTo-1].firstname)
+          convoArray.push(<CardDeck key={index} >Your chat with {props.users[writeTo-1].firstname} {convo}</CardDeck>)
       
     })
     //console.log("USERS LIST un moment donne?", usersList, loading)

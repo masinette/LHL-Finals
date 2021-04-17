@@ -24,7 +24,7 @@ export default function RoomCard(props) {
   const roomDetails = props.rooms ? props.rooms[room_id-1] : null
   // const roomDetails = props.rooms[room_id-1]
 
-
+  
   const [index, setIndex] = useState(0);
 //sender_id, receiver_id, message, room_id, applicant_id
   const sender_id = user.id
@@ -145,7 +145,7 @@ export default function RoomCard(props) {
     <Form onSubmit={handleSubmit}>
       <Form.Group id="message">
         <Form.Label>Message</Form.Label>
-        <Form.Control type="text" onChange={handleChange} value={userMessage.message} name="message" required />
+        <Form.Control type="text" onChange={handleChange} value={userMessage.message} placeholder={`Contact ${props.users[roomDetails?.user_id -1].firstname}`} name="message" required />
       </Form.Group>
       <Button type="submit" variant="outline-primary" size="lg" type="text" placeholder="Large text">Submit</Button>
     </Form>
