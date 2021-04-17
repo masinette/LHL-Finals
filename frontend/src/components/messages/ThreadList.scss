@@ -1,0 +1,40 @@
+.thread {
+  display:flex;
+  border: solid 1px #555;
+  background-color: #F1F1F1;
+  box-shadow: 10px -10px 5px  rgba(0,0,0,0.6);
+  -moz-box-shadow: 10px -10px 5px  rgba(0,0,0,0.6);
+  -webkit-box-shadow: 10px -10px 5px  rgba(0,0,0,0.6);
+  -o-box-shadow: 10px -10px 5px  rgba(0,0,0,0.6);
+  border-radius:25px;
+  margin: 30px; 
+
+}
+.messages {
+  width:75%;
+  height: 10%;
+
+  padding: 25px; 
+}
+.threadButton {
+/*   margin: 20px;
+  height:40px;
+  width: 85%; */
+  display: inline-block;
+  background: #000;
+  border-radius: 4px;
+  font-family: "arial-black";
+  font-size: 14px;
+  color: #FFF;
+  padding: 8px 12px;
+  cursor: pointer;  
+
+}
+.recipientCard {
+
+  margin: 25px;
+}
+
+.threadPencil { color: red;
+  height: 40px;
+}

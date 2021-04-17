@@ -1,12 +1,15 @@
 import { Carousel } from 'react-bootstrap';
+import { useContext} from "react";
 import { useParams} from 'react-router-dom';
 import {Image, Video, Transformation, CloudinaryContext} from 'cloudinary-react';
 import './RoommateCard.scss';
-import ContactRoommate from './contactRoommate';
+import ContactRoommate from './ContactRoommate';
+import { UserContext } from '../../UserContext';
 
 
 export default function RoommateCard(props) {
   const { user_id } = useParams();
+  const {user, setUser} = useContext(UserContext)
 
   const roommateSearch = props.users.filter(user => {
     console.log(user.id)
@@ -69,7 +72,11 @@ export default function RoommateCard(props) {
       </div>
       <div className="column justCenter">
         <div name="contact">
-          <ContactRoommate></ContactRoommate>
+          <ContactRoommate     
+            recipient ={roommate.id}
+            applicant ={user_id}
+          >
+          </ContactRoommate>
         </div>
       </div>
     </div>

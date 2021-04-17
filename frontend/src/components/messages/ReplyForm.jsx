@@ -1,6 +1,6 @@
 import { React, useState, useContext, useEffect} from "react";
 import "./ReplyForm.scss";
-import { InputGroup, FormControl, Button } from 'react-bootstrap'
+import { InputGroup, FormControl, Button, Container, Image } from 'react-bootstrap'
 import { RiSendPlaneFill } from 'react-icons/ri';
 import axios from 'axios';
 import { useHistory } from 'react-router-dom';
@@ -47,21 +47,24 @@ export default function ReplyForm(props) {
 
 
   return (
-
-  <InputGroup>
-    <InputGroup.Prepend>
-      <InputGroup.Text>Reply to: </InputGroup.Text>
-    </InputGroup.Prepend>
-    <FormControl as="textarea" aria-label="With textarea" onChange={(e) => updateMail(e)}/>
-    <InputGroup.Append>
-      <Button variant="outline-secondary">
-        <RiSendPlaneFill
-          onClick={(e) => handleSubmit(e)}
-        >
-        </RiSendPlaneFill>
-      </Button>
-    </InputGroup.Append>
-  </InputGroup>
+    <Container fluid>
+      <InputGroup className="replyText">
+        <InputGroup.Prepend>
+          <InputGroup.Text>Reply to { props.recipient_name} </InputGroup.Text>
+        </InputGroup.Prepend>
+        <FormControl  as="textarea" aria-label="With textarea" onChange={(e) => updateMail(e)}
+        />
+        <InputGroup.Append>
+          <Button variant="outline-secondary"onClick={(e) => handleSubmit(e)}>
+            <RiSendPlaneFill
+              
+            >
+            </RiSendPlaneFill>
+          </Button>
+          
+        </InputGroup.Append>
+      </InputGroup>
+    </Container>
 
   )
 

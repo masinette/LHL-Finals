@@ -4,7 +4,7 @@ import { CardDeck, Card, Button, Col, Row, Container } from 'react-bootstrap';
 import { useHistory } from 'react-router-dom';
 
 
-export default function MessagesListItem(props) {
+export default function ThreadListItem(props) {
   const history = useHistory();
   //console.log("Props in meessage item", props)
 
@@ -13,7 +13,8 @@ export default function MessagesListItem(props) {
     return sqlDate.split('T')[0] + " at " + sqlDate.split('T')[1].substr(0,8)
   }
 
-  const handleOnClick = () => {
+  const handleOnClick = (e) => {
+    e.preventDefault()
     console.log("MATCH", props.recipient, props.applicant)
     if (props.recipient === props.applicant){
       history.push(`/messages/${props.inboxUser}/${props.recipient}`)
@@ -25,11 +26,11 @@ export default function MessagesListItem(props) {
   
 
   return (
-    <Container fluid onClick={handleOnClick}>
+    <Container fluid onClick={(e) => handleOnClick(e)}>
       <Row> 
         <Col >
           <Card className="text-center">
-            <Card.Header>Thread with # {props.recipient} Room Id {props.room}</Card.Header>
+            <Card.Header></Card.Header>
             <Card.Body>
               <Card.Title>{props.senderId}</Card.Title>
               <Card.Text>
