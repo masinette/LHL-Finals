@@ -9,6 +9,7 @@ import { useHistory } from 'react-router-dom';
 import ReplyForm from './ReplyForm';
 import PropertiesCheckbox from '../rooms/PropertiesCheckbox';
 import { propTypes } from 'react-bootstrap/esm/Image';
+import ConvoThumbnail from './ConvoThumbnail';
 
 
 
@@ -26,6 +27,7 @@ const Convo = (props) => {
   const citiesArray = ["Toronto", "Vancouver", "Calgary", "Montreal"];
   
   let writeTo = null
+  let senderPres = null
   
 
 
@@ -47,7 +49,7 @@ const Convo = (props) => {
       } else {
         setDestination(data[0].applicant_id)
       }
-      console.log("PIIIIS", typeof(parseInt(user_id)), typeof(data[0].applicant_id), destination)
+      //console.log("PIIIIS", typeof(parseInt(user_id)), typeof(data[0].applicant_id), destination)
       if (parseInt(user_id) === data[0].applicant_id){
         writeTo = data[0].sender_id
       } else {
@@ -56,8 +58,13 @@ const Convo = (props) => {
       }
       const sortByMostRecent = data.reverse()
       const messages = sortByMostRecent.map((message, index) => {
+        if (parseInt(user_id) === data[0].sender_id){
+          senderPres = "You Wrote";
+        } else {
+          senderPres = `${props.users[writeTo-1].firstname} wrote`
+          //writeTo = thread[0].sender_id
+        }
         if (true){
-          
           setRoomId(message.room_id);
           setApplicantId(message.applicant_id)
           return (
@@ -70,6 +77,7 @@ const Convo = (props) => {
               room = {message.room_id}
               applicant = {message.applicant_id}
               recipient_name = {props.users[writeTo-1].firstname}
+              senderPres = {senderPres}
             />
           )
         }
@@ -85,19 +93,39 @@ const Convo = (props) => {
     <div>
       {loading && <div>LOADING</div>}
       {!loading &&  (
-        <Fragment>
+        <div className="convoPage">
+          <div className="convoReply">
           <ReplyForm
             userLogged={user_id}
             recipient={destination}
             room={roomId}
             applicant={applicantId}
-            recipient_name={"Poil"}
+            recipient_name={props.users[destination-1].firstname}
           >
           </ReplyForm>
-          <CardDeck >
-            {thread} 
-          </CardDeck>
-        </Fragment>
+          </div>
+          
+          <div className="convoMessages" >
+            <div className="messagesCard"> 
+              <ConvoThumbnail
+                recipientUser = {props.users[destination -1]}
+              />
+            </div>
+            <div className="messagesText">
+             {thread} 
+            </div>
+          </div>
+{/*           <div className="convoMessages" >
+            <div className="messagesText">
+             {thread} 
+            </div>
+            <div className="messagesCard"> 
+              <ConvoThumbnail
+                recipientUser = {props.users[destination -1]}
+              />
+            </div>
+          </div> */}
+        </div>
       )
       }
     </div>

@@ -78,7 +78,9 @@ export default function ThreadList(props) {
     }) => {
       //console.log("USERS BY CITY DATA",data);
       const convos = formatConvo(data)
-      //console.log("CONVOS THEN", convos)
+      console.log("CONVOS THEN", convos)
+      console.table(props.users)
+      console.table(convos)
       const convoArray = [];
       let convo = [];
       convos.forEach((thread, index) => {
