@@ -6,7 +6,8 @@ import dataReducer, {
   SET_USERS,
   SET_MESSAGES,
   SET_CITIES,
-  SET_ROOMS
+  SET_ROOMS, 
+  SET_INTERESTS
 } from '../helpers/dataReducer';
 import axios from 'axios';
 
@@ -108,24 +109,23 @@ export default function useApplicationData() {
   }, []);
 
 
-//login
- /*  useEffect(() => {
-//get email and password from user input on login page
-    axios({
-      method: 'POST',
-      url: '/api/users/login'
-    })
-    .then(({
-      data
-    }) => {
-      console.log("LOGIN DATA",data);
-      dispatch({
-        type: SET_USERS,
-        users: data
-      });
-    })
-    .catch((err) => console.log(err));
-  }, []); */
+//INTERESTS ON SURVEY/REGISTER
+//  useEffect(() => {
+//     axios({
+//       method: 'GET',
+//       url: '/api/interests'
+//     })
+//     .then(({
+//       data
+//     }) => {
+//       console.log("INTERESTS",data);
+//       dispatch({
+//         type: SET_INTERESTS,
+//         surveyInterests: data
+//       });
+//     })
+//     .catch((err) => console.log(err));
+//   }, []); 
 
 
 

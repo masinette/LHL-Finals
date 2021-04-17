@@ -41,44 +41,25 @@ console.log("CITYCOORDS", citiesCoords[props.city])
   let { search } = useLocation();
 
   // console.log("USER",user)
-  
-
+ 
   const [loading, setLoading] = useState(true);
   const [locations, setLocations] = useState([]);
 
-  // useEffect(() => {
-  //     axios({
-  //       method: 'GET',
-  //       url: '/api/rooms'
-  //     })
-  //   .then(({
-  //     data
-  //   }) => { 
-  //     if(props.city){
-  //       setDefaultCenter(prev=>({
-  //         ...citiesCoords[props.city]
-  //       }))
-  //     }
-  //       const locations2 = data.map((room) => {
-  //         const container = {};
-  //         container.name = room.title;
-  //             container.location= { 
-  //               "lat": Number(room.latitude),
-  //               "lng": Number(room.longitude) 
-  //             }
-  //         return container
-  //       })
-  //     // console.log("LOCATIONS2 ",locations2[0])
-  //     setLocations(locations2)
-  //     });
+//  -----------------------------CENTER MAP ON CITY IN USER INPUT-----------------------
+  useEffect(() => {
+    if(props.city){
+      setDefaultCenter(prev=>({
+        ...citiesCoords[props.city]
+      }))
+    }
 
-  //     setLoading(false);
-  //   }, [])
+    setLoading(false);
+    }, [props.city])
+//  -----------------------------------------------------
 
-  // const onSelect = item => {
-  //   setSelected(item);
-  // }
-  console.log("DEFAULTCENTER",props.cityRooms)
+
+  console.log("DEFAULTCENTER",defaultCenter)
+
   return (
 <Container>
   <LoadScript
