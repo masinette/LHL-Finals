@@ -1,11 +1,9 @@
 import { React, useEffect, useState, useContext, Fragment } from "react";
 import { useParams, useHistory, useLocation } from 'react-router-dom';
-import MessagesListItem from './MessagesListItem';
+import ThreadMessages from './ThreadMessages';
 import axios from 'axios';
-import { BsPencil } from 'react-icons/bs';
-import { Button } from 'react-bootstrap';
 import { UserContext } from '../../UserContext';
-import ThreadItem from './ThreadItem'
+
 import "./ThreadList.scss";
 import ThreadInfo from "./ThreadInfo";
 // import MessagesListItem from "components/MessagesListItem";
@@ -88,8 +86,7 @@ export default function ThreadList(props) {
         console.log("WRITE to", user_id, thread[0].applicant_id)
         if (parseInt(user_id) === thread[0].applicant_id){
           console.log("Terend-tu?", thread[0].sender_id)
-          writeTo = "patate"
-          //writeTo = thread[0].sender_id
+          writeTo = thread[0].sender_id
         } else {
           writeTo = thread[0].receiver_id
           //writeTo = thread[0].sender_id
@@ -99,7 +96,7 @@ export default function ThreadList(props) {
           //filtering out owners cause only owners searching will get here
           if (user_id){
             return (
-              <MessagesListItem
+              <ThreadMessages
               key={index}
               sender={message.sender_id}
               receiver = {message.receiver_id}
@@ -117,7 +114,14 @@ export default function ThreadList(props) {
           //console.log("CONVO TU SEUL?", convo[0], "mESSAGES LIST", messagesList)
           console.log("PRORRORRPRORPRKIPWOIRPOWI", props.users)
           convoArray.push(
-            <div className="thread" key={index}>
+            <div>
+              <div className="messages" key={index} >{convo}
+              </div>
+            </div>
+    
+          )
+/*           convoArray.push(
+            <div className="thread" key={index}/*  >
               <div className="threadInfo">
                 <ThreadInfo
                   recipientUser = {props.users[writeTo-1]}
@@ -127,7 +131,7 @@ export default function ThreadList(props) {
               </div>
       
             </div>
-          )
+          ) */
       
     })
     //console.log("USERS LIST un moment donne?", usersList, loading)
