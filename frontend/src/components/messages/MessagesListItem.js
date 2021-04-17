@@ -29,7 +29,7 @@ export default function MessagesListItem(props) {
       <Row> 
         <Col >
           <Card className="text-center">
-            <Card.Header>Thread with # {props.recipient} Room Id {props.room}</Card.Header>
+            <Card.Header></Card.Header>
             <Card.Body>
               <Card.Title>{props.senderId}</Card.Title>
               <Card.Text>

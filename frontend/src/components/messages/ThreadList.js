@@ -1,10 +1,12 @@
-import { React, useEffect, useState, useContext } from "react";
+import { React, useEffect, useState, useContext, Fragment } from "react";
 import { useParams, useHistory, useLocation } from 'react-router-dom';
 import MessagesListItem from './MessagesListItem';
 import axios from 'axios';
 import { CardDeck } from 'react-bootstrap';
 import { UserContext } from '../../UserContext';
 import ThreadItem from './ThreadItem'
+import "./ThreadList.scss";
+import ThreadInfo from "./ThreadInfo";
 // import MessagesListItem from "components/MessagesListItem";
 
 
@@ -16,22 +18,26 @@ export default function MessagesList(props) {
   const {user, setUser} = useContext(UserContext)
   const history = useHistory()
   //console.log("J'ai tu un id??", user_id)
-  console.log("LOCATION", useLocation())
+  //console.log("LOCATION", useLocation())
 
   const formatConvo = (messages, is_owner)  => {
-    console.log(" 1- KEYS", messages)
+    //console.log(" 1- KEYS", messages)
     const firstRecipientsArray = messages.reduce(function(firstRecipients, item) {
       firstRecipients.push(item.applicant_id);
       return firstRecipients;
     }, [])
-    console.log("2- firstRecipients", firstRecipientsArray)
+/*     const firstRecipientsArray = messages.reduce(function(firstRecipients, item) {
+      firstRecipients.push(item.applicant_id);
+      return firstRecipients;
+    }, []) */
+    //console.log("2- firstRecipients", firstRecipientsArray)
     const firstRecipientsCleaned = [];
     for(var value of firstRecipientsArray){
       if(firstRecipientsCleaned.indexOf(value) === -1){
           firstRecipientsCleaned.push(value);
       }
     }
-    console.log("3- recipientClean", firstRecipientsCleaned)
+    //console.log("3- recipientClean", firstRecipientsCleaned)
     const splitByConvos = []
       for (let i = 0; i < firstRecipientsCleaned.length; i++){
         splitByConvos.push([])
@@ -60,7 +66,7 @@ export default function MessagesList(props) {
     }) => {
       //console.log("USERS BY CITY DATA",data);
       const convos = formatConvo(data)
-      console.log("CONVOS THEN", convos)
+      //console.log("CONVOS THEN", convos)
       const convoArray = [];
       let convo = [];
       convos.forEach((thread, index) => {
@@ -71,7 +77,7 @@ export default function MessagesList(props) {
           writeTo = thread[0].receiver_id
           //writeTo = thread[0].sender_id
         }
-        console.log("WRITETO", writeTo)
+        //console.log("WRITETO", writeTo)
         convo = thread.map((message, index) => {
           //filtering out owners cause only owners searching will get here
           if (user_id){
@@ -92,8 +98,17 @@ export default function MessagesList(props) {
             }
           })
           //console.log("CONVO TU SEUL?", convo[0], "mESSAGES LIST", messagesList)
-          console.log("PRORRORRPRORPRKIPWOIRPOWI", props.users[writeTo-1].firstname)
-          convoArray.push(<CardDeck key={index} >Your chat with {props.users[writeTo-1].firstname} {convo}</CardDeck>)
+          //console.log("PRORRORRPRORPRKIPWOIRPOWI", props.users[writeTo-1].firstname)
+          convoArray.push(
+            <div className="thread">
+              <div className="threadInfo">
+                <ThreadInfo
+                  recipientUser = {props.users[writeTo-1]}
+                />
+              </div> 
+              <div className="messages" key={index} >{convo}</div>
+            </div>
+          )
       
     })
     //console.log("USERS LIST un moment donne?", usersList, loading)
@@ -108,8 +123,8 @@ export default function MessagesList(props) {
   return (
     <section>
       {user === "empty" && history.push("/login")}
-      {user !== "empty" && <span>      
-        <ul>{ messagesList }</ul>
+      {user !== "empty" && <span>   
+        <div className="allThreads">{ messagesList }</div>
         </span>}
     </section>
   )
