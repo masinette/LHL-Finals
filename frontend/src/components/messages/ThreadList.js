@@ -12,13 +12,14 @@ import ThreadInfo from "./ThreadInfo";
 
 
 // pass in props, assign value of map from messages
-export default function MessagesList(props) {
+export default function ThreadList(props) {
   const { user_id } = useParams();
   const [loading, setLoading] = useState(true);
   const [messagesList, setMessagesList] = useState([]);
   const {user, setUser} = useContext(UserContext)
   const history = useHistory()
-  //console.log("J'ai tu un id??", user_id)
+  let writeTo = null
+  console.log("J'ai tu un id??", user_id, "Pis des PROPS?", props, "THREAD LISt")
   //console.log("LOCATION", useLocation())
 
   const formatConvo = (messages, is_owner)  => {
@@ -83,14 +84,17 @@ export default function MessagesList(props) {
       const convoArray = [];
       let convo = [];
       convos.forEach((thread, index) => {
-        let writeTo = null
+        //let writeTo = null
+        console.log("WRITE to", user_id, thread[0].applicant_id)
         if (parseInt(user_id) === thread[0].applicant_id){
-          writeTo = thread[0].sender_id
+          console.log("Terend-tu?", thread[0].sender_id)
+          writeTo = "patate"
+          //writeTo = thread[0].sender_id
         } else {
           writeTo = thread[0].receiver_id
           //writeTo = thread[0].sender_id
         }
-        //console.log("WRITETO", writeTo)
+        console.log("WRITETO", writeTo)
         convo = thread.map((message, index) => {
           //filtering out owners cause only owners searching will get here
           if (user_id){
@@ -111,9 +115,9 @@ export default function MessagesList(props) {
             }
           })
           //console.log("CONVO TU SEUL?", convo[0], "mESSAGES LIST", messagesList)
-          //console.log("PRORRORRPRORPRKIPWOIRPOWI", props.users[writeTo-1].firstname)
+          console.log("PRORRORRPRORPRKIPWOIRPOWI", props.users)
           convoArray.push(
-            <div className="thread">
+            <div className="thread" key={index}>
               <div className="threadInfo">
                 <ThreadInfo
                   recipientUser = {props.users[writeTo-1]}

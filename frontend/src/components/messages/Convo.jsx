@@ -26,7 +26,7 @@ const Convo = (props) => {
   const citiesArray = ["Toronto", "Vancouver", "Calgary", "Montreal"];
   
   let writeTo = null
-  const allUsers = 
+  
 
 
 
@@ -48,14 +48,14 @@ const Convo = (props) => {
         setDestination(data[0].applicant_id)
       }
       console.log("PIIIIS", typeof(parseInt(user_id)), typeof(data[0].applicant_id), destination)
-      const messages = data.map((message, index) => {
-        if (parseInt(user_id) === data[0].applicant_id){
-          writeTo = data[0].sender_id
-        } else {
-           writeTo = data[0].receiver_id
-          //writeTo = thread[0].sender_id
-        }
-        console.log("QOUAAAAAA", props.users[writeTo-1])
+      if (parseInt(user_id) === data[0].applicant_id){
+        writeTo = data[0].sender_id
+      } else {
+         writeTo = data[0].receiver_id
+        //writeTo = thread[0].sender_id
+      }
+      const sortByMostRecent = data.reverse()
+      const messages = sortByMostRecent.map((message, index) => {
         if (true){
           
           setRoomId(message.room_id);
@@ -70,8 +70,6 @@ const Convo = (props) => {
               room = {message.room_id}
               applicant = {message.applicant_id}
               recipient_name = {props.users[writeTo-1].firstname}
-              
- 
             />
           )
         }
@@ -88,16 +86,17 @@ const Convo = (props) => {
       {loading && <div>LOADING</div>}
       {!loading &&  (
         <Fragment>
-          <CardDeck >
-            {thread} 
-          </CardDeck>
           <ReplyForm
             userLogged={user_id}
             recipient={destination}
             room={roomId}
             applicant={applicantId}
+            recipient_name={"Poil"}
           >
           </ReplyForm>
+          <CardDeck >
+            {thread} 
+          </CardDeck>
         </Fragment>
       )
       }

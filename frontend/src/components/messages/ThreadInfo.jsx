@@ -4,10 +4,13 @@ import { CardDeck, Card, Button, Col, Row, Container, Image } from 'react-bootst
 
 
 export default function ThreadInfo(props) {
+  console.log("Pis des PROPS?", props, "THREAD Info")
 
 
   return (
-    <Container fluid >
+    <div>
+    {!props && <div>LOADING</div>}
+    {props && (<Container fluid >
       <Card style={{ width: '18rem'  }} className="recipientCard">
         <Card.Body  >
           <Card.Title>{props.recipientUser.firstname}</Card.Title>
@@ -19,6 +22,7 @@ export default function ThreadInfo(props) {
         </Card.Body>
       </Card>
 
-    </Container>
+    </Container>)}
+    </div>
   );
 }
