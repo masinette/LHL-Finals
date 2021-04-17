@@ -2,6 +2,8 @@ export const SET_USERS = 'SET_USERS';
 export const SET_MESSAGES = 'SET_MESSAGES';
 export const SET_CITIES = 'SET_CITIES';
 export const SET_ROOMS = 'SET_ROOMS';
+export const SET_INTERESTS = 'SET_INTERESTS';
+
 
 
 const dataReducer = (state, action) => {
@@ -39,6 +41,12 @@ const dataReducer = (state, action) => {
       return {
         ...state,
         rooms: action.rooms,
+        loading: false
+      };
+    case SET_INTERESTS:
+      return {
+        ...state,
+        surveyInterests: action.surveyInterests,
         loading: false
       };
       
