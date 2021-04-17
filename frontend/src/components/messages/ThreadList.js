@@ -115,15 +115,15 @@ export default function ThreadList(props) {
           })
           //console.log("CONVO TU SEUL?", convo[0], "mESSAGES LIST", messagesList)
           console.log("PRORRORRPRORPRKIPWOIRPOWI", props.users)
-          convoArray.push(
+/*           convoArray.push(
             <div>
               <div className="messages" key={index} >{convo}
               </div>
             </div>
     
-          )
-/*           convoArray.push(
-            <div className="thread" key={index}/*  >
+          ) */
+          convoArray.push(
+            <div className="thread" key={index}  >
               <div className="threadInfo">
                 <ThreadInfo
                   recipientUser = {props.users[writeTo-1]}
@@ -133,7 +133,7 @@ export default function ThreadList(props) {
               </div>
       
             </div>
-          ) */
+          )
       
     })
     //console.log("USERS LIST un moment donne?", usersList, loading)

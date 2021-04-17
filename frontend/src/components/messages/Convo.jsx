@@ -8,7 +8,7 @@ import axios from 'axios';
 import { useHistory } from 'react-router-dom';
 import ReplyForm from './ReplyForm';
 import PropertiesCheckbox from '../rooms/PropertiesCheckbox';
-import { propTypes } from 'react-bootstrap/esm/Image';
+import { Image } from 'react-bootstrap';
 import ConvoThumbnail from './ConvoThumbnail';
 
 
@@ -95,13 +95,15 @@ const Convo = (props) => {
       {!loading &&  (
         <div className="convoPage">
           <div className="convoReply">
+   
           <ReplyForm
             userLogged={user_id}
             recipient={destination}
             room={roomId}
             applicant={applicantId}
             recipient_name={props.users[destination-1].firstname}
-          >
+            placeholder="Hello"
+          ><Image className="convoWrite" src="/write.png"/>
           </ReplyForm>
           </div>
           
