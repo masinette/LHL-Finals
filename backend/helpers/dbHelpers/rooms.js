@@ -124,6 +124,8 @@ module.exports = (db) => {
     WHERE id = $1 
     RETURNING *;`;
 
+    console.log(queryString)
+    console.log(queryParams)
     // const { user_id, title, description, latitude, longitude, roomSize, startDate, endDate, price, petFriendly, active, address } = body;
     const query = {
       text: queryString,
@@ -133,7 +135,7 @@ module.exports = (db) => {
     return db
       .query(query)
       .then(result => {
-        console.log(result.rows)  
+        console.log("rows", result.rows)  
         return result.rows
       })
       .catch(err => console.error("error: ", err));

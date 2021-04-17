@@ -34,9 +34,48 @@ export default function ProfileView(props) {
       .catch(err => console.error("roomList error: ", err))
   }, [])
 
-  const handleSwitch = (e) => {
-    e.preventDefault();
+  console.log(rooms)
 
+  const handleSwitch = (index) => (e) => {
+    e.preventDefault();
+    const target = e.target;
+    const roomValueId = target.value;
+    console.log(target.checked);
+    const checked = target.checked ? false : true;
+    console.log(checked);
+    const updatePath = `/api/rooms/${roomValueId}`;
+    console.log(e.target)
+    console.log(e.target.value)
+    // console.log(rooms)
+    // console.log(rooms[roomValueId - 1])
+    const roomData = {
+      [target.name]: checked 
+    }
+    
+    console.log(roomData);
+    axios({
+      method: "PUT",
+      url: updatePath,
+      data: roomData
+    })
+      .then(results => {
+        console.log(results);
+        setRooms(rooms => {
+          const newList = rooms.map((room, j) => {
+          if (index === j) {
+            console.log(room)
+            return {...room,
+              [target.name]: checked
+            }
+          } else {
+            return room
+          }
+        })
+        console.log(newList);
+        return newList
+      })
+    })
+    .catch(err => console.error("Put error:", err))
   };
 
   console.log(user);

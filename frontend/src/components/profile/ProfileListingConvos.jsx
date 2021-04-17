@@ -7,11 +7,10 @@ import { Link, useHistory } from "react-router-dom";
 import "./ProfileListingConvos.scss"
 
 export default function ProfileListingConvos(props) {
-  const { user_id, rooms, setRooms, handleSwitch} = props;
-  console.log(user_id)
+  console.log(props.user_id)
 
   const history = useHistory()
-  if (!user_id) {
+  if (!props.user_id) {
     history.push("/login");
   }
 
@@ -33,13 +32,15 @@ export default function ProfileListingConvos(props) {
 
   // console.log(rooms)
 
-  const handleClick = (e) => {
+  const handleChange = (e) => {
     e.preventDefault();
-
+    const target = e.target;
+    console.log(target)
   };
 
+  const rooms = props.rooms;
+  console.log(rooms)
   const roomList = rooms.map((room, index) => (
-    
     <Container className="profile__card" key={index} >
       <Row>
         <Col>
@@ -47,12 +48,14 @@ export default function ProfileListingConvos(props) {
         </Col>
         <div className="active-switch" >
           <Form>
-            <Form.Check 
+            <Form.Check
+              id={`switch-${index}`}
               type="switch"
               name="active"
               label="Active"
-              checked={true}
-              onClick={handleClick}
+              onChange={props.handleSwitch(index)}
+              value={room.id}
+              checked={room.active}
             />
           </Form>
         </div>
