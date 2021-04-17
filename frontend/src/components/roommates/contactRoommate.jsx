@@ -23,7 +23,7 @@ export default function ContactRoommate(props) {
 
   const handleSubmit = (event) => {
     event.preventDefault()
-    console.log("INSIDE CONTACT RENTER FORM", postData)
+   // console.log("INSIDE CONTACT RENTER FORM", postData)
       axios({
         method: 'POST',
         url: '/api/messages',
@@ -31,7 +31,7 @@ export default function ContactRoommate(props) {
       })
       .then((response)=> {
         console.log("RESPONSE",response.data)
-        //history.push(`/messages/${user.id}`)
+        history.push(`/messages/${user.id}`)
 
       }) 
       .then()

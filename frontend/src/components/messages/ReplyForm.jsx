@@ -54,9 +54,9 @@ export default function ReplyForm(props) {
     </InputGroup.Prepend>
     <FormControl as="textarea" aria-label="With textarea" onChange={(e) => updateMail(e)}/>
     <InputGroup.Append>
-      <Button variant="outline-secondary">
+      <Button variant="outline-secondary"onClick={(e) => handleSubmit(e)}>
         <RiSendPlaneFill
-          onClick={(e) => handleSubmit(e)}
+          
         >
         </RiSendPlaneFill>
       </Button>
