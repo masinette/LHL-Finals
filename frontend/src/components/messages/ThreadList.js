@@ -115,7 +115,8 @@ export default function ThreadList(props) {
           })
           //console.log("CONVO TU SEUL?", convo[0], "mESSAGES LIST", messagesList)
           console.log("PRORRORRPRORPRKIPWOIRPOWI", props.users)
-/*           convoArray.push(
+/*           if you want to click on all threads, you need to remove te css, comment out convoArray.push below and put this one instead
+            convoArray.push(
             <div>
               <div className="messages" key={index} >{convo}
               </div>
