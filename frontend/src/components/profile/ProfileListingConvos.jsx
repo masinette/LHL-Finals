@@ -4,7 +4,10 @@ import { Button, Col, Container, Row, Form } from "react-bootstrap";
 import { Image } from "cloudinary-react";
 import { Link, useHistory } from "react-router-dom";
 
-export default function ProfileListingConvos({user_id}) {
+import "./ProfileListingConvos.scss"
+
+export default function ProfileListingConvos(props) {
+  const { user_id, rooms, setRooms, handleSwitch} = props;
   console.log(user_id)
 
   const history = useHistory()
@@ -12,29 +15,26 @@ export default function ProfileListingConvos({user_id}) {
     history.push("/login");
   }
 
-  const [rooms, setRooms] = useState([]);
+  // const [rooms, setRooms] = useState([]);
 
 
-  useEffect(() => {
-    const userRooms = `/api/users/rooms/${user_id}`
-    const userMessages = `/api/messages/${user_id}`
-    axios({
-      method: "GET",
-      url: userRooms
-    })
-      .then(results => {
-        // if (user_id) {
-          setRooms(results.data)
-        // } else {
-        //   history.push("/login");
-        // }
-      })
-      .catch(err => console.error("roomList error: ", err))
-  }, [])
+  // useEffect(() => {
+  //   const userRooms = `/api/users/rooms/${user_id}`
+  //   const userMessages = `/api/messages/${user_id}`
+  //   axios({
+  //     method: "GET",
+  //     url: userRooms
+  //   })
+  //     .then(results => {
+  //       setRooms(results.data)
+  //     })
+  //     .catch(err => console.error("roomList error: ", err))
+  // }, [])
 
-  console.log(rooms)
+  // console.log(rooms)
 
-  const handleClick = () => {
+  const handleClick = (e) => {
+    e.preventDefault();
 
   };
 
@@ -42,17 +42,20 @@ export default function ProfileListingConvos({user_id}) {
     
     <Container className="profile__card" key={index} >
       <Row>
-        <h2>{room.title}</h2>
-        <span>
+        <Col>
+          <h2>{room.title}</h2>
+        </Col>
+        <div className="active-switch" >
           <Form>
             <Form.Check 
               type="switch"
               name="active"
+              label="Active"
               checked={true}
               onClick={handleClick}
             />
           </Form>
-        </span>
+        </div>
       </Row>
       <Row>
         <Col>
@@ -71,10 +74,11 @@ export default function ProfileListingConvos({user_id}) {
 
   return (
     <>
-    <div className="profile__card" >
+    <div className="my-listings" >
+      <h2>My Listings</h2>
+      {roomList}
 
     </div>
-    {roomList}
     </>
   )
 }
