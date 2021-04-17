@@ -5,7 +5,7 @@ import { useHistory } from "react-router";
 
 import TitleField from "./TitleField";
 import DescriptionField from "./DescriptionField";
-import AddressField from "./AddressField";
+// import AddressField from "./AddressField";
 import SizePriceField from "./SizePriceField";
 import DatesField from "./DatesField";
 import PropertiesCheckbox from "./PropertiesCheckbox";
@@ -67,7 +67,7 @@ export default function NewRoomForm(props) {
         <Form onSubmit={handleSubmit} id="form-new" >
           <TitleField handleInput={handleInput} formData={formData} />
           <DescriptionField handleInput={handleInput} formData={formData} />
-          <AddressField handleInput={handleInput} setFormData={setFormData} formData={formData} /> 
+          {/* <AddressField handleInput={handleInput} setFormData={setFormData} formData={formData} />  */}
           <SizePriceField handleInput={handleInput} formData={formData} />
           <DatesField handleInput={handleInput} formData={formData} />
           <PropertiesCheckbox handleInput={handleInput} formData={formData} />

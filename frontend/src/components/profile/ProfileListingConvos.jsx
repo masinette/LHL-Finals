@@ -14,23 +14,6 @@ export default function ProfileListingConvos(props) {
     history.push("/login");
   }
 
-  // const [rooms, setRooms] = useState([]);
-
-
-  // useEffect(() => {
-  //   const userRooms = `/api/users/rooms/${user_id}`
-  //   const userMessages = `/api/messages/${user_id}`
-  //   axios({
-  //     method: "GET",
-  //     url: userRooms
-  //   })
-  //     .then(results => {
-  //       setRooms(results.data)
-  //     })
-  //     .catch(err => console.error("roomList error: ", err))
-  // }, [])
-
-  // console.log(rooms)
 
   const handleChange = (e) => {
     e.preventDefault();
@@ -41,7 +24,7 @@ export default function ProfileListingConvos(props) {
   const rooms = props.rooms;
   console.log(rooms)
   const roomList = rooms.map((room, index) => (
-    <Container className="profile__card" key={index} >
+    <Container key={index} className="profile__card" >
       <Row>
         <Col>
           <h2>{room.title}</h2>
@@ -71,14 +54,14 @@ export default function ProfileListingConvos(props) {
       </Row>
       <Row>
         <Link to={`/listings/edit/${room.id}`} className="btn btn-primary" >Edit Listing</Link>
+        <Link to={`/messages`} className="btn btn-primary" >View Messages</Link>
       </Row>
     </Container>
   ))
 
   return (
     <>
-    <div className="my-listings" >
-      <h2>My Listings</h2>
+    <div  >
       {roomList}
 
     </div>

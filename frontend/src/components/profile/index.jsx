@@ -9,6 +9,9 @@ import ProfileInfoCard from "./ProfileInfoCard";
 import ProfileInfoEditCard from "./ProfileInfoEditCard";
 import ProfileImage from "./ProfileImage";
 import ProfileListingConvos from "./ProfileListingConvos";
+import ProfileInterests from "./ProfileInterests"
+
+import "./styles.scss"
 
 const SHOW = "SHOW";
 const EDIT = "EDIT";
@@ -82,11 +85,39 @@ export default function ProfileView(props) {
   
   return (
     <>
-      <ProfileImage user_id={user.id} />
-      { mode === SHOW && <ProfileInfoCard user={user === "empty" ? "" : user} onEdit={() => transition(EDIT)} />}
-      { mode === EDIT && <ProfileInfoEditCard setUser={setUser} user={user === "empty" ? "" : user} onSubmit={() => transition(SHOW)} onCancel={() => back()} />}
-      <ProfileListingConvos user_id={user.id} rooms={rooms} setRooms={setRooms} handleSwitch={handleSwitch} />
-      <CreateListingsBtn />
+      <div className="profile">
+        <div className="profile__info" >
+          <ProfileImage user_id={user.id} />
+          <h4>My Interests</h4>
+          <ProfileInterests user_id={user.id} />
+          <h4>My Details</h4>
+          { mode === SHOW && <ProfileInfoCard user={user === "empty" ? "" : user} onEdit={() => transition(EDIT)} />}
+          { mode === EDIT && <ProfileInfoEditCard setUser={setUser} user={user === "empty" ? "" : user} onSubmit={() => transition(SHOW)} onCancel={() => back()} />}
+        </div>
+
+        {user.is_owner && <div className="profile__listings" >
+          <h3>
+            My Listings
+            <span className="right">
+              <CreateListingsBtn />
+            </span>
+          </h3>
+          <ProfileListingConvos user_id={user.id} rooms={rooms} setRooms={setRooms} handleSwitch={handleSwitch} />
+
+        </div>}
+
+        {!user.is_owner && <div className="profile__listings" >
+          <h3>
+            My Inquiries
+            {/* <span className="right">
+              <CreateListingsBtn />
+            </span> */}
+          </h3>
+          {/* <ProfileListingConvos user_id={user.id} rooms={rooms} setRooms={setRooms} handleSwitch={handleSwitch} /> */}
+
+        </div>}
+        
+      </div>
     </>
   )
 }

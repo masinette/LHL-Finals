@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 import EditProfileBtn from "./EditProfileBtn";
 
 import { FaRegEdit } from "react-icons/fa";
-import "./styles.scss"
+import "./ProfileInfoCard.scss"
 
 
 export default function ProfileInfoCard(props) {
@@ -16,8 +16,8 @@ export default function ProfileInfoCard(props) {
 
   return (
     <>
-      <div className="profile__card" >
-        <Container>
+      <div >
+        <Container className="profile__card" >
           <Row>
             <Col className="profile__card-label" >First Name:</Col>
             <Col>{user.firstname}</Col>

@@ -1,15 +1,29 @@
 .profile {
+  display: flex;
+  width: 75%;
+  margin: 3em auto;
+
+  &__info {
+    width: 40%;
+    margin: auto;
+  }
+  &__listings {
+    width: 50%;
+    margin: 0 auto;
+  }
+
   &__card {
     border-radius: 10px;
     padding: 1em;
     box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
-    width: 40%;
-    margin: auto;
-    &-label {
-      font-weight: bold;
-    }
+    
   }
 }
+
+.right {
+  float: right;
+}
+
 
 .btn-gradient {
   background-image: linear-gradient(to bottom right, #007bff, rgb(115, 207, 211));
