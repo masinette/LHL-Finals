@@ -23,14 +23,18 @@ export default function RoommatesItem(props) {
     const interestsUser2 = user2.map(value => value.name);
     // const interestsUser1 = Object.values(user1);
     // const interestsUser2 = Object.values(user2);
-    const interestsInCommon = [];
-    for (const int of interestsUser1) {
-      if(interestsUser2.indexOf(int)){
-        interestsInCommon.push(int)
+    // const interestsInCommon = [];
+    // for (const int of interestsUser1) {
+    //   console.log("INDEX OF", int, interestsUser2)
+    //   if(interestsUser2.indexOf(int)){
+    //     interestsInCommon.push(interestsUser2[interestsUser2.indexOf(int)])
 
-      }
-    }
-    console.log("COMMON?", interestsInCommon, interestsUser1, interestsUser2)
+    //   }
+    // }
+    const interestsInCommon = interestsUser1.filter(e => interestsUser2.indexOf(e) !== -1)
+    console.log("int user1",  interestsUser1, )
+    console.log("int user2", interestsUser2)
+    console.log("COMMON?", interestsInCommon)
   }
 
   useEffect(() => {
@@ -49,7 +53,7 @@ export default function RoommatesItem(props) {
       .then((
         data
         ) => {
-        console.log("USERS BY CITY DATA",data);
+        console.log("USERS INTERESTs",data);
 
         //console.log("USERS LIST un moment donne?", usersList, loading)
         // setLoading(false);
