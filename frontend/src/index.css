@@ -5,6 +5,9 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-image: url('https://www.photos-public-domain.com/wp-content/uploads/2018/05/white-card-stock-paper-texture.jpg');
+  /* background-repeat: no-repeat; */
+  background-size: cover;
 }
 
 code {
