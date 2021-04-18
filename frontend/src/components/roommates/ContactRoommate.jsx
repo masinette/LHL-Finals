@@ -8,7 +8,7 @@ import { Form, Button } from 'react-bootstrap';
 export default function ContactRoommate(props) {
   //console.log("PROPS reply", props)
   const [messageContent, setMessageContent] = useState("")
-  const {user, setUser} = useContext(UserContext)
+  const {user} = useContext(UserContext)
   const history = useHistory()
 
   const handleInput = (event) => {

@@ -1,11 +1,12 @@
 // import logo from './logo.svg';
 import RoommatesItem from './RoommatesItem';
-import { CardDeck } from 'react-bootstrap';
+import { CardDeck, Container } from 'react-bootstrap';
 import { React, useEffect, useState, useContext }  from 'react';
 import { useParams, useLocation } from 'react-router-dom';
 import axios from 'axios';
 import { useHistory } from 'react-router-dom';
 import { UserContext } from '../../UserContext';
+import './RoommatesByCity.scss';
 //import users from '../../../../backend/routes/users';
 
 
@@ -42,25 +43,10 @@ const RoommatesByCity = () => {
       data
     }) => {
       //console.log("USERS BY CITY DATA",data);
-      const usersList = data.map((user, index) => {
-        //filtering out owners cause only owners searching will get here
-          if(!user.is_owner){
-            return (
-              <RoommatesItem
-                key={index}
-                id={user.id}
-                name = {`${user.firstname} ${user.lastname}`}
-                description = {user.description}
-                city = {citiesArray[user.city_id - 1]}
-                //onClick={() => redirect}
-              />
-            )
-          }
 
-      });
       //console.log("USERS LIST un moment donne?", usersList, loading)
       setLoading(false);
-      setCityUsers(usersList)
+      setCityUsers(data)
       
     })
     .then(() => {
@@ -71,15 +57,34 @@ const RoommatesByCity = () => {
   }, [search]);
 
   return (
-    <div>
-      {loading && <div>LOADING</div>}
-      {!loading &&  (
-        <CardDeck >
-          {cityUsers} 
-        </CardDeck>
-      )
-    }
-    </div>
+    <Container>
+      <div className="flexMe">
+        <div>
+          {loading && <div>LOADING</div>}
+          {!loading &&  (
+            <CardDeck >
+              {cityUsers.map((user, index) => {
+              //filtering out owners cause only owners searching will get here
+                if(!user.is_owner){
+                  return (
+                    <RoommatesItem
+                      key={index}
+                      id={user.id}
+                      name = {`${user.firstname} ${user.lastname}`}
+                      description = {user.description}
+                      city = {citiesArray[user.city_id - 1]}
+                      //onClick={() => redirect}
+                    />
+                  )
+                }
+
+              })}
+            </CardDeck>
+          )
+        }
+        </div>
+      </div>
+    </Container>
   )
   
 };
