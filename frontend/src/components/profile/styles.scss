@@ -42,3 +42,9 @@
 .btn-gradient:hover {
   background-image: linear-gradient(to top left, #007bff, rgb(115, 207, 211));
 }
+
+.rounded {
+
+  border-radius: 100px !important;
+  overflow: hidden;
+}
