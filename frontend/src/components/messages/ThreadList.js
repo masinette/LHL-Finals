@@ -17,8 +17,13 @@ export default function ThreadList(props) {
   const {user, setUser} = useContext(UserContext)
   const history = useHistory()
   let writeTo = null
-  console.log("J'ai tu un id??", user_id, "Pis des PROPS?", props, "THREAD LISt")
+  //console.log("J'ai tu un id??", user_id, "Pis des PROPS?", props, "THREAD LISt")
   //console.log("LOCATION", useLocation())
+
+  //redirect to login if not logged
+  if (!user.id) {
+    history.push("/login");
+  }
 
   const formatConvo = (messages, is_owner)  => {
     //console.log(" 1- KEYS", messages)
@@ -67,7 +72,7 @@ export default function ThreadList(props) {
   useEffect(() => {
     /*     const query = new URLSearchParams(search);
     const paramField = query.get('city'); */
-    const apiURL = user_id ? `/api/messages/${user_id}` : `/api/messages`;
+    const apiURL = user.id ? `/api/messages/${user.id}` : `/api/messages`;
     axios({
       method: 'GET',
       url: apiURL
@@ -86,7 +91,7 @@ export default function ThreadList(props) {
       convos.forEach((thread, index) => {
         //let writeTo = null
         console.log("WRITE to", user_id, thread[0].applicant_id)
-        if (parseInt(user_id) === thread[0].applicant_id){
+        if (parseInt(user.id) === thread[0].applicant_id){
           console.log("Terend-tu?", thread[0].sender_id)
           writeTo = thread[0].sender_id
         } else {
@@ -96,7 +101,7 @@ export default function ThreadList(props) {
         console.log("WRITETO", writeTo)
         convo = thread.map((message, index) => {
           //filtering out owners cause only owners searching will get here
-          if (user_id){
+          if (user.id){
             return (
               <ThreadMessages
               key={index}
@@ -106,7 +111,7 @@ export default function ThreadList(props) {
               sentDate = {message.sentdate}
               applicant = {message.applicant_id}
               room = {message.room_id}
-              inboxUser = {user_id}
+              inboxUser = {user.id}
               recipient = {writeTo}
               //onClick={() => redirect}
               />
@@ -142,7 +147,7 @@ export default function ThreadList(props) {
       setMessagesList(convoArray)
     })
     .catch((err) => console.log(err));
-  }, [user_id]);
+  }, [user.id]);
 
 
   
