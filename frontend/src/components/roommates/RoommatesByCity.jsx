@@ -17,11 +17,12 @@ const RoommatesByCity = () => {
   const history = useHistory();
   const [loading, setLoading] = useState(true);
   const [cityUsers, setCityUsers] = useState([]);
-  const [commonInterests, setCommonInterests] = useState([]);
+ 
   const {user, setUser} = useContext(UserContext)
-  
+  // const [user1Interests, setUser1Interests] = useState([]);
+  // const [user2Interests, setUser2Interests] = useState([]);
   //const cityName = cities.filter(city => city.id === user.city_id)
-  let { cityId } = useParams();
+  let { user_id } = useParams();
   let { search } = useLocation();
 
   
@@ -29,13 +30,17 @@ const RoommatesByCity = () => {
 
   //const paramValue = query.get('value');
   // console.log("USE LOCATION", useLocation(), "Bonne ville?", paramField )
-   console.log("USER LOGGED", user)
+  console.log("USER LOGGED", user)
+
+
 
 
   useEffect(() => {
     const query = new URLSearchParams(search);
     const paramField = query.get('city');
     const apiURL = paramField ? `/api/users?city=${paramField}` : `/api/users`;
+    const urlInterestsUserLogged = `/api/user_interests/${user.id}`
+    const urlInterestsSearchedUser = `/api/user_interests/${user_id}`
     Promise.all([
       axios({
         method: 'GET',
@@ -44,20 +49,23 @@ const RoommatesByCity = () => {
       }),
       axios({
         method: 'GET',
-        url: `/api/`
+        url: urlInterestsUserLogged
       }),
-
-
-
+      axios({
+        method: 'GET',
+        url: urlInterestsSearchedUser
+      })
     ])
       .then((
         data
         ) => {
-        console.log("USERS BY CITY DATA",data);
+        //console.log("USERS BY CITY DATA",data);
 
         //console.log("USERS LIST un moment donne?", usersList, loading)
         setLoading(false);
         setCityUsers(data[0].data)
+        // setUser1Interests(data[1].data)
+        // setUser2Interests(data[2].data)
         
         })
         .then(() => {
@@ -85,6 +93,8 @@ const RoommatesByCity = () => {
                       firstName={user.firstname}
                       description = {user.description}
                       city = {citiesArray[user.city_id - 1]}
+                      // user1Interests = {user1Interests}
+                      // user1Interests = {user2Interests}
                       //onClick={() => redirect}
                     />
                   )

@@ -1,16 +1,69 @@
 import { CardDeck, Card, Button, Col, Row, Container } from 'react-bootstrap';
+import { React, useEffect, useState, useContext }  from 'react';
 import { useHistory } from 'react-router-dom';
 import {Image, Video, Transformation, CloudinaryContext} from 'cloudinary-react';
 import './RoommatesItem.scss';
+import { UserContext } from '../../UserContext';
+import axios from 'axios';
 
 export default function RoommatesItem(props) {
   const history = useHistory();
-  console.log("PROPS in item WTF CITY?", props.city, props.id)
+  const {user, setUser} = useContext(UserContext)
+  const [commonInterests, setCommonInterests] = useState([]);
+  console.log("PROPS in item", props)
+
   const redirect = (id) => {
     console.log("Which id are you getting?", id)
     //history.push(`/about`)
     history.push(`/search/roommates/${id}`)
   }
+
+  const findCommonInterests = (user1, user2) => {
+    const interestsUser1 = user1.map(value => value.name);
+    const interestsUser2 = user2.map(value => value.name);
+    // const interestsUser1 = Object.values(user1);
+    // const interestsUser2 = Object.values(user2);
+    const interestsInCommon = [];
+    for (const int of interestsUser1) {
+      if(interestsUser2.indexOf(int)){
+        interestsInCommon.push(int)
+
+      }
+    }
+    console.log("COMMON?", interestsInCommon, interestsUser1, interestsUser2)
+  }
+
+  useEffect(() => {
+    const urlInterestsUserLogged = `/api/user_interests/${user.id}`
+    const urlInterestsSearchedUser = `/api/user_interests/${props.id}`
+    Promise.all([
+      axios({
+        method: 'GET',
+        url: urlInterestsUserLogged
+      }),
+      axios({
+        method: 'GET',
+        url: urlInterestsSearchedUser
+      })
+    ])
+      .then((
+        data
+        ) => {
+        console.log("USERS BY CITY DATA",data);
+
+        //console.log("USERS LIST un moment donne?", usersList, loading)
+        // setLoading(false);
+        findCommonInterests(data[0].data, data[1].data)
+        // setUser1Interests(data[1].data)
+        // setUser2Interests(data[2].data)
+        
+        })
+        .then(() => {
+          //setLoading(false);
+
+        })
+        .catch((err) => console.log(err));
+  }, []);
 
   const interestsList = []
   return (
