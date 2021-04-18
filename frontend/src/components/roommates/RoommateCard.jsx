@@ -2,7 +2,7 @@ import { Carousel, Container, Col, Row, Button, Form } from 'react-bootstrap';
 import { useParams} from 'react-router-dom';
 import {Image, Video, Transformation, CloudinaryContext} from 'cloudinary-react';
 import './RoommateCard.scss';
-import ContactRoommate from './ContactRoommate';
+import ContactRoommates from './ContactRoommates';
 import  {useState, useContext}  from 'react';
 import { UserContext } from '../../UserContext'
 
@@ -107,10 +107,10 @@ export default function RoommateCard(props) {
           </div>
 
           <div name="contact">
-            <ContactRoommate>
+            <ContactRoommates>
               recipient ={roommate.id}
               applicant ={user_id}
-            </ContactRoommate>
+            </ContactRoommates>
           </div>
             
         </div>

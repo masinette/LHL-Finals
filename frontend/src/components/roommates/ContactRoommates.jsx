@@ -5,7 +5,7 @@ import { UserContext } from '../../UserContext';
 import { Form, Button } from 'react-bootstrap';
 
 
-export default function ContactRoommate(props) {
+export default function ContactRoommates(props) {
   //console.log("PROPS reply", props)
   const [messageContent, setMessageContent] = useState("")
   const {user} = useContext(UserContext)
@@ -52,7 +52,7 @@ export default function ContactRoommate(props) {
             name="description"
             onChange={(e) => handleInput(e)}
           />
-          <Button onClick ={handleSubmit}>Send</Button>
+          <Button className="roommate-message-button" type="submit" variant="outline-success" size="lg" type="text" placeholder="Large text" onClick ={handleSubmit}>Send</Button>
         </Form.Group>
       </>
     )
