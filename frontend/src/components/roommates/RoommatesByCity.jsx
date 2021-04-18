@@ -1,6 +1,6 @@
 // import logo from './logo.svg';
 import RoommatesItem from './RoommatesItem';
-import { CardDeck, Container } from 'react-bootstrap';
+import { CardDeck, Container, Row } from 'react-bootstrap';
 import { React, useEffect, useState, useContext }  from 'react';
 import { useParams, useLocation } from 'react-router-dom';
 import axios from 'axios';
@@ -59,7 +59,7 @@ const RoommatesByCity = () => {
       .then((
         data
         ) => {
-        //console.log("USERS BY CITY DATA",data);
+        console.log("USERS BY CITY DATA",data);
 
         //console.log("USERS LIST un moment donne?", usersList, loading)
         setLoading(false);
@@ -76,8 +76,9 @@ const RoommatesByCity = () => {
   }, [search]);
 
   return (
-    <Container className="roommatePage">
-      <div className="flexMe">
+    <Container className="center">
+     {/*   <div className="center"> */}
+      <Row >
         <div className="allCards">
           {loading && <div>LOADING</div>}
           {!loading &&  (
@@ -105,7 +106,8 @@ const RoommatesByCity = () => {
           )
         }
         </div>
-      </div>
+        </Row>
+   {/*    </div> */}
     </Container>
   )
   

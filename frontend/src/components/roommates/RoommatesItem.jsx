@@ -74,8 +74,8 @@ export default function RoommatesItem(props) {
   return (
     <Container>
       <Container fluid className="oneCard" onClick={() => redirect(props.id)}>
-        <Row> 
-          <Col >
+        <Row > 
+         {/*  <Col >  */}
             <Card className="text-center">
               <Card.Header>{props.name}</Card.Header>
               <Card.Body>
@@ -101,7 +101,7 @@ export default function RoommatesItem(props) {
                         <Card.Text >
                           {commonInterests.map((i, index) => {
                             return (
-                              <span key={index}>{` ${i}`}</span>
+                              <div className="oneInterest" key={index}>{` ${i}`}</div>
                             )
                           })}
                         </Card.Text>
@@ -112,7 +112,7 @@ export default function RoommatesItem(props) {
               </Card.Body>
               <Card.Footer className="text-muted">Looking for a place in: {props.city}</Card.Footer>
             </Card>
-          </Col>
+       {/*    </Col> */}
         </Row>
       </Container>
     </Container>
