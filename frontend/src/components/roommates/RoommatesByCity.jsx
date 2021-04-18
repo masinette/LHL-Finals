@@ -17,7 +17,7 @@ const RoommatesByCity = () => {
   const history = useHistory();
   const [loading, setLoading] = useState(true);
   const [cityUsers, setCityUsers] = useState([]);
-  const [usersInterest, setUserInterests] = useState([]);
+  const [commonInterests, setCommonInterests] = useState([]);
   const {user, setUser} = useContext(UserContext)
   
   //const cityName = cities.filter(city => city.id === user.city_id)
@@ -36,20 +36,28 @@ const RoommatesByCity = () => {
     const query = new URLSearchParams(search);
     const paramField = query.get('city');
     const apiURL = paramField ? `/api/users?city=${paramField}` : `/api/users`;
+    Promise.all([
+      axios({
+        method: 'GET',
+        url: apiURL
+        //url: `/api/users?city=${paramField}`
+      }),
+      axios({
+        method: 'GET',
+        url: `/api/`
+      }),
 
-    axios({
-      method: 'GET',
-      url: apiURL
-      //url: `/api/users?city=${paramField}`
-    })
+
+
+    ])
       .then((
         data
         ) => {
-        console.log("USERS BY CITY DATA",data.data);
+        console.log("USERS BY CITY DATA",data);
 
         //console.log("USERS LIST un moment donne?", usersList, loading)
         setLoading(false);
-        setCityUsers(data.data)
+        setCityUsers(data[0].data)
         
         })
         .then(() => {
