@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import { Col, Container, Row, Form, Button, Card, FormCheck } from "react-bootstrap";
 import { Link } from "react-router-dom";
 
-import "./styles.scss"
+import "./ProfileInfoCard.scss"
 
 
 export default function ProfileInfoEditCard(props) {
@@ -55,37 +55,31 @@ export default function ProfileInfoEditCard(props) {
   const level1 = (<Card border="success">
                   <Card.Header>Level 1</Card.Header>
                   <Card.Body >
-                    <Card.Text >
                       <ul>
                         <li>Light cleaning</li>
                         <li>Grocery shopping</li>
                         <li>Running Errands</li>
                       </ul>
-                    </Card.Text>
                   </Card.Body>
                 </Card>)
   const level2 = (<Card border="success">
                     <Card.Header>Level 2</Card.Header>
                     <Card.Body >
-                      <Card.Text >
                         <ul>
                           <li>Yard maintenance</li>
                           <li>Shovelling snow</li>
                           <li>Deep cleaning</li>
                         </ul>
-                      </Card.Text>
                     </Card.Body>
                   </Card>)
   const level3 = (<Card border="success">
                     <Card.Header>Level 3</Card.Header>
                     <Card.Body >
-                      <Card.Text >
                         <ul>
                           <li>House maintenance</li>
                           <li>Yard maintenance</li>
                           <li>Transportation</li>
                         </ul>
-                      </Card.Text>
                     </Card.Body>
                   </Card>)
 
