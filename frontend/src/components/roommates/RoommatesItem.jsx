@@ -1,4 +1,4 @@
-import { CardDeck, Card, Button, Col, Row, Container } from 'react-bootstrap';
+import { CardDeck, Card, Button, Col, Row, Container, Badge } from 'react-bootstrap';
 import { React, useEffect, useState, useContext }  from 'react';
 import { useHistory } from 'react-router-dom';
 import {Image, Video, Transformation, CloudinaryContext} from 'cloudinary-react';
@@ -91,17 +91,21 @@ export default function RoommatesItem(props) {
                       {props.description}
                     </Card.Text>
                     </div>
-                    <div className="rmaInterests bottom">
+                    <div className="rmaInterests center bottom">
                       <div  className="rmaInterestsText">
-                        <Card.Text className="description">
-                          You have some common interests with {props.firstName}:
+                        <Card.Text className="rmaCommonInterestsText">
+                          Common interests with {props.firstName}:
                         </Card.Text>
                       </div>
                       <div  className="rmaInterestsList">
                         <Card.Text >
                           {commonInterests.map((i, index) => {
                             return (
-                              <div className="oneInterest" key={index}>{` ${i}`}</div>
+                           
+                                <Badge pill variant="info" key={index} className="rmaPill" >
+                                {i}
+                                </Badge>
+                          
                             )
                           })}
                         </Card.Text>

@@ -18,18 +18,31 @@
   margin-left: auto;
   margin-right: auto;
 }
+
+.rmaCommonInterestsText {
+  font-size: 100%
+
+}
+
+.rmaInterestsList {
+  margin:5%
+}
+
 .bottom{
   position:absolute; 
   bottom:-2em;
-  right: 5em
+
 }
 
-.oneInterest {
+.rmaPill {
+  font-size: 100%
+}
+/* .oneInterest {
   box-shadow: 10px -10px 5px  rgba(0,0,0,0.6);
   -moz-box-shadow: 10px -10px 5px  rgba(0,0,0,0.6);
   -webkit-box-shadow: 10px -10px 5px  rgba(0,0,0,0.6);
   -o-box-shadow: 10px -10px 5px  rgba(0,0,0,0.6);
   border-radius:25px;
 
-}
+} */
 
