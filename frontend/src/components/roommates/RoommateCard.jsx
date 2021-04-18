@@ -2,12 +2,16 @@ import { Carousel, Container, Col, Row, Button, Form } from 'react-bootstrap';
 import { useParams} from 'react-router-dom';
 import {Image, Video, Transformation, CloudinaryContext} from 'cloudinary-react';
 import './RoommateCard.scss';
-import ContactRoommate from './contactRoommate';
-import  {useState}  from 'react';
+import ContactRoommate from './ContactRoommate';
+import  {useState, useContext}  from 'react';
+import { UserContext } from '../../UserContext'
+
+
 
 
 export default function RoommateCard(props) {
   const { user_id } = useParams();
+  const {user, setUser} = useContext(UserContext)
 
   const roommateSearch = props.users.filter(user => {
     console.log(user.id)
@@ -97,28 +101,34 @@ export default function RoommateCard(props) {
       </div>
 
         <div className="room-column2">
-          <h1 className="name">{roommate?.firstname + roommate?.lastname}</h1>
+          <h1 className="name">{roommate?.firstname + " " + roommate?.lastname}</h1>
           <div className="descText">
             <span>{roommate?.description}</span>
           </div>
 
           <div name="contact">
-            <ContactRoommate></ContactRoommate>
+            <ContactRoommate>
+              recipient ={roommate.id}
+              applicant ={user_id}
+            </ContactRoommate>
           </div>
             
         </div>
 
-  
-        <div className="column alignJustCenter">
-            <div name="morePictures">
-            </div>
-        </div>
 
-
-
-        </div>
+      </div>
+      <div className="column justCenter">
+        {/* <div name="contact">
+          <ContactRoommate     
+            recipient ={roommate.id}
+            applicant ={user_id}
+          >
+          </ContactRoommate>
+        </div> */}
       </div>
     </div>
   </div>
+    </div>
+
   )
 }

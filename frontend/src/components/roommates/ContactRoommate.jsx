@@ -52,7 +52,7 @@ export default function ContactRoommate(props) {
             name="description"
             onChange={(e) => handleInput(e)}
           />
-          <Button className="roommate-message-button" type="submit" variant="outline-success" size="lg" type="text" placeholder="Large text" onClick ={handleSubmit}>Send</Button>
+          <Button onClick ={handleSubmit}>Send</Button>
         </Form.Group>
       </>
     )

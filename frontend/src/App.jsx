@@ -68,7 +68,7 @@ const App = () => {
             <Route path="/users" exact component={() => <ProfileCard users={state.users} />} />
             <Route path="/users/:userId/edit" exact component={() => <EditProfileForm users={state.users} />} />
 
-            <Route path="/messages" exact component={() => <MessagesTest messages={state.messages} />} />
+
             <Route path="/" exact component={() => <HomeTest cities={state.cities} />} />
           </UserContext.Provider>
         </Switch>

@@ -7,11 +7,14 @@ import axios from 'axios';
 
 import { useHistory } from 'react-router-dom';
 import ReplyForm from './ReplyForm';
+import PropertiesCheckbox from '../rooms/PropertiesCheckbox';
+import { Image } from 'react-bootstrap';
+import ConvoThumbnail from './ConvoThumbnail';
 
 
 
 
-const Convo = () => {
+const Convo = (props) => {
 
   const [loading, setLoading] = useState(true);
   const [thread, setThread] = useState([]);
@@ -22,6 +25,9 @@ const Convo = () => {
   //const [threadWith, setThreadWith] = useState(null);
   const { user_id, recipient_id } = useParams();
   const citiesArray = ["Toronto", "Vancouver", "Calgary", "Montreal"];
+  
+  let writeTo = null
+  let senderPres = null
   
 
 
@@ -43,11 +49,22 @@ const Convo = () => {
       } else {
         setDestination(data[0].applicant_id)
       }
-      console.log("PIIIIS", typeof(parseInt(user_id)), typeof(data[0].applicant_id), destination)
-      const messages = data.map((message, index) => {
-        //filtering out owners cause only owners searching will get here
+      //console.log("PIIIIS", typeof(parseInt(user_id)), typeof(data[0].applicant_id), destination)
+      if (parseInt(user_id) === data[0].applicant_id){
+        writeTo = data[0].sender_id
+      } else {
+         writeTo = data[0].receiver_id
+        //writeTo = thread[0].sender_id
+      }
+      const sortByMostRecent = data.reverse()
+      const messages = sortByMostRecent.map((message, index) => {
+        if (parseInt(user_id) === data[0].sender_id){
+          senderPres = "You Wrote";
+        } else {
+          senderPres = `${props.users[writeTo-1].firstname} wrote`
+          //writeTo = thread[0].sender_id
+        }
         if (true){
-          
           setRoomId(message.room_id);
           setApplicantId(message.applicant_id)
           return (
@@ -59,8 +76,8 @@ const Convo = () => {
               sentDate = {message.sentdate}
               room = {message.room_id}
               applicant = {message.applicant_id}
-              //threadWith = {destination}
- 
+              recipient_name = {props.users[writeTo-1].firstname}
+              senderPres = {senderPres}
             />
           )
         }
@@ -76,18 +93,41 @@ const Convo = () => {
     <div>
       {loading && <div>LOADING</div>}
       {!loading &&  (
-        <Fragment>
-          <CardDeck >
-            {thread} 
-          </CardDeck>
+        <div className="convoPage">
+          <div className="convoReply">
+   
           <ReplyForm
             userLogged={user_id}
             recipient={destination}
             room={roomId}
             applicant={applicantId}
-          >
+            recipient_name={props.users[destination-1].firstname}
+            placeholder="Hello"
+          ><Image className="convoWrite" src="/write.png"/>
           </ReplyForm>
-        </Fragment>
+          </div>
+          
+          <div className="convoMessages" >
+            <div className="messagesCard"> 
+              <ConvoThumbnail
+                recipientUser = {props.users[destination -1]}
+              />
+            </div>
+            <div className="messagesText">
+             {thread} 
+            </div>
+          </div>
+{/*           <div className="convoMessages" >
+            <div className="messagesText">
+             {thread} 
+            </div>
+            <div className="messagesCard"> 
+              <ConvoThumbnail
+                recipientUser = {props.users[destination -1]}
+              />
+            </div>
+          </div> */}
+        </div>
       )
       }
     </div>
