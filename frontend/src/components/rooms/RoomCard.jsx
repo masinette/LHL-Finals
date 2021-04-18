@@ -67,12 +67,12 @@ export default function RoomCard(props) {
     <div className ="wholeComp">
 
       <div className="row" >
-        <div className="column">
+        <div className="room-column">
           <div className="mainRoomPic">
 
-      </div>
+          </div>
       <div className="row">
-        <div className="column">
+        <div className="room-column">
           {/* <Carousel className="carousel"> */}
       <Container className="room-carousel-container">
 
@@ -146,10 +146,10 @@ export default function RoomCard(props) {
         {/* -------------------MESSAGE BOX-------------- */}
         <Form onSubmit={handleSubmit}>
           <Form.Group id="message">
-            <Form.Label>Message</Form.Label>
-            <Form.Control type="text" onChange={handleChange} value={userMessage.message} name="message" required />
+            <Form.Label>Send me a message:</Form.Label>
+            <Form.Control as="textarea" type="text" onChange={handleChange} value={userMessage.message} name="message" required />
           </Form.Group>
-          <Button type="submit" variant="outline-primary" size="lg" type="text" placeholder="Large text">Submit</Button>
+          <Button type="submit" variant="outline-success" size="lg" type="text" placeholder="Large text">Send</Button>
         </Form>
         {/* -------------------MESSAGE BOX-------------- */}
       </div>

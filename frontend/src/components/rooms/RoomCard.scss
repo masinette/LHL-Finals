@@ -12,12 +12,12 @@
   height: 100px;
 }
 
-// .column {
-//   display: flex;
-//   flex-direction: column;
-//   flex-basis: 100%;
-//   flex: 1;
-// }
+.room-column {
+  display: flex;
+  flex-direction: column;
+  flex-basis: 100%;
+  flex: 1;
+}
 
 .room-column2 {
   display: flex;
@@ -68,7 +68,6 @@
   background-color: red;
   width:inherit;
 }
-
 
 
 .details{

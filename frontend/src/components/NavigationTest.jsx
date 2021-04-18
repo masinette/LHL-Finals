@@ -51,8 +51,12 @@ function NavigationTest(props) {
         </Nav>
         
         {user !== "empty" && <p>Logged in as: {user.firstname}</p>}
-
+        <p>&nbsp;</p>
+        <p>&nbsp;</p>
         <SearchInput placeholder="Enter a city" name="search" loggedUser={user}/>
+        <p>&nbsp;</p>
+        <p>&nbsp;</p>
+
 
         {user === "empty" && <Button variant="outline-success" href="/login">Login/Register</Button>}
         {user !== "empty" && <Button onClick={handleSubmit} variant="outline-danger" href="/logout">Logout</Button>}

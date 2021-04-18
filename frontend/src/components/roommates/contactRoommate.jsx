@@ -9,7 +9,7 @@ export default function ContactRoommate(props) {
   return (
     <>
       <Form.Group className="messageArea">
-        <Form.Label>Contact</Form.Label>
+        <Form.Label>Send me a message:</Form.Label>
         <Form.Control
           
           as="textarea"
@@ -19,7 +19,9 @@ export default function ContactRoommate(props) {
           onChange={() => handleInput}
        
         />
-        <Button>Send</Button>
+        <div className="roommate-message-button">
+          <Button  type="submit" variant="outline-success" size="lg" type="text" placeholder="Large text">Send</Button>
+        </div>
       </Form.Group>
     </>
   )
