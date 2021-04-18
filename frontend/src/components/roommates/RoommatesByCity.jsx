@@ -7,6 +7,7 @@ import axios from 'axios';
 import { useHistory } from 'react-router-dom';
 import { UserContext } from '../../UserContext';
 import './RoommatesByCity.scss';
+
 //import users from '../../../../backend/routes/users';
 
 
@@ -16,6 +17,7 @@ const RoommatesByCity = () => {
   const history = useHistory();
   const [loading, setLoading] = useState(true);
   const [cityUsers, setCityUsers] = useState([]);
+  const [usersInterest, setUserInterests] = useState([]);
   const {user, setUser} = useContext(UserContext)
   
   //const cityName = cities.filter(city => city.id === user.city_id)
@@ -57,9 +59,9 @@ const RoommatesByCity = () => {
   }, [search]);
 
   return (
-    <Container>
+    <Container className="roommatePage">
       <div className="flexMe">
-        <div>
+        <div className="allCards">
           {loading && <div>LOADING</div>}
           {!loading &&  (
             <CardDeck >
@@ -71,6 +73,7 @@ const RoommatesByCity = () => {
                       key={index}
                       id={user.id}
                       name = {`${user.firstname} ${user.lastname}`}
+                      firstName={user.firstname}
                       description = {user.description}
                       city = {citiesArray[user.city_id - 1]}
                       //onClick={() => redirect}
