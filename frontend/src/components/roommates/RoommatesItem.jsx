@@ -11,6 +11,8 @@ export default function RoommatesItem(props) {
     //history.push(`/about`)
     history.push(`/search/roommates/${id}`)
   }
+
+  const interestsList = []
   return (
     <Container>
       <Container fluid className="oneCard" onClick={() => redirect(props.id)}>
@@ -31,10 +33,17 @@ export default function RoommatesItem(props) {
                       {props.description}
                     </Card.Text>
                     </div>
-                    <div  className="rmaInterestsText bottom">
-                      <Card.Text className="description">
-                        You have some common interests with {props.firstName}:
-                      </Card.Text>
+                    <div className="rmaInterests bottom">
+                      <div  className="rmaInterestsText">
+                        <Card.Text className="description">
+                          You have some common interests with {props.firstName}:
+                        </Card.Text>
+                      </div>
+                      <div  className="rmaInterestsList">
+                        <Card.Text >
+                          Knitting dancing
+                        </Card.Text>
+                      </div>
                     </div>
                   </div>
                 </div>
