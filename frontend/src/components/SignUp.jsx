@@ -27,25 +27,33 @@ function SignUp(props) {
     .catch((err) => console.log(err));
   }, []); 
 
+  const InterestButton = styled.button`
+    padding: 10px;
+  `
   const interestsLists = interestsList.map((interest) => (
     <Button variant="outline-info" className="interestButton">{interest.name}</Button>
   ));
-
 
 // -----------------------------------------STYLING------------------------------------------//
   const SignUpDiv = styled.div`
     display:flex;
     margin:30px;
-
   `
   const RightCol = styled.div`
-    border: 1px solid black;
+    border: 1px solid grey;
+    border-radius: 25px;
     width: 70%;
     margin: 30px;
     padding: 30px;
+    box-shadow: 0 0 5px #0168D9;
   `
   const RegisterWrapper = styled.div`
     width: 30%;
+    border: solid 1px grey;
+    border-radius: 25px;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    box-shadow: 0 0 5px #0168D9;
   `
   const SurveyWrapper = styled.div`
     // width: 70%;
@@ -53,15 +61,16 @@ function SignUp(props) {
   `
   const InterestsButtons = styled.div`
     width: 80%;
-    &.interestButton {
-      margin: 10px;
-    }
+    padding-bottom: 20px;
+    
   `
   const CitiesButtons = styled.div`
+    padding-bottom: 25px;
   `
   const Levels = styled.div`
-  display:flex;
-  justify-content:space-around;
+    // display:flex;
+    justify-content:space-around;
+    margin-bottom: 10px;
     // width:300px;
   `
 
@@ -70,8 +79,8 @@ function SignUp(props) {
 
   return (
     <div className="contact">
-      <div className="container">
-        <h1>Register</h1>
+      <div className="registration-title-container">
+        <h1>Registration</h1>
     </div>
 
 <Card>
@@ -80,9 +89,9 @@ function SignUp(props) {
     <RegisterWrapper>
       <div className="registerWrapper">
         <Card.Body>
-          <ButtonGroup>
-            <Button variant="info">Renter</Button>
-            <Button variant="info">Owner</Button>
+          <ButtonGroup className="owner-roommate-radio-buttons">
+            <Button variant="info">Rommate</Button>
+            <Button variant="primary">Owner</Button>
           </ButtonGroup>
 
           <Form>
@@ -155,10 +164,10 @@ function SignUp(props) {
         <CitiesButtons>
           <div className="citiesButtons">
             <h4>Choose a home city:</h4>
-            <Button variant="outline-success">Toronto</Button>
-            <Button variant="outline-success">Vancouver</Button>
-            <Button variant="outline-success">Calgary</Button>
-            <Button variant="outline-success">Montreal</Button>
+            <Button className="city-name" variant="outline-primary">Toronto</Button>
+            <Button className="city-name" variant="outline-primary">Vancouver</Button>
+            <Button className="city-name" variant="outline-primary">Calgary</Button>
+            <Button className="city-name" variant="outline-primary">Montreal</Button>
           </div>
         </CitiesButtons>
 
@@ -177,6 +186,13 @@ function SignUp(props) {
 
         <h4>How can you help?</h4>
         <Levels>
+          <div>
+            <p> Here at LivTogether, we have a level system. Fostering friendships is always the goal. 
+            Please read the options below, and select which level of involvement with which you feel most comfortable. Please note
+            that you may change your selection in the future if you macth with a companion you'd like to adjust for.
+            Each level increases in time commitment.</p>
+          </div>
+            <div className="level-buttons">
               <div class="form-check">
                 <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1" checked />
                 <label class="form-check-label" for="exampleRadios1">
@@ -221,7 +237,7 @@ function SignUp(props) {
                     <Card border="success">
                       <Card.Header>3</Card.Header>
                       <Card.Body >
-                        <Card.Title>Level One </Card.Title>
+                        <Card.Title>Level Three</Card.Title>
                         <Card.Text >
                           <ul>
                             <li>House maintenance</li>
@@ -233,6 +249,7 @@ function SignUp(props) {
                     </Card>
                 </label>
               </div>
+            </div>  
         </Levels>
 
           <Form.Text className="text-muted">

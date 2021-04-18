@@ -62,21 +62,20 @@ const RoomsByCity = () => {
       <div>
         {loading && <div>LOADING</div>}
         {!loading &&  (
-          <CardDeck >
+          <CardDeck className="rooms-deck">
             {cityRooms.map((room, index) => {
-        //filtering out owners cause only owners searching will get here
-        // if (!user.is_owner){
-          return (
-            <RoomsItem
-              key={index}
-              id={room.id}
-              name = {`${room.title}`}
-              description = {room.description}
-              city = {citiesArray[room.city_id - 1]}
-            />
-          )
-        // }
-      })} 
+              return (
+                <div className="room-card">
+                  <RoomsItem
+                    key={index}
+                    id={room.id}
+                    name = {`${room.title}`}
+                    description = {room.description}
+                    city = {citiesArray[room.city_id - 1]}
+                  />
+              </div>
+              )
+            })} 
           </CardDeck>
         )}
       </div>
