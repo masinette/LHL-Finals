@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Button, Col, Container, Row, Form } from "react-bootstrap";
-import { Image } from "cloudinary-react";
+import { Image, Transformation } from "cloudinary-react";
 import { Link } from "react-router-dom";
 
 import "./ProfileInquiryConvos.scss"
@@ -14,15 +14,18 @@ export default function ProfileInquiryConvos(props) {
     <Container key={index} className="profile__card" >
       <Row>
         <Col>
-          <h2>
+          <h4>
             {room.title}
-            <span className="right">${room.price}</span>
-          </h2>
+            <span className="right">${room.price}/month</span>
+          </h4>
         </Col>
       </Row>
       <Row>
         <Col>
-          <Image cloudName="Ds3bokefg" publicId={`rooms/${room.id}/r${room.id}_p1.jpg`} />
+          <Image cloudName="Ds3bokefg" publicId={`rooms/${room.id}/r${room.id}_p1.jpg`}>
+            <Transformation width="250" height="200" crop="fill" />
+          </Image>
+
         </Col>
         <Col>
           <p>{room.description}</p>

@@ -5,17 +5,15 @@
 
   &__info {
     width: 40%;
-    margin: auto;
+    margin: 2em auto;
   }
   &__listings {
     width: 50%;
-    margin: 0 auto;
+    margin: 2em auto;
   }
 
-  &__card {
-    border-radius: 10px;
-    padding: 1em;
-    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.15);
+  &__card-spacing {
+    margin: 1.5em 0;
   }
   &__card:hover {
     box-shadow: 0 8px 16px 0 rgba(0,0,0,0.25);

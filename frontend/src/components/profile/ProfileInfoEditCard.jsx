@@ -1,6 +1,6 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { Col, Container, Row, Form, Button, Card} from "react-bootstrap";
+import { Col, Container, Row, Form, Button, Card, FormCheck } from "react-bootstrap";
 import { Link } from "react-router-dom";
 
 import "./styles.scss"
@@ -93,7 +93,7 @@ export default function ProfileInfoEditCard(props) {
     <>
       <div className="profile__card" >
         <Form onSubmit={handleSubmit} >
-          <Row>
+          <Row className="content-spacing">
           <div className="profile__card-label col-4" >First Name:</div>
             <Col>
               <Form.Control 
@@ -104,7 +104,7 @@ export default function ProfileInfoEditCard(props) {
               />
             </Col>
           </Row>
-          <Row>
+          <Row className="content-spacing">
             <div className="profile__card-label col-4" >Last Name:</div>
             <Col>
               <Form.Control 
@@ -115,7 +115,7 @@ export default function ProfileInfoEditCard(props) {
               />
             </Col>
           </Row>
-          <Row>
+          <Row className="content-spacing">
             <div className="profile__card-label col-4" >Description:</div>
             <Col>
             <Form.Control 
@@ -127,7 +127,7 @@ export default function ProfileInfoEditCard(props) {
               />
             </Col>
           </Row>
-          <Row>
+          <Row className="content-spacing">
             <div className="profile__card-label col-4" >Address:</div>
             <Col>
               <Form.Control 
@@ -138,24 +138,56 @@ export default function ProfileInfoEditCard(props) {
               />
             </Col>
           </Row>
-          <Row>
+          <Row className="content-spacing">
             <div className="profile__card-label col-4" >Level:</div>
           </Row>
 
             <Col>
               {/* <Row> */}
-              <Form.Check 
-                type="radio"
-                label={level1}
-                value={1}
-                onChange={handleOptionChange}
-                checked={userData.level == 1}
-                name="level"
-                className="radio"
-              >
+              <FormCheck>
+                <FormCheck.Input
+                  type="radio"
+                  value={1}
+                  onChange={handleOptionChange}
+                  checked={userData.level == 1}
+                  name="level"
+                >
+                </FormCheck.Input>
+                <FormCheck.Label className="radio">
+                  {level1}
+                </FormCheck.Label>
+              </FormCheck>
+
+              <FormCheck>
+                <FormCheck.Input
+                  type="radio"
+                  value={2}
+                  onChange={handleOptionChange}
+                  checked={userData.level == 2}
+                  name="level"
+                >
+                </FormCheck.Input>
+                <FormCheck.Label className="radio">
+                  {level2}
+                </FormCheck.Label>
+
+              </FormCheck>
+
+              <FormCheck>
+                <FormCheck.Input
+                  type="radio"
+                  value={3}
+                  onChange={handleOptionChange}
+                  checked={userData.level == 3}
+                  name="level"
+                >
+                </FormCheck.Input>
+                <FormCheck.Label className="radio">
+                  {level3}
+                </FormCheck.Label>
+              </FormCheck>
                 
-              </Form.Check>
-              <Form.Check 
+              {/* <Form.Check 
                 type="radio"
                 label={level2}
                 value={2}
@@ -172,7 +204,7 @@ export default function ProfileInfoEditCard(props) {
                 checked={userData.level == 3}
                 name="level"
                 className="radio"
-              />
+              /> */}
             </Col>
             {/* </Row> */}
           <Row className="btn-row">
