@@ -97,7 +97,7 @@ export default function RoommatesItem(props) {
                           Common interests with {props.firstName}:
                         </Card.Text>
                       </div>
-                      <div  className="rmaInterestsList">
+                      <div >
                         <Card.Text >
                           {commonInterests.map((i, index) => {
                             return (

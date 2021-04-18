@@ -6,7 +6,7 @@ import { Form, Button } from 'react-bootstrap';
 
 
 export default function ContactRoommates(props) {
-  //console.log("PROPS reply", props)
+  //console.log("PROPS reply", props.recipient)
   const [messageContent, setMessageContent] = useState("")
   const {user} = useContext(UserContext)
   const history = useHistory()
@@ -31,10 +31,10 @@ export default function ContactRoommates(props) {
       })
       .then((response)=> {
         console.log("RESPONSE",response.data)
-        history.push(`/messages/${user.id}`)
+        //history.push(`/messages/${user.id}`)
 
       }) 
-      .then()
+      .then(()=> history.push("/search/roommates"))
       .catch((err) => console.log(err))
   }
 
@@ -44,7 +44,7 @@ export default function ContactRoommates(props) {
     (
       <>
         <Form.Group className="messageArea">
-          <Form.Label>Contact</Form.Label>
+          <Form.Label>Contact {props.recipientFirstName}</Form.Label>
           <Form.Control
             as="textarea"
             rows={3}

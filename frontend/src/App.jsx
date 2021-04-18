@@ -55,7 +55,7 @@ const App = () => {
             <Route path="/signup" exact component={() => <SignUp users={state.users} interests={state.surveyInterests}/>} />
             <Route path="/search/roommates" exact component={() => <RoommatesByCity users={state.users} cities={state.cities}/>} /> 
             <Route path="/search/roommates/:user_id" exact component={() => <RoommateCard users={state.users} cities={state.cities}/>} /> 
-            <Route path="/messages/:user_id" exact component={() => <ThreadList users={state.users} messages={state.messages}/>} /> 
+            <Route path="/messages/" exact component={() => <ThreadList users={state.users} messages={state.messages}/>} /> 
             <Route path="/messages/:user_id/:recipient_id" exact component={() => <Convo users={state.users} messages={state.messages}/>} /> 
 
 

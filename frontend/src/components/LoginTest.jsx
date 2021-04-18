@@ -46,7 +46,7 @@ const userAuthenticated = (userInfo) =>{
     //redirect to new page
     console.log(userInfo)
     setUser(userInfo)
-    history.push(`/users/`)
+    history.push(`/`)
     //history.push(`/messages/${userInfo.id}`)
     // console.log("USERINFO", user[3])
     return true;
