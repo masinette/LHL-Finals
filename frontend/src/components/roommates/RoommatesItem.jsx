@@ -35,6 +35,7 @@ export default function RoommatesItem(props) {
     console.log("int user1",  interestsUser1, )
     console.log("int user2", interestsUser2)
     console.log("COMMON?", interestsInCommon)
+    return interestsInCommon
   }
 
   useEffect(() => {
@@ -57,7 +58,7 @@ export default function RoommatesItem(props) {
 
         //console.log("USERS LIST un moment donne?", usersList, loading)
         // setLoading(false);
-        findCommonInterests(data[0].data, data[1].data)
+        setCommonInterests(findCommonInterests(data[0].data, data[1].data))
         // setUser1Interests(data[1].data)
         // setUser2Interests(data[2].data)
         
@@ -98,7 +99,11 @@ export default function RoommatesItem(props) {
                       </div>
                       <div  className="rmaInterestsList">
                         <Card.Text >
-                          Knitting dancing
+                          {commonInterests.map((i, index) => {
+                            return (
+                              <span key={index}>{` ${i}`}</span>
+                            )
+                          })}
                         </Card.Text>
                       </div>
                     </div>
