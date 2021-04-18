@@ -9,7 +9,7 @@ export default function ConvoThumbnail(props) {
     <div>
     {!props && <div>LOADING</div>}
     {props && (<Container fluid >
-      <Card style={{ width: '18rem'  }} className="convoRecipientCard">
+      <Card style={{ width: '18rem'  }} /* className="convoRecipientCard" */>
         <Card.Body  className="convoCardContent">
           <Card.Title>{props.recipientUser.firstname}</Card.Title>
           <Card.Subtitle className="mb-2 text-muted">{props.recipientUser.description}</Card.Subtitle>
