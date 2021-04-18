@@ -76,12 +76,12 @@ console.log("AUTH",userAuthenticated(userInfo))
 
       <Form.Group id="email">
         <Form.Label>Email</Form.Label>
-        <Form.Control type="email" onChange={handleChange} value={userLogin.email} name="email" required />
+        <Form.Control className="login-form" type="email" onChange={handleChange} value={userLogin.email} name="email" required />
       </Form.Group>
 
       <Form.Group id="password">
         <Form.Label>Password</Form.Label> 
-        <Form.Control type="password" onChange={handleChange} value={userLogin.password} name="password" required />
+        <Form.Control className="login-form" type="password" onChange={handleChange} value={userLogin.password} name="password" required />
       </Form.Group>
 
     <Form.Text className="text-muted">

@@ -2,6 +2,8 @@ import { React, useState } from 'react';
 import { Container, Jumbotron, Button, Row, Col, ToggleButtonGroup, ToggleButton, ButtonGroup } from 'react-bootstrap';
 import CityCards from "./CityCards";
 import { useHistory } from 'react-router-dom';
+import styled from 'styled-components';
+
 
 
 function HomeTest(props) {
@@ -39,7 +41,11 @@ function HomeTest(props) {
     history.push('/search/rooms')
   }
 
+const HomeCityCards = styled.div`
+  margin-left: 100px;
+  margin-right: 100px;
 
+`
 
 
   return (
@@ -67,7 +73,7 @@ function HomeTest(props) {
           <Button variant="primary" name="rental" type="submit" onClick={handleRental}>Look for a rental</Button>
         </Col>
         <Col xs={6} md={4}>
-          <Button variant="primary" name="renter" type="submit" onClick={handleRenter}>Look for a renter</Button>
+          <Button variant="primary" name="renter" type="submit" onClick={handleRenter}>Look for a roomate</Button>
         </Col>
       </Row>
 
@@ -102,7 +108,9 @@ function HomeTest(props) {
 
     </Jumbotron>
 
-    <CityCards cities={props.cities}/>
+    <HomeCityCards>
+      <CityCards cities={props.cities}/>
+    </HomeCityCards>
 
   </>
   )

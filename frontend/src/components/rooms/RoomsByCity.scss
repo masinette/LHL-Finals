@@ -1,7 +1,13 @@
 .flexMe{
   display: flex;
+  padding-left: 10px;
+  padding-right: 10px;
+  padding-top: 10px;
+
+
+  // position: relative;
   // flex: 1;
-  // width: 50%;
+  width: 110%;
 }
 .flexMe div{
   // overflow: hidden;
@@ -11,8 +17,17 @@
 
 }
 .map{
-  // height: 80vh;
+  height: 80vh;
   width: 800%;
-  // margin-left: 100px;
-
+  position: sticky;
+  top: 84px;
+  // outline: rgb(46, 54, 63) solid 1px;
+}
+.rooms-deck{
+  width: 50vw;
+  margin-left: -150px;
+  // color: red;
+}
+.room-card{
+  margin-bottom: 10px;
 }

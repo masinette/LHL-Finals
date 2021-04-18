@@ -2,6 +2,7 @@ import { React, useEffect, useState, useContext }  from 'react';
 import { Container} from 'react-bootstrap';
 import { GoogleMap, LoadScript, Marker } from '@react-google-maps/api';
 import { useParams, useLocation } from 'react-router-dom';
+import styled from 'styled-components';
 import axios from 'axios';
 require('dotenv').config();
 
@@ -29,8 +30,9 @@ const RoomMap = (props) => {
   const API_KEY = process.env.REACT_APP_GOOGLE_MAPS_API_KEY;
   
   const mapStyles = {        
-    height: "100vh",
-    width: "100%"};
+    height: "80vh",
+    width: "100%"
+  };
   
   const [defaultCenter, setDefaultCenter] = useState( citiesCoords['Toronto']) 
 
@@ -56,45 +58,58 @@ console.log("CITYCOORDS", citiesCoords[props.city])
     setLoading(false);
     }, [props.city])
 //  -----------------------------------------------------
-
-
   console.log("DEFAULTCENTER",defaultCenter)
+
+// -----------------------------------------STYLING------------------------------------------//
+  // const MapDiv = styled.div`
+  //   // width: 100%;
+  // `
+
+
+
+
+
+// -----------------------------------------STYLING------------------------------------------//
+
 
   return (
 <Container>
-  <LoadScript
-      googleMapsApiKey={API_KEY}>
-    <GoogleMap
-        mapContainerStyle={mapStyles}
-        zoom={13}
-        center={defaultCenter}>
-        {
-          props.cityRooms.map(item => {
+  {/* <MapDiv> */}
+    {/* <div className="map-div"> */}
+      <LoadScript googleMapsApiKey={API_KEY}>
+        <GoogleMap
+            mapContainerStyle={mapStyles}
+            zoom={13}
+            center={defaultCenter}>
+            {
+              props.cityRooms.map(item => {
 
-            return (
-            <Marker key={item.id} position={{
-              lat: Number(item.latitude),
-              lng: Number(item.longitude)
-            }}
-            // onClick={() => onSelect(item)}
-            />
-            )
-          })
-        }
-                {/* {
-          selected.location && 
-          (
-            <InfoWindow
-            position={selected.location}
-            clickable={true}
-            onCloseClick={() => setSelected({})}
-          >
-            <p>{selected.name}</p>
-          </InfoWindow>
-          )
-        } */}
-    </GoogleMap>
-    </LoadScript>
+                return (
+                <Marker key={item.id} position={{
+                  lat: Number(item.latitude),
+                  lng: Number(item.longitude)
+                }}
+                // onClick={() => onSelect(item)}
+                />
+                )
+              })
+            }
+                    {/* {
+              selected.location && 
+              (
+                <InfoWindow
+                position={selected.location}
+                clickable={true}
+                onCloseClick={() => setSelected({})}
+              >
+                <p>{selected.name}</p>
+              </InfoWindow>
+              )
+            } */}
+        </GoogleMap>
+      </LoadScript>
+    {/* </div> */}
+  {/* </MapDiv> */}
 </Container>
 
   )

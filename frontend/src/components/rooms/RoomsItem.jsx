@@ -37,7 +37,7 @@ export default function RoomsItem(props) {
                     <Transformation width="200" height="200" crop="fill" />
                   </Image>
                                 
-                  <div className="something">
+                  <div className="room-card-text">
                     <Card.Title onClick={() => redirect(props.id)}>{props.name}</Card.Title>
                     <Card.Text>
                       {props.description}
@@ -45,7 +45,11 @@ export default function RoomsItem(props) {
                   </div>
                 </div>
               </Card.Body>
-              <Card.Footer className="text-muted">Home share located in: {props.city}</Card.Footer>
+              <Card.Footer className="text-muted">
+                Home share located in: {props.city}
+                <span>&nbsp;</span> 
+                <Button variant="outline-info" className="room-details-button">Details</Button>
+              </Card.Footer>
             </Card>
           </Col>
         </Row>
