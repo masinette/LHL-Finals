@@ -1,14 +1,12 @@
-
-.my-listings {
-  margin: auto;
-  border-radius: 10px;
-  padding: 1em;
-  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
-}
-
 .active-switch {
   display: inline;
   float: right;
+}
+
+.switch-container {
+  padding: 4px;
+  border: 1px solid rgb(224, 224, 224);
+  border-radius: 50px;
 }
 
 .profile {
@@ -16,4 +14,12 @@
     width: 50%;
     margin: auto;
   }
+}
+
+.btn-position {
+  flex-direction: row-reverse;
+}
+
+.btn-spacing {
+  margin-left: 1em;
 }

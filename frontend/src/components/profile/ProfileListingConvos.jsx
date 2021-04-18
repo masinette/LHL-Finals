@@ -30,7 +30,7 @@ export default function ProfileListingConvos(props) {
           <h2>{room.title}</h2>
         </Col>
         <div className="active-switch" >
-          <Form>
+          <Form className="switch-container">
             <Form.Check
               id={`switch-${index}`}
               type="switch"
@@ -52,9 +52,9 @@ export default function ProfileListingConvos(props) {
           <p>${room.price}</p>
         </Col>
       </Row>
-      <Row>
-        <Link to={`/listings/edit/${room.id}`} className="btn btn-primary" >Edit Listing</Link>
-        <Link to={`/messages`} className="btn btn-primary" >View Messages</Link>
+      <Row className="btn-position">
+        <Link to={`/listings/edit/${room.id}`} className="btn-spacing btn btn-primary" >Edit Listing</Link>
+        <Link to={`/messages`} className="btn-spacing btn btn-primary" >View Messages</Link>
       </Row>
     </Container>
   ))
