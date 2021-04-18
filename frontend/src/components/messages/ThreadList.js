@@ -132,7 +132,7 @@ export default function ThreadList(props) {
             <div className="thread" key={index}  >
               <div className="threadInfo">
                 <ThreadInfo
-                  recipientUser = {props.users[writeTo-1]}
+                  recipientUser = {writeTo ? props.users[writeTo-1] : props.users[2]}
                 />
               </div> 
               <div className="messages" key={index} >{convo}
