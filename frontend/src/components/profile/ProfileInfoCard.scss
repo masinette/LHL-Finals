@@ -1,7 +1,7 @@
 .profile {
   &__info {
-    &-title {
-      
+    &-edit {
+      float: right;
     }
   }
   &__card {
@@ -12,4 +12,16 @@
       font-weight: bold;
     }
   }
+}
+
+.center {
+  text-align: center;
+}
+
+.btn-row {
+  flex-direction: row-reverse;
+}
+
+.btn-spacing {
+  margin-left: 10px;
 }

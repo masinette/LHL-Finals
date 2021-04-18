@@ -48,8 +48,8 @@ export default function ProfileListingConvos(props) {
           <Image cloudName="Ds3bokefg" publicId={`rooms/${room.id}/r${room.id}_p1.jpg`} />
         </Col>
         <Col>
-          <p>${room.price}</p>
           <p>{room.description}</p>
+          <p>${room.price}</p>
         </Col>
       </Row>
       <Row>

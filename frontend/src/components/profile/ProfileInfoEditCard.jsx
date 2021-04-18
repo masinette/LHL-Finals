@@ -57,7 +57,7 @@ export default function ProfileInfoEditCard(props) {
       <div className="profile__card" >
         <Form onSubmit={handleSubmit} >
           <Row>
-            <Col className="profile__card-label" >First Name:</Col>
+          <div className="profile__card-label col-4" >First Name:</div>
             <Col>
               <Form.Control 
                 type="text"
@@ -68,7 +68,7 @@ export default function ProfileInfoEditCard(props) {
             </Col>
           </Row>
           <Row>
-            <Col className="profile__card-label" >Last Name:</Col>
+            <div className="profile__card-label col-4" >Last Name:</div>
             <Col>
               <Form.Control 
                 type="text"
@@ -79,7 +79,7 @@ export default function ProfileInfoEditCard(props) {
             </Col>
           </Row>
           <Row>
-            <Col className="profile__card-label" >Description:</Col>
+            <div className="profile__card-label col-4" >Description:</div>
             <Col>
             <Form.Control 
                 as="textarea"
@@ -91,7 +91,7 @@ export default function ProfileInfoEditCard(props) {
             </Col>
           </Row>
           <Row>
-            <Col className="profile__card-label" >Address:</Col>
+            <div className="profile__card-label col-4" >Address:</div>
             <Col>
               <Form.Control 
                 type="text"
@@ -102,7 +102,9 @@ export default function ProfileInfoEditCard(props) {
             </Col>
           </Row>
           <Row>
-            <Col className="profile__card-label" >Level:</Col>
+            <div className="profile__card-label col-4" >Level:</div>
+          </Row>
+
             <Col>
               <Form.Check 
                 type="radio"
@@ -129,18 +131,17 @@ export default function ProfileInfoEditCard(props) {
                 name="level"
               />
             </Col>
-          </Row>
-          <Row>
-            <Col>
-              <Button className="btn btn-success" type="submit" >
-                Save
-              </Button>
-            </Col>
-            <Col>
-              <Button className="btn btn-danger" onClick={props.onCancel} >
+          <Row className="btn-row">
+            {/* <Col className="center"> */}
+            {/* </Col> */}
+            {/* <Col className="center"> */}
+              <Button className="btn-danger btn-spacing" onClick={props.onCancel} >
                 Cancel
               </Button>
-            </Col>
+              <Button className="btn-success btn-spacing" type="submit" >
+                Save
+              </Button>
+            {/* </Col> */}
           </Row>
           
         </Form>

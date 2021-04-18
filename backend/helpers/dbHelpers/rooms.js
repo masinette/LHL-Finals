@@ -1,5 +1,7 @@
 // const { use } = require("../../routes");
 
+const { response } = require("express");
+
 module.exports = (db) => {
   // Get all rooms by params or no params - LEVELs may need its own db table?
   // api/rooms, api/rooms?active=true, api/rooms?active=true&city_id=1&level=1
@@ -155,11 +157,32 @@ module.exports = (db) => {
       .catch(err => console.error("error: ", err));
   }
 
+  const getUserInquiryRooms = (user_id) => {
+    const queryString = `SELECT DISTINCT rooms.* FROM rooms
+    JOIN messages ON rooms.id = messages.room_id
+    WHERE messages.sender_id = $1 OR messages.receiver_id = $1;`;
+
+    const queryParams = [user_id];
+    const query = {
+      text: queryString,
+      values: queryParams
+    }
+
+    console.log(queryString)
+    console.log(queryParams)
+    return db
+      .query(query)
+      .then(data => data.rows)
+      .catch(err => console.error("error: ", err));
+  }
+
+
   return {
     getRooms,
     getRoom,
     addRoom,
     updateRoom,
-    deleteRoom
+    deleteRoom,
+    getUserInquiryRooms
   }
 }
