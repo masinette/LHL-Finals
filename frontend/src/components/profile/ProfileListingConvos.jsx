@@ -1,7 +1,7 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { Button, Col, Container, Row, Form } from "react-bootstrap";
-import { Image } from "cloudinary-react";
+import { Image, Transformation } from "cloudinary-react";
 import { Link, useHistory } from "react-router-dom";
 
 import "./ProfileListingConvos.scss"
@@ -27,7 +27,7 @@ export default function ProfileListingConvos(props) {
     <Container key={index} className="profile__card" >
       <Row>
         <Col>
-          <h2>{room.title}</h2>
+          <h4>{room.title} - ${room.price}/month</h4>
         </Col>
         <div className="active-switch" >
           <Form className="switch-container">
@@ -45,23 +45,24 @@ export default function ProfileListingConvos(props) {
       </Row>
       <Row>
         <Col>
-          <Image cloudName="Ds3bokefg" publicId={`rooms/${room.id}/r${room.id}_p1.jpg`} />
+          <Image cloudName="Ds3bokefg" publicId={`rooms/${room.id}/r${room.id}_p1.jpg`} >
+            <Transformation width="200" />
+          </Image>
         </Col>
         <Col>
           <p>{room.description}</p>
-          <p>${room.price}</p>
         </Col>
       </Row>
       <Row className="btn-position">
         <Link to={`/listings/edit/${room.id}`} className="btn-spacing btn btn-primary" >Edit Listing</Link>
-        <Link to={`/messages`} className="btn-spacing btn btn-primary" >View Messages</Link>
+        <Link to={`/messages/${props.user_id}`} className="btn-spacing btn btn-primary" >View Messages</Link>
       </Row>
     </Container>
   ))
 
   return (
     <>
-    <div  >
+    <div className="mt-1" >
       {roomList}
 
     </div>

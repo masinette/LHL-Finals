@@ -1,14 +1,11 @@
 .something {
   display: flex;
+  padding: 2px;
 }
 .room-details-button{
   float: right;
 }
 .text-center{
-  width: 45vw;
-    border: 1px solid grey;
-  box-shadow: 0 0 50px #9ecaed;
+  width: 45vw;;
 }
-.room-card-text{
-  padding: 20px;
-}
+.room-card-text{}
