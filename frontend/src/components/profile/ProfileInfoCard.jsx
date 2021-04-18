@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 import EditProfileBtn from "./EditProfileBtn";
 
 import { FaRegEdit } from "react-icons/fa";
-import "./styles.scss"
+import "./ProfileInfoCard.scss"
 
 
 export default function ProfileInfoCard(props) {
@@ -16,32 +16,37 @@ export default function ProfileInfoCard(props) {
 
   return (
     <>
-      <div className="profile__card" >
-        <Container>
+      <div >
+        <Container className="profile__card" >
+          <h4>
+            {user.is_owner ? "Owner" : "Renter"}
+            <div className="btn btn-gradient profile__info-edit" onClick={props.onEdit}>
+              <FaRegEdit />
+            </div>
+          </h4>
+          <hr/>
           <Row>
-            <Col className="profile__card-label" >First Name:</Col>
+            <div className="profile__card-label col-4" >First Name:</div>
             <Col>{user.firstname}</Col>
           </Row>
           <Row>
-            <Col className="profile__card-label" >Last Name:</Col>
+            <div className="profile__card-label col-4" >Last Name:</div>
             <Col>{user.lastname}</Col>
           </Row>
           <Row>
-            <Col className="profile__card-label" >Description:</Col>
+            <div className="profile__card-label col-4" >Description:</div>
             <Col>{user.description}</Col>
           </Row>
           <Row>
-            <Col className="profile__card-label" >Address:</Col>
+            <div className="profile__card-label col-4" >Address:</div>
             <Col>{user.address}</Col>
           </Row>
           <Row>
-            <Col className="profile__card-label" >Level:</Col>
+            <div className="profile__card-label col-4" >Level:</div>
             <Col>{user.level}</Col>
           </Row>
           <Row>
-            <div className="btn btn-gradient" onClick={props.onEdit}>
-              <FaRegEdit />
-            </div>
+            
           </Row>
           
         </Container>

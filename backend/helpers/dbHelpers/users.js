@@ -134,6 +134,20 @@ module.exports = (db) => {
       })
       .catch((err) => err);
   };
+
+  // Get specific room /api/rooms/:id
+  const getUserRooms = (user_id) => {
+    const query = {
+      text: `SELECT rooms.* FROM users JOIN rooms ON users.id = rooms.user_id WHERE users.id = $1;`,
+      values: [user_id]
+    }
+    return db
+      .query(query)
+      .then((result) => result.rows)
+      .catch(err => console.error("error: ", err));
+  }
+  
+  
   
   return {
     getUsers,
@@ -141,6 +155,7 @@ module.exports = (db) => {
     getUserByEmail,
     addUser,
     updateUserDetails,
-    checkUserLogin
+    checkUserLogin,
+    getUserRooms
   }
 }

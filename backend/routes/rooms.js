@@ -10,7 +10,8 @@ module.exports = ({
   getRoom,
   addRoom,
   updateRoom,
-  deleteRoom
+  deleteRoom,
+  getUserInquiryRooms
 }) => {
   router.get("/", (req, res) => {
     getRooms(req.query)
@@ -48,6 +49,15 @@ module.exports = ({
     console.log(req.params.id);
     deleteRoom(req.params.id)
       .then(res.json({}))
+      .catch(err => res.json({
+        error: err
+      }))
+  })
+
+  router.get("/inquiry/:user_id/", (req, res) => {
+    console.log(req.params.user_id)
+    getUserInquiryRooms(req.params.user_id)
+      .then(rooms => res.json(rooms))
       .catch(err => res.json({
         error: err
       }))

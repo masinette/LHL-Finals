@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Form, Button } from "react-bootstrap";
+import { LoadScript } from "@react-google-maps/api"
 
 import TitleField from "./TitleField";
 import DescriptionField from "./DescriptionField";
@@ -81,7 +82,7 @@ export default function EditRoomForm(props) {
         <Form onSubmit={handleSubmit} >
           <TitleField handleInput={handleInput} formData={formData} />
           <DescriptionField handleInput={handleInput} formData={formData} />
-          <AddressField handleInput={handleInput} setFormData={setFormData} formData={formData} /> 
+          {/* <AddressField handleInput={handleInput} setFormData={setFormData} formData={formData} />  */}
           <SizePriceField handleInput={handleInput} formData={formData} />
           <DatesField handleInput={handleInput} formData={formData} />
           <PropertiesCheckbox handleInput={handleInput} formData={formData} />

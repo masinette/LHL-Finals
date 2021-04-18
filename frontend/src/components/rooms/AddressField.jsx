@@ -1,9 +1,11 @@
 import React, { useState } from "react";
 import { Form } from "react-bootstrap";
 import PlacesAutocomplete, { geocodeByAddress, getLatLng } from "react-places-autocomplete";
-
+import { LoadScript, StandaloneSearchBox  } from "@react-google-maps/api";
 
 export default function AddressField(props) {
+  const API_KEY = process.env.REACT_APP_GOOGLE_MAPS_API_KEY;
+
   // value of the address input
   // const [search, setSearch] = useState("");
   // const [coordinates, setCoordinates] = useState({lat: null, lng: null});
@@ -34,6 +36,13 @@ export default function AddressField(props) {
 
   return (
     <>
+      {/* <LoadScript
+        googleMapsApiKey={API_KEY}
+        libraries={"places"}
+      >
+        <StandaloneSearchBox>
+        </StandaloneSearchBox>
+       */}
       <PlacesAutocomplete
         value={props.formData.address}
         onChange={handleChange}
@@ -48,7 +57,7 @@ export default function AddressField(props) {
               <Form.Control type="text" onChange={props.handleInput} {...getInputProps({ placeholder: "Please enter an address", name: "address", autoComplete: "off" })} />
             </Form.Group>
             <div>
-              {loading ? <div>Loading... </div> : null}
+              {loading ? <div>Loading.. </div> : null}
               { suggestions.map(suggestion => {
                 const style = {
                   backgroundColor: suggestion.active ? "#F1f1f1" : "#fff"
@@ -61,6 +70,7 @@ export default function AddressField(props) {
           </div>
         )}
       </PlacesAutocomplete>
+      {/* </LoadScript> */}
     </>
   )
 }

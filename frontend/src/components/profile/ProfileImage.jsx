@@ -14,7 +14,7 @@ export default function ProfileImage(props) {
         <Row>
           <Col xs={6} md={4}>
             <Image cloudName="Ds3bokefg" publicId={picture1publicId} >
-              <Transformation width="200" crop="fill" radius="40" />
+              <Transformation width="200" height="200" crop="fill" radius="100" />
             </Image>
           </Col>
         </Row>

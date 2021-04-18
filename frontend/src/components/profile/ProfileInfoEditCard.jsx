@@ -1,6 +1,6 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { Col, Container, Row, Form, Button } from "react-bootstrap";
+import { Col, Container, Row, Form, Button, Card} from "react-bootstrap";
 import { Link } from "react-router-dom";
 
 import "./styles.scss"
@@ -52,12 +52,49 @@ export default function ProfileInfoEditCard(props) {
 
   console.log(props.user);
 
+  const level1 = (<Card border="success">
+                  <Card.Header>Level 1</Card.Header>
+                  <Card.Body >
+                    <Card.Text >
+                      <ul>
+                        <li>Light cleaning</li>
+                        <li>Grocery shopping</li>
+                        <li>Running Errands</li>
+                      </ul>
+                    </Card.Text>
+                  </Card.Body>
+                </Card>)
+  const level2 = (<Card border="success">
+                    <Card.Header>Level 2</Card.Header>
+                    <Card.Body >
+                      <Card.Text >
+                        <ul>
+                          <li>Yard maintenance</li>
+                          <li>Shovelling snow</li>
+                          <li>Deep cleaning</li>
+                        </ul>
+                      </Card.Text>
+                    </Card.Body>
+                  </Card>)
+  const level3 = (<Card border="success">
+                    <Card.Header>Level 3</Card.Header>
+                    <Card.Body >
+                      <Card.Text >
+                        <ul>
+                          <li>House maintenance</li>
+                          <li>Yard maintenance</li>
+                          <li>Transportation</li>
+                        </ul>
+                      </Card.Text>
+                    </Card.Body>
+                  </Card>)
+
   return (
     <>
       <div className="profile__card" >
         <Form onSubmit={handleSubmit} >
           <Row>
-            <Col className="profile__card-label" >First Name:</Col>
+          <div className="profile__card-label col-4" >First Name:</div>
             <Col>
               <Form.Control 
                 type="text"
@@ -68,7 +105,7 @@ export default function ProfileInfoEditCard(props) {
             </Col>
           </Row>
           <Row>
-            <Col className="profile__card-label" >Last Name:</Col>
+            <div className="profile__card-label col-4" >Last Name:</div>
             <Col>
               <Form.Control 
                 type="text"
@@ -79,7 +116,7 @@ export default function ProfileInfoEditCard(props) {
             </Col>
           </Row>
           <Row>
-            <Col className="profile__card-label" >Description:</Col>
+            <div className="profile__card-label col-4" >Description:</div>
             <Col>
             <Form.Control 
                 as="textarea"
@@ -91,51 +128,64 @@ export default function ProfileInfoEditCard(props) {
             </Col>
           </Row>
           <Row>
-            <Col className="profile__card-label" >Address:</Col>
+            <div className="profile__card-label col-4" >Address:</div>
             <Col>
-              {userData.address}
+              <Form.Control 
+                type="text"
+                name="address"
+                value={userData.address}
+                onChange={handleChange}
+              />
             </Col>
           </Row>
           <Row>
-            <Col className="profile__card-label" >Level:</Col>
+            <div className="profile__card-label col-4" >Level:</div>
+          </Row>
+
             <Col>
+              {/* <Row> */}
               <Form.Check 
                 type="radio"
-                label="Level 1: Light Cleaning, Grocery Shopping, Errands - 5hrs/week"
+                label={level1}
                 value={1}
                 onChange={handleOptionChange}
                 checked={userData.level == 1}
                 name="level"
-              />
+                className="radio"
+              >
+                
+              </Form.Check>
               <Form.Check 
                 type="radio"
-                label="Level 2: Level 1 + Yard Work, Snow removal - 10hrs/week"
+                label={level2}
                 value={2}
                 onChange={handleOptionChange}
                 checked={userData.level == 2}
                 name="level"
+                className="radio"
               />
               <Form.Check 
                 type="radio"
-                label="Level 3: Level 2 + Transportation(appointments) - 15hrs/week"
+                label={level3}
                 value={3}
                 onChange={handleOptionChange}
                 checked={userData.level == 3}
                 name="level"
+                className="radio"
               />
             </Col>
-          </Row>
-          <Row>
-            <Col>
-              <Button className="btn-gradient" type="submit" >
-                Save
-              </Button>
-            </Col>
-            <Col>
-              <Button className="btn-gradient" onClick={props.onCancel} >
+            {/* </Row> */}
+          <Row className="btn-row">
+            {/* <Col className="center"> */}
+            {/* </Col> */}
+            {/* <Col className="center"> */}
+              <Button className="btn-danger btn-spacing" onClick={props.onCancel} >
                 Cancel
               </Button>
-            </Col>
+              <Button className="btn-success btn-spacing" type="submit" >
+                Save
+              </Button>
+            {/* </Col> */}
           </Row>
           
         </Form>

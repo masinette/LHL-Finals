@@ -1,0 +1,32 @@
+.profile {
+  &__info {
+    &-edit {
+      float: right;
+    }
+  }
+  &__card {
+    border-radius: 10px;
+    padding: 1em;
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+    &-label {
+      font-weight: bold;
+    }
+  }
+}
+
+.center {
+  text-align: center;
+}
+
+.btn-row {
+  flex-direction: row-reverse;
+}
+
+.btn-spacing {
+  margin-left: 10px;
+}
+
+.radio {
+  width: 100%;
+  margin: 15px;
+}
