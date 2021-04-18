@@ -1,5 +1,5 @@
 import  React, { useState, useRef, useEffect } from "react";
-import { Form, Button, Card, Alert, ButtonGroup } from 'react-bootstrap';
+import { Form, Button, Card, Alert, ButtonGroup, Tooltip, OverlayTrigger } from 'react-bootstrap';
 import styled from 'styled-components';
 import axios from 'axios';
 import './SignUp.scss'
@@ -34,6 +34,13 @@ function SignUp(props) {
     <Button variant="outline-info" className="interestButton">{interest.name}</Button>
   ));
 
+  const renderTooltip = (props) => (
+    <Tooltip id="button-tooltip" {...props}>
+      Feel free to add a friend to your registration.
+    </Tooltip>
+);
+
+
 // -----------------------------------------STYLING------------------------------------------//
   const SignUpDiv = styled.div`
     display:flex;
@@ -46,6 +53,7 @@ function SignUp(props) {
     margin: 30px;
     padding: 30px;
     box-shadow: 0 0 5px #0168D9;
+    background-color: white;
   `
   const RegisterWrapper = styled.div`
     width: 30%;
@@ -54,6 +62,7 @@ function SignUp(props) {
     margin-top: 30px;
     margin-bottom: 30px;
     box-shadow: 0 0 5px #0168D9;
+    background-color: white;
   `
   const SurveyWrapper = styled.div`
     // width: 70%;
@@ -83,14 +92,14 @@ function SignUp(props) {
         <h1>Registration</h1>
     </div>
 
-<Card>
+{/* <Card> */}
   <SignUpDiv>
 
     <RegisterWrapper>
       <div className="registerWrapper">
         <Card.Body>
           <ButtonGroup className="owner-roommate-radio-buttons">
-            <Button variant="info">Rommate</Button>
+            <Button variant="info">Roommate</Button>
             <Button variant="primary">Owner</Button>
           </ButtonGroup>
 
@@ -110,6 +119,16 @@ function SignUp(props) {
               <Form.Control type="email" ref={emailRef} required />
             </Form.Group>
 
+            <OverlayTrigger
+              placement="top"
+              delay={{ show: 250, hide: 400 }}
+              overlay={renderTooltip}
+            >
+              <Form.Group id="email">
+                <Form.Label>Helper Email (Optional)</Form.Label>
+                <Form.Control type="email" ref={emailRef} required />
+              </Form.Group>
+            </OverlayTrigger>
             <Form.Group id="password">
               <Form.Label>Password</Form.Label> 
               <Form.Control type="password" ref={passwordRef} required />
@@ -264,7 +283,7 @@ function SignUp(props) {
 
 
   </SignUpDiv>
-</Card>
+{/* </Card> */}
 
     </div>
 
