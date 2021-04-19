@@ -88,7 +88,9 @@ export default function ThreadList(props) {
       console.table(convos)
       const convoArray = [];
       let convo = [];
-      convos.forEach((thread, index) => {
+      const sortByMostRecent = convos.reverse()
+      //convos.forEach((thread, index) => {
+      sortByMostRecent.forEach((thread, index) => {
         //let writeTo = null
         console.log("WRITE to", user_id, thread[0].applicant_id)
         if (parseInt(user.id) === thread[0].applicant_id){

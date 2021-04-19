@@ -55,7 +55,7 @@ export default function ProfileListingConvos(props) {
       </Row>
       <Row className="btn-position">
         <Link to={`/listings/edit/${room.id}`} className="btn-spacing btn btn-primary" >Edit Listing</Link>
-        <Link to={`/messages/${props.user_id}`} className="btn-spacing btn btn-primary" >View Messages</Link>
+        <Link to={`/messages`} className="btn-spacing btn btn-primary" >View Messages</Link>
       </Row>
     </Container>
   ))

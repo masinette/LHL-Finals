@@ -76,7 +76,7 @@ export default function RoommatesItem(props) {
       <Container fluid className="oneCard" onClick={() => redirect(props.id)}>
         <Row > 
          {/*  <Col >  */}
-            <Card className="text-center">
+            <Card className="text-center rmaShadow">
               <Card.Header>{props.name}</Card.Header>
               <Card.Body>
                 <div className="roommatesSomethingAll">
