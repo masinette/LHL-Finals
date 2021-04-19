@@ -7,13 +7,14 @@ import UniqueMessage from './UniqueMessage'
 
 export default function ThreadListItem(props) {
   const history = useHistory();
-  console.log("Props in Thread", props.thread)
+  //console.log("Props in Thread", props.thread)
+ 
 
   //applicant_id serves as one stable reference for the thread. it is the recipient of the first email
   //This establish will be the next recipient. first message sender = !applicant
   let writeTo = null
-  if (parseInt(props.userLogged.id) === props.thread[0].applicant_id){
-    console.log("Terend-tu?", props.thread[0].sender_id)
+  if (parseInt(props.userLogged) === props.thread[0].applicant_id){
+    //console.log("Terend-tu?", props.thread[0].sender_id)
     writeTo = props.thread[0].sender_id
   } else {
     writeTo = props.thread[0].receiver_id
@@ -24,7 +25,7 @@ export default function ThreadListItem(props) {
   //this function is a workaround for a bug in the db, I cheat the URL which are the params of Convo
   const handleOnClick = (e) => {
     e.preventDefault()
-    console.log("MATCH", writeTo, props.thread[0].applicant_id)
+    //console.log("MATCH", writeTo, props.thread[0].applicant_id)
     const destinationUser = writeTo;
     const firstDestination = props.thread[0].applicant_id
     if (destinationUser === firstDestination){
@@ -34,7 +35,7 @@ export default function ThreadListItem(props) {
       history.push(`/messages/${props.userLogged}/${firstDestination}`)
     }
   }
-  
+  //console.log("WriteTo", writeTo)
   return (
     <section>
       <Container fluid onClick={(e) => handleOnClick(e)}>
