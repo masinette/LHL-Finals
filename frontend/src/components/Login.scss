@@ -1,0 +1,27 @@
+.login {
+  &-title {
+    margin-top: 2.5em;
+  }
+
+  &__container {
+    display: flex;
+    width: 75%;
+    margin: 1em auto;
+
+    &-form {
+      width: 40%;
+      margin: 4em auto auto;
+      border-radius: 10px;
+      box-shadow: 0 8px 16px 0 rgba(0,0,0,0.15);
+    }
+    &-form:hover {
+      box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);      
+    }
+
+    &-image {
+      width:  30%;
+      margin: auto;
+    }
+  }
+
+}
