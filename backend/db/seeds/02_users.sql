@@ -8,7 +8,7 @@ VALUES
     ('Julie', 'Leclerc','I wish to move to Montreal. Man braid fingerstache ethical hashtag vinyl jianbing wolf godard distillery waistcoat echo park everyday carry. Mumblecore adaptogen scenester bicycle rights freegan. Enamel pin seitan poke before they sold out brunch.', false, 1, '968 durand', 4, 'julec@tralala.com', 'test'),
     ('Greg', 'Trahan','happily retired', true, 2, '999 newman', 4, 'greg@tmail.com', 'test'),
     ('Ginette', 'Smith','happyly retired', true, 1, '569 allard', 4, 'ginette@tmail.com', 'test'),
-    ('Justin', 'Kratt','I would love to help', false, 1, '325 lucerne', 4, 'justin@tralala.com', 'test'),
+    ('Justin', 'Kratt','I would love to help. slow-carb cred cold-pressed offal. Kickstarter tbh slow-carb shabby chic iceland lomo before they sold out polaroid tacos meggings waistcoat trust fund readymade neutra.', false, 1, '325 lucerne', 4, 'justin@tralala.com', 'test'),
     ('Marguerite', 'Westwood','Happily retired. Man braid fingerstache ethical hashtag vinyl jianbing wolf godard distillery waistcoat echo park everyday carry. Mumblecore adaptogen scenester bicycle rights freegan. Enamel pin seitan poke before they sold out brunch.', true, 1, '999 bertrand', 4, 'marge@tmail.com', 'test'),
     ('Lucy', 'Carrier',' I love sharing my passion for the outdoors', true, 1, '444 wilford', 3, 'lucy@mail.com', 'test'),
     ('Tom', 'Graham','searching for nice place', false, 3, '974 5th anvenue', 3, 'tom@tmail.com', 'test'),
@@ -25,7 +25,7 @@ VALUES
     ('Timothy', 'Edward','Looking for some help and company', true, 1, '456 fairlawn', 1, 'tim@tmail.com', 'test'),
     ('Agatha', 'Crackwood','Looking for some help and company.', true, 2, '968 Cranbrooke', 1, 'agatha@tmail.com', 'test'),
     ('Claris', 'Jones','I love travelling. Culture. Food.', true, 3, '968 Cranbrooke', 1, 'cjones@tmail.com', 'test'),
-    ('Ben', 'Lightyear','Currently reinventing my life. Hella iceland intelligentsia four dollar toast pinterest PBR&B. Dolor retro hella locavore farm-to-table lorem banjo offal laboris before they sold out cardigan XOXO non microdosing gastropub. Ad banh mi duis marfa occaecat, taxidermy letterpress craft beer migas hot chicken gentrify adaptogen artisan.', false, 3, '152 Woburn', 1, 'blightyear@tmail.com', 'test'),
+    ('Ben', 'Lightyear','Currently reinventing my life. Hella iceland intelligentsia four dollar toast pinterest PBR&B. Dolor retro hella locavore farm-to-table lorem banjo offal laboris before they sold out cardigan XOXO non microdosing gastropub. Ad banh mi duis marfa occaecat, taxidermy letterpress craft beer migas hot chicken..', false, 3, '152 Woburn', 1, 'blightyear@tmail.com', 'test'),
     ('Frances', 'Bean','I dream about living in Toronto. Cliche taiyaki lomo DIY. Meditation kinfolk pabst paleo bespoke raclette. Cred deserunt kale chips cornhole. Hella direct trade gastropub, velit godard occaecat mollit. Flannel deep v heirloom yuccie copper mug in before they sold out PBR&B echo park etsy.', false, 3, '745 Brookdale', 1, 'frances@tmail.com', 'test'),
     ('Hank', 'Simpson','Looking for a room in the city. Polaroid tilde pok pok, thundercats mustache paleo next level. Chambray skateboard austin stumptown, vaporware neutra banjo DIY bicycle rights. Bushwick chicharrones pickled, crucifix man braid shabby chic pork belly meditation cornhole', false, 1, '968 Melrose', 1, 'hank@tmail.com', 'test');
     
