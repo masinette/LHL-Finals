@@ -73,7 +73,7 @@ const HomeCityCards = styled.div`
           <Button variant="primary" name="rental" type="submit" onClick={handleRental}>Look for a rental</Button>
         </Col>
         <Col xs={6} md={4}>
-          <Button variant="primary" name="renter" type="submit" onClick={handleRenter}>Look for a roomate</Button>
+          <Button variant="primary" name="renter" type="submit" onClick={handleRenter}>Look for a roommate</Button>
         </Col>
       </Row>
 
