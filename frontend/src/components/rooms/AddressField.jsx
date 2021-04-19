@@ -11,23 +11,26 @@ export default function AddressField(props) {
   // const [coordinates, setCoordinates] = useState({lat: null, lng: null});
 
   // async/await
-  const handleSelect = async value => {
-    const results = await geocodeByAddress(value);
-    const latLng = await getLatLng(results[0]);
+  const handleSelect = async e => {
+    const value = e.target.value;
+    console.log(value);
+    // const results = await geocodeByAddress(value);
+    // const latLng = await getLatLng(results[0]);
     props.setFormData({ ...props.formData,
-      latitude: latLng.lat,
-      longitude: latLng.lng,
+      // latitude: latLng.lat,
+      // longitude: latLng.lng,
       address: value
     });
   }
 
-  // handle change funct
-  const handleChange = value => {
-    props.setFormData({ ...props.formData,
-      address: value
-    });
+  // // handle change funct
+  // const handleChange = value => {
+  //   props.setFormData({ ...props.formData,
+  //     address: value
+  //   });
     
-  }
+  // }
+
 
   const searchOptions = {
     types: ["address"],
@@ -36,14 +39,26 @@ export default function AddressField(props) {
 
   return (
     <>
-      {/* <LoadScript
+      <LoadScript
         googleMapsApiKey={API_KEY}
-        libraries={"places"}
+        libraries={["places"]}
       >
-        <StandaloneSearchBox>
-        </StandaloneSearchBox>
-       */}
-      <PlacesAutocomplete
+        <Form.Group>
+          <Form.Label>Address</Form.Label>
+          <StandaloneSearchBox>
+            <Form.Control
+              type="text"
+              placeholder="Please enter an address"
+              onChange={props.handleInput}
+              onSelect={handleSelect}
+              name="address"
+              value={props.formData.address}
+              autoComplete="off"
+            />
+          </StandaloneSearchBox>
+          </Form.Group>
+      
+      {/* <PlacesAutocomplete
         value={props.formData.address}
         onChange={handleChange}
         onSelect={handleSelect}
@@ -69,8 +84,8 @@ export default function AddressField(props) {
             </div>
           </div>
         )}
-      </PlacesAutocomplete>
-      {/* </LoadScript> */}
+      </PlacesAutocomplete> */}
+      </LoadScript>
     </>
   )
 }

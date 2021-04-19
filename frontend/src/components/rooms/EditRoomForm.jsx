@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Form, Button } from "react-bootstrap";
-import { LoadScript } from "@react-google-maps/api"
+import { Link } from "react-router-dom";
 
 import TitleField from "./TitleField";
 import DescriptionField from "./DescriptionField";
@@ -9,6 +9,8 @@ import SizePriceField from "./SizePriceField";
 import DatesField from "./DatesField";
 import PropertiesCheckbox from "./PropertiesCheckbox";
 import UploadButton from "./UploadButton";
+import "./NewRoomForm.scss"
+
 import axios from "axios";
 import { useHistory, useParams } from "react-router";
 
@@ -76,18 +78,25 @@ export default function EditRoomForm(props) {
     })
   }
 
+  const handleCancel = () => {
+    history.push("/users");
+  }
+
   return (
     <>
       <div className="form__card">
-        <Form onSubmit={handleSubmit} >
+        <Form onSubmit={handleSubmit} className="form-card" >
           <TitleField handleInput={handleInput} formData={formData} />
           <DescriptionField handleInput={handleInput} formData={formData} />
-          {/* <AddressField handleInput={handleInput} setFormData={setFormData} formData={formData} />  */}
+          <AddressField handleInput={handleInput} setFormData={setFormData} formData={formData} /> 
           <SizePriceField handleInput={handleInput} formData={formData} />
           <DatesField handleInput={handleInput} formData={formData} />
           <PropertiesCheckbox handleInput={handleInput} formData={formData} />
-          <UploadButton />
+          <div>
+            <UploadButton />
+          </div>
           <Button variant="primary" type="submit" >Update Room</Button>
+          <Button onClick={handleCancel} variant="secondary" >Cancel</Button>
         </Form>
       </div>
     </>

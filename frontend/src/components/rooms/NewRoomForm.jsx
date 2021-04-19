@@ -1,21 +1,23 @@
 import React, { useState, useContext, useEffect } from "react";
 import { Form, Button } from "react-bootstrap";
 import axios from "axios";
-import { useHistory } from "react-router";
+import { useHistory } from "react-router"
 
 import TitleField from "./TitleField";
 import DescriptionField from "./DescriptionField";
-// import AddressField from "./AddressField";
+import AddressField from "./AddressField";
 import SizePriceField from "./SizePriceField";
 import DatesField from "./DatesField";
 import PropertiesCheckbox from "./PropertiesCheckbox";
 import UploadButton from "./UploadButton";
+import "./NewRoomForm.scss"
 
 import { UserContext } from "../../UserContext";
 
 
 export default function NewRoomForm(props) {
   const {user, setUser} = useContext(UserContext)
+  const history = useHistory()
 
   const [formData, setFormData] = useState({
     title: "",
@@ -61,18 +63,27 @@ export default function NewRoomForm(props) {
     })
   }
 
+  const handleCancel = () => {
+    history.push("/users");
+  }
+
   return (
     <>
       <div className="form__card" >
-        <Form onSubmit={handleSubmit} id="form-new" >
+        <Form onSubmit={handleSubmit} className="form-card" >
           <TitleField handleInput={handleInput} formData={formData} />
           <DescriptionField handleInput={handleInput} formData={formData} />
-          {/* <AddressField handleInput={handleInput} setFormData={setFormData} formData={formData} />  */}
+          <AddressField handleInput={handleInput} setFormData={setFormData} formData={formData} /> 
           <SizePriceField handleInput={handleInput} formData={formData} />
           <DatesField handleInput={handleInput} formData={formData} />
           <PropertiesCheckbox handleInput={handleInput} formData={formData} />
+          <div>
           <UploadButton />
-          <Button variant="primary" type="submit" >Create Room</Button>
+          </div>
+          <div className="btn-pos" >
+            <Button className="room-btn-spacing" variant="primary" type="submit" >Create Room</Button>
+            <Button className="room-btn-spacing" onClick={handleCancel} variant="secondary" >Cancel</Button>
+          </div>
         </Form>
       </div>
     </>
