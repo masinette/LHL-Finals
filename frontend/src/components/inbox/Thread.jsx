@@ -75,33 +75,26 @@ export default function ThreadListItem(props) {
       showThread && <Container fluid onClick={(e) => handleOnClick(e)}>
         <Row> 
           <Col >
-            <Card className="text-center">
-              <Card.Header></Card.Header>
-              <Card.Body>
-                <Card.Title>{props.senderId}</Card.Title>
-                <Card.Text>
-                  <ThreadInfo recipientUser = {writeTo ? props.users[writeTo-1] : props.users[2]}/>
-                  {props.thread.map((message, index) => {
-                    return (
-                        <UniqueMessage
-                        key={index}
-                        sender={message.sender_id}
-                        receiver = {message.receiver_id}
-                        message = {message.message}
-                        sentDate = {message.sentdate}
-                        applicant = {message.applicant_id}
-                        room = {message.room_id}
-                        inboxUser = {props.userLogged.id}
-                        recipient = {writeTo}
-                        //onClick={handleOnClick}
-                        />
-                    )
-
-                  })}
-                </Card.Text>
-              </Card.Body>
-              <Card.Footer className="text-muted">On{/*  {dateFormatted(props.sentDate)} */}</Card.Footer>
-            </Card>
+            <Card.Text className="thread">
+              <ThreadInfo  recipientUser = {writeTo ? props.users[writeTo-1] : props.users[2]}/>
+              <div className="threadMessages">
+                {props.thread.map((message, index) => {
+                  return (
+                    <UniqueMessage
+                    key={index}
+                    sender={message.sender_id}
+                    receiver = {message.receiver_id}
+                    message = {message.message}
+                    sentDate = {message.sentdate}
+                    applicant = {message.applicant_id}
+                    room = {message.room_id}
+                    inboxUser = {props.userLogged.id}
+                    recipient = {writeTo}
+                    />
+                  )
+                })}
+              </div>
+            </Card.Text>
           </Col>
         </Row>
       </Container>

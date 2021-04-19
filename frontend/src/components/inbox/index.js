@@ -155,7 +155,7 @@ export default function Inbox(props) {
     <section>
       {user === "empty" && history.push("/login")}
       {user !== "empty" && 
-        <div className="allThreads">allo
+        <div/*  className="allThreads" */>
           {threads.map((thread, index) => {
             return (
               <Thread

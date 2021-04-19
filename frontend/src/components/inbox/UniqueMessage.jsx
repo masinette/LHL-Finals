@@ -31,7 +31,7 @@ export default function UniqueMessage(props) {
           <Card className="text-center">
             <Card.Header></Card.Header>
             <Card.Body>
-              <Card.Title>{props.senderId} ALLO uniqueMessage</Card.Title>
+              <Card.Title>{props.senderId}</Card.Title>
               <Card.Text>
                 {props.message}
               </Card.Text>
