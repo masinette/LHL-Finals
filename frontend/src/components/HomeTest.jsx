@@ -41,18 +41,22 @@ function HomeTest(props) {
     history.push('/search/rooms')
   }
 
-const HomeCityCards = styled.div`
-  margin-left: 100px;
-  margin-right: 100px;
-
-`
-
+  const HomeCityCards = styled.div`
+    margin-left: 100px;
+    margin-right: 100px;
+  `
+  const HomeTitle = styled.h1`
+    color: #013220;
+  `
 
   return (
     <>
     <Jumbotron  style={{ backgroundImage: `url('https://ychef.files.bbci.co.uk/1600x900/p08382zx.webp')`, backgroundPosition: 'top', minHeight: '300px' }}>
-      <h1>Welcome to </h1>
-      <h1>LivTogether!</h1>
+      <HomeTitle>
+        <h1>Welcome to </h1>
+        <h1>LivTogether!</h1>
+      </HomeTitle>
+
       {/* <p>
         Connecting Seniors and youth for housing
         and companionship. LivTogther, because we're better together. 
