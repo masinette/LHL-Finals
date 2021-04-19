@@ -1,8 +1,10 @@
 import  React, { useState, useEffect, useRef, useContext } from "react";
 import { useHistory } from 'react-router-dom';
-import { Form, Button, Card, Alert } from 'react-bootstrap';
+import { Form, Button, Card, Alert, Image } from 'react-bootstrap';
 import axios from 'axios';
 import { UserContext } from '../UserContext'
+import loginImage from "../images/graphics/LivTogether-login.png"
+import "./Login.scss"
 
 function LoginTest(props) {
 
@@ -65,40 +67,46 @@ console.log("AUTH",userAuthenticated(userInfo))
 
   return (
     <div className="contact">
-      <div className="container">
-        <h1>Login Page</h1>
+      <div className="container ">
+        <h1 className="login-title">Login Page</h1>
       </div>
+      <div className="login__container" >
+        <Card className="login__container-form">
+          <Card.Body>
+            <Form onSubmit={handleSubmit} >
+            {/* <Form onSubmit={(event) =>handleSubmitUser(userLogin)}   > */}
 
-<Card>
-  <Card.Body>
-    <Form onSubmit={handleSubmit} >
-    {/* <Form onSubmit={(event) =>handleSubmitUser(userLogin)}   > */}
+              <Form.Group id="email">
+                <Form.Label>Email</Form.Label>
+                <Form.Control className="login-form" type="email" onChange={handleChange} value={userLogin.email} name="email" required />
+              </Form.Group>
 
-      <Form.Group id="email">
-        <Form.Label>Email</Form.Label>
-        <Form.Control className="login-form" type="email" onChange={handleChange} value={userLogin.email} name="email" required />
-      </Form.Group>
+              <Form.Group id="password">
+                <Form.Label>Password</Form.Label> 
+                <Form.Control className="login-form" type="password" onChange={handleChange} value={userLogin.password} name="password" required />
+              </Form.Group>
 
-      <Form.Group id="password">
-        <Form.Label>Password</Form.Label> 
-        <Form.Control className="login-form" type="password" onChange={handleChange} value={userLogin.password} name="password" required />
-      </Form.Group>
+            <Form.Text className="text-muted">
+              Don't have an account? 
+              <a href="signup">Register here!</a>
+            </Form.Text>
 
-    <Form.Text className="text-muted">
-      Don't have an account? 
-      <a href="signup">Register here!</a>
-    </Form.Text>
+            <Button type="submit">
+              Log in 
+            </Button>
 
-    <Button type="submit">
-      Log in 
-    </Button>
+            </Form>
 
-    </Form>
+            {/* <h1>Logged in as: {user}</h1> */}
 
-    {/* <h1>Logged in as: {user}</h1> */}
-
-  </Card.Body>
-</Card>
+          </Card.Body>
+        </Card>
+        <Image
+          src={loginImage}
+          alt="Login graphic"
+          className="login__container-image"
+        />
+      </div>
     </div>
   );
 }
