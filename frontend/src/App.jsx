@@ -4,11 +4,11 @@ import './App.scss';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import useApplicationData from "./hooks/useApplicationData";
 
-import Messages from "./components/messages/ThreadList";
 import RoommatesByCity from "./components/roommates/RoommatesByCity";
 import RoommateCard from "./components/roommates/RoommateCard";
 import RoomsByCity from "./components/rooms/RoomsByCity";
 import RoomCard from "./components/rooms/RoomCard";
+import Inbox from './components/inbox';
 
 
 import { BrowserRouter as Router, Route, Switch, useHistory } from "react-router-dom";
@@ -55,7 +55,8 @@ const App = () => {
             <Route path="/signup" exact component={() => <SignUp users={state.users} interests={state.surveyInterests}/>} />
             <Route path="/search/roommates" exact component={() => <RoommatesByCity users={state.users} cities={state.cities}/>} /> 
             <Route path="/search/roommates/:user_id" exact component={() => <RoommateCard users={state.users} cities={state.cities}/>} /> 
-            <Route path="/messages/" exact component={() => <ThreadList users={state.users} messages={state.messages}/>} /> 
+            <Route path="/messages/" exact component={() => <Inbox users={state.users} messages={state.messages}/>} /> 
+         {/*    <Route path="/messages/" exact component={() => <ThreadList users={state.users} messages={state.messages}/>} />  */}
             <Route path="/messages/:user_id/:recipient_id" exact component={() => <Convo users={state.users} messages={state.messages}/>} /> 
 
 
