@@ -14,19 +14,23 @@
   width:75%;
   height: 10%;
 
-  padding: 25px; 
+  padding: 25px;
+   
 }
 .threadButton {
-  display: inline-block;
-  background: #000;
-  border-radius: 4px;
+/*   display: inline-block; */
+  background: rgb(187, 186, 186);
+  border-top-right-radius: 25px;
+  border-bottom-right-radius: 25px;
+  border-color: rgb(187, 186, 186);
   font-family: "arial-black";
   font-size: 14px;
   color: #FFF;
-  padding: 8px 12px;
   cursor: pointer;  
 
+
 }
+
 .recipientCard {
   margin: 25px;
 }

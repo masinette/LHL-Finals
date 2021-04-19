@@ -59,6 +59,7 @@ export default function ThreadListItem(props) {
                   )
                 })}
               </div>
+              <Button variant="secondary" className="threadButton">Reply</Button>
             </Card.Text>
           </Col>
         </Row>
