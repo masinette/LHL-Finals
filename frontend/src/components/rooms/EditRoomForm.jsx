@@ -62,7 +62,7 @@ export default function EditRoomForm(props) {
     })
       .then((res) => {
         console.log(res)
-        history.push(`/search/room/${roomId}`);
+        history.push(`/search/rooms/${roomId}`);
       })
     const target = event.target
     console.log(target.name);
