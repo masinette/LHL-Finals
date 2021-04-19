@@ -12,7 +12,7 @@ export default function Inbox(props) {
   const [threads, setThreads] = useState([]);
   const {user, setUser} = useContext(UserContext)
   const history = useHistory()
-  let writeTo = null
+  
   //console.log("J'ai tu un id??", user_id, "Pis des PROPS?", props, "THREAD LISt")
   //console.log("LOCATION", useLocation())
 
@@ -20,6 +20,8 @@ export default function Inbox(props) {
   if (!user.id) {
     history.push("/login");
   }
+
+
 
   const formatConvo = (messages, is_owner)  => {
     //console.log(" 1- KEYS", messages)
@@ -159,6 +161,8 @@ export default function Inbox(props) {
               <Thread
                 key={index}
                 thread={thread}
+                userLogged={user.id}
+                users={props.users}
               />
             )
           })}
