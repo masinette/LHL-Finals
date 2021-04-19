@@ -1,12 +1,21 @@
 import React, { useEffect, useState } from "react";
 import { Button, Col, Container, Row, Form } from "react-bootstrap";
 import { Image, Transformation } from "cloudinary-react";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 
 import "./ProfileInquiryConvos.scss"
 
 export default function ProfileInquiryConvos(props) {
   console.log(props.user_id)
+  const history = useHistory();
+
+
+  const noInquiries = (
+    <div className="profile__card" >
+      No current Inquiries. View available rooms 
+      <span className="push-rooms" onClick={ () => history.push("/search/rooms") } > here.</span>
+    </div>
+  )
 
   const rooms = props.rooms;
   console.log(rooms)
@@ -42,7 +51,8 @@ export default function ProfileInquiryConvos(props) {
   return (
     <>
     <div  >
-      {roomList}
+      {roomList.length === 0 && noInquiries }
+      {roomList.length > 0 && roomList}
 
     </div>
     </>

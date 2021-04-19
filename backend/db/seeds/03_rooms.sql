@@ -12,7 +12,7 @@ rooms( user_id, title, description, latitude, longitude, room_size, start_date, 
 VALUES
   (6, 'room for rent', 'cool room with 4 walls and a ceiling', 45.436824, -73.625063, 500, '2020-03-31', '2021-09-30', 450, false, true, '999 newman', 4),
   (8, 'pretty room in historic Montreal', 'comfy room with a view', 45.502972, -73.696210, 500, '2021-03-31', '2022-09-30', 400, false, true, '999 bertrand', 4),
-  (17, 'large room ', 'very large and with another room available for manual work or office work', 51.0447, -114.0719, 400, '2021-04-30', '2022-09-30', 400, true, true, '1330 8 St SW', 2), 
-  (20, 'large room ', 'very large and with another room available for manual work or office work', 51.0447, -114.0719, 400, '2021-05-30', '2024-09-30', 600, true, true, '315 10 Avenue', 2),
+  (17, 'large room ', 'very large and with another room available for manual work or office work', 51.0447, -114.0719, 400, '2021-04-30', '2022-09-30', 400, true, true, '1330 8 St SW', 3), 
+  (20, 'large room ', 'very large and with another room available for manual work or office work', 49.260693, -123.099867, 400, '2021-05-30', '2024-09-30', 600, true, true, '315 10 Avenue', 2),
   (20, 'Low cost housing', 'Great location in the heart of Toronto, perfect for students', 43.663768, -79.404285, 150, '2021-08-30', '2024-09-30', 100, true, true, '206 Robert Street', 1);
 

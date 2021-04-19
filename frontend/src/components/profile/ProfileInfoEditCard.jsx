@@ -1,7 +1,7 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { Col, Container, Row, Form, Button, Card, FormCheck } from "react-bootstrap";
-import { Link } from "react-router-dom";
+import AddressField from "../rooms/AddressField"
 
 import "./ProfileInfoCard.scss"
 
@@ -124,12 +124,13 @@ export default function ProfileInfoEditCard(props) {
           <Row className="content-spacing">
             <div className="profile__card-label col-4" >Address:</div>
             <Col>
-              <Form.Control 
+              {/* <Form.Control 
                 type="text"
                 name="address"
                 value={userData.address}
                 onChange={handleChange}
-              />
+              /> */}
+              <AddressField formData={userData} setFormData={setUserData} handleInput={handleChange} />
             </Col>
           </Row>
           <Row className="content-spacing">

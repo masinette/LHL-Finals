@@ -95,8 +95,10 @@ export default function EditRoomForm(props) {
           <div>
             <UploadButton />
           </div>
-          <Button variant="primary" type="submit" >Update Room</Button>
-          <Button onClick={handleCancel} variant="secondary" >Cancel</Button>
+          <div className="btn-pos" >
+            <Button className="room-btn-spacing" variant="primary" type="submit" >Update Room</Button>
+            <Button className="room-btn-spacing" onClick={handleCancel} variant="secondary" >Cancel</Button>
+          </div>
         </Form>
       </div>
     </>
