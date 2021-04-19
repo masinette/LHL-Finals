@@ -118,7 +118,7 @@ export default function ProfileView(props) {
           <h3>
             My Inquiries
             <span className="right">
-              <Link to={`/messages/${user.id}`} className="btn btn-primary" >View Messages</Link>
+              <Link to={`/messages`} className="btn btn-primary" >View Messages</Link>
             </span>
           </h3>
           <ProfileInquiryConvos user_id={user.id} rooms={rooms} />
