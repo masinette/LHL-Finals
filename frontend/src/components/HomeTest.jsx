@@ -3,6 +3,8 @@ import { Container, Jumbotron, Button, Row, Col, ToggleButtonGroup, ToggleButton
 import CityCards from "./CityCards";
 import { useHistory } from 'react-router-dom';
 import styled from 'styled-components';
+import heroImage from "../images/graphics/LivTogether-login.png"
+import "./HomeTest.scss"
 
 
 
@@ -48,10 +50,17 @@ function HomeTest(props) {
   const HomeTitle = styled.h1`
     color: #013220;
   `
+  const hero = "../images/livtogether-hero.webp"
 
   return (
     <>
-    <Jumbotron  style={{ backgroundImage: `url('https://ychef.files.bbci.co.uk/1600x900/p08382zx.webp')`, backgroundPosition: 'top', minHeight: '300px' }}>
+    <Jumbotron  style={{ 
+      // backgroundImage: `url(${hero})`, backgroundPosition: 'top', minHeight: '300px' 
+        //       <Image
+        //   src={hero}
+        //   alt="Young man playing table football with older woman"
+        // />
+      }}>
       <HomeTitle>
         <h1>Welcome to </h1>
         <h1>LivTogether!</h1>
