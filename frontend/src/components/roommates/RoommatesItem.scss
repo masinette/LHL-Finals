@@ -1,3 +1,47 @@
-.roommatesSomething {
+.roommatesSomethingAll {
   display: flex;
 }
+.roommatesSomethingNoPicture {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.rmaText{
+  height:50%;
+  padding: 2%;
+}
+.rmaInterests{
+  height:50%;
+  font-family: Arial, Helvetica, sans-serif;
+  padding: 2%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.rmaCommonInterestsText {
+  font-size: 100%
+
+}
+
+.rmaShadow{
+  box-shadow: 0 0 100px #9ECAED
+}
+.bottom{
+  position:absolute; 
+  bottom:-1em;
+
+}
+
+.rmaPill {
+  font-size: 100%
+}
+/* .oneInterest {
+  box-shadow: 10px -10px 5px  rgba(0,0,0,0.6);
+  -moz-box-shadow: 10px -10px 5px  rgba(0,0,0,0.6);
+  -webkit-box-shadow: 10px -10px 5px  rgba(0,0,0,0.6);
+  -o-box-shadow: 10px -10px 5px  rgba(0,0,0,0.6);
+  border-radius:25px;
+
+} */
+

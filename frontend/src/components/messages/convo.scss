@@ -22,13 +22,19 @@
 
 }
 
-.convoRecipientCard {
+/* .convoRecipientCard {
   border:none;
   height:500px;
 
-}
+} */
 
 .convoCardContent{
   background-color: #F1F1F1;
   
+}
+.crop-container {
+ /*  width: 200px; */
+  height: 80%;
+  overflow: hidden;
+
 }

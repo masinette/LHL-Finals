@@ -13,6 +13,10 @@ export default function RoomCard(props) {
   const history = useHistory();
   const {user, setUser} = useContext(UserContext)
 
+/*   if (!user.id) {
+    history.push("/login");
+  } */
+
   const roomSearch = props.rooms.filter(rooms => {
     if (room.id === parseInt(room_id)){
       return room
@@ -53,6 +57,7 @@ export default function RoomCard(props) {
       .then(()=> history.push("/search/rooms"))
       .catch((err) => console.log(err))
   }
+  console.log("INSIDE ROOM CARD", props.users[roomDetails.user_id-1])
 
   const convertDate = (dateString) => {
     const date = dateString.slice(0,10);
@@ -146,7 +151,7 @@ export default function RoomCard(props) {
         {/* -------------------MESSAGE BOX-------------- */}
         <Form onSubmit={handleSubmit}>
           <Form.Group id="message">
-            <Form.Label>Send me a message:</Form.Label>
+            <Form.Label>Send {props.users[roomDetails.user_id-1].firstname} a message:</Form.Label>
             <Form.Control as="textarea" type="text" onChange={handleChange} value={userMessage.message} name="message" required />
           </Form.Group>
           <Button type="submit" variant="outline-success" size="lg" type="text" placeholder="Large text">Send</Button>

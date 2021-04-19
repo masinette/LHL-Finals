@@ -108,25 +108,16 @@ const Convo = (props) => {
           </div>
           
           <div className="convoMessages" >
-            <div className="messagesCard"> 
+        {/*     <div className="messagesCard">  */}
               <ConvoThumbnail
                 recipientUser = {props.users[destination -1]}
               />
-            </div>
+        {/*     </div> */}
             <div className="messagesText">
              {thread} 
             </div>
           </div>
-{/*           <div className="convoMessages" >
-            <div className="messagesText">
-             {thread} 
-            </div>
-            <div className="messagesCard"> 
-              <ConvoThumbnail
-                recipientUser = {props.users[destination -1]}
-              />
-            </div>
-          </div> */}
+
         </div>
       )
       }

@@ -92,11 +92,11 @@ export default function ProfileView(props) {
       <div className="profile">
         <div className="profile__info" >
           <ProfileImage user_id={user.id} />
-          <div>
+          <div className="profile__card-spacing">
             <h3>My Interests</h3>
             <ProfileInterests user_id={user.id} />
           </div>
-          <div>
+          <div className="profile__card-spacing">
             <h3>My Details</h3>
               { mode === SHOW && <ProfileInfoCard user={user === "empty" ? "" : user} onEdit={() => transition(EDIT)} />}
               { mode === EDIT && <ProfileInfoEditCard setUser={setUser} user={user === "empty" ? "" : user} onSubmit={() => transition(SHOW)} onCancel={() => back()} />}

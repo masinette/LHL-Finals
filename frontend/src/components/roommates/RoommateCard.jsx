@@ -107,10 +107,11 @@ export default function RoommateCard(props) {
           </div>
 
           <div name="contact">
-            <ContactRoommates>
+            <ContactRoommates
               recipient ={roommate.id}
+              recipientFirstName ={roommate.firstname}
               applicant ={user_id}
-            </ContactRoommates>
+            />
           </div>
             
         </div>
