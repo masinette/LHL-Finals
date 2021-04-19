@@ -1,10 +1,9 @@
 import React from "react";
-import { CardDeck, Card, Button, Col, Row, Container, Image } from 'react-bootstrap';
+import { Card, Container, Image } from 'react-bootstrap';
 
 
 export default function ThreadInfo(props) {
   console.log("PROPS THREAD Info", props)
-
 
   return (
     <div>

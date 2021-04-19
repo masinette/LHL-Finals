@@ -1,11 +1,3 @@
-/* * {
-  box-sizing: border-box;
-} */
-
-/* .allThreads{
-  display: inline;
-} */
-
 .thread {
   display:flex;
   border: solid 1px #555;
@@ -25,9 +17,6 @@
   padding: 25px; 
 }
 .threadButton {
-/*   margin: 20px;
-  height:40px;
-  width: 85%; */
   display: inline-block;
   background: #000;
   border-radius: 4px;
@@ -39,7 +28,6 @@
 
 }
 .recipientCard {
-
   margin: 25px;
 }
 
