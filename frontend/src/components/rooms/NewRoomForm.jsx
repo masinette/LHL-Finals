@@ -47,8 +47,9 @@ export default function NewRoomForm(props) {
       data: formData
     })
       .then((res) => {
-        console.log(res)
-        event.target.reset()
+        console.log(res);
+        event.target.reset();
+        history.push("/users");
       })
       .catch(err => console.error("Submit Error: ", err))
   }
@@ -73,6 +74,7 @@ export default function NewRoomForm(props) {
         <Form onSubmit={handleSubmit} className="form-card" >
           <TitleField handleInput={handleInput} formData={formData} />
           <DescriptionField handleInput={handleInput} formData={formData} />
+          <Form.Label>Address</Form.Label>
           <AddressField handleInput={handleInput} setFormData={setFormData} formData={formData} /> 
           <SizePriceField handleInput={handleInput} formData={formData} />
           <DatesField handleInput={handleInput} formData={formData} />

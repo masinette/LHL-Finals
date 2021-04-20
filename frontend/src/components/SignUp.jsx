@@ -207,7 +207,7 @@ function SignUp(props) {
           <div>
             <p> Here at LivTogether, we have a level system. Fostering friendships is always the goal. 
             Please read the options below, and select which level of involvement with which you feel most comfortable. Please note
-            that you may change your selection in the future if you macth with a companion you'd like to adjust for.
+            that you may change your selection in the future if you match with a companion you'd like to adjust for.
             Each level increases in time commitment.</p>
           </div>
             <div className="level-buttons">

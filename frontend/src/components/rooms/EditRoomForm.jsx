@@ -88,6 +88,7 @@ export default function EditRoomForm(props) {
         <Form onSubmit={handleSubmit} className="form-card" >
           <TitleField handleInput={handleInput} formData={formData} />
           <DescriptionField handleInput={handleInput} formData={formData} />
+          <Form.Label>Address</Form.Label>
           <AddressField handleInput={handleInput} setFormData={setFormData} formData={formData} /> 
           <SizePriceField handleInput={handleInput} formData={formData} />
           <DatesField handleInput={handleInput} formData={formData} />

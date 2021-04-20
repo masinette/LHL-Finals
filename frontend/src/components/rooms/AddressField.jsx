@@ -44,7 +44,7 @@ export default function AddressField(props) {
         libraries={["places"]}
       >
         <Form.Group>
-          <Form.Label>Address</Form.Label>
+          {/* <Form.Label>Address</Form.Label> */}
           <StandaloneSearchBox>
             <Form.Control
               type="text"
