@@ -24,9 +24,9 @@ export default function EditProfileForm(props) {
   
   return (
     <>
-      <ProfileImage user_id={user.id} />
+      {/* <ProfileImage user_id={user.id} />
       <ProfileInfoEditCard user={user} />
-      <CreateListingsBtn />
+      <CreateListingsBtn /> */}
     </>
   )
 }
