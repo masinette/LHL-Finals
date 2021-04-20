@@ -34,7 +34,7 @@ const RoomMap = (props) => {
     width: "100%"
   };
   
-  const [defaultCenter, setDefaultCenter] = useState( citiesCoords['Toronto']) 
+  const [defaultCenter, setDefaultCenter] = useState( citiesCoords['Montreal']) 
 
 console.log("PROPS ROOMMAP", props.city)
 console.log("CITYCOORDS", citiesCoords[props.city])
@@ -79,7 +79,7 @@ console.log("CITYCOORDS", citiesCoords[props.city])
       <LoadScript googleMapsApiKey={API_KEY}>
         <GoogleMap
             mapContainerStyle={mapStyles}
-            zoom={13}
+            zoom={11}
             center={defaultCenter}>
             {
               props.cityRooms.map(item => {
