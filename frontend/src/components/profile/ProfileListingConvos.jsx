@@ -46,7 +46,7 @@ export default function ProfileListingConvos(props) {
       <Row>
         <Col>
           <Image cloudName="Ds3bokefg" publicId={`rooms/${room.id}/r${room.id}_p1.jpg`} >
-            <Transformation width="200" />
+            <Transformation width="200" crop="fill" />
           </Image>
         </Col>
         <Col>
