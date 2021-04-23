@@ -21,13 +21,16 @@ const Convo = (props) => {
   //cheat here, I should pass props from Messages to Convo but using redirect now and don't know how to get out
   const [roomId, setRoomId] = useState(null);
   const [applicantId, setApplicantId] = useState(null);
-  const [destination, setDestination] = useState(20);
+  const [destination, setDestination] = useState(null);
   //const [threadWith, setThreadWith] = useState(null);
   const { user_id, recipient_id } = useParams();
   const citiesArray = ["Toronto", "Vancouver", "Calgary", "Montreal"];
   
   let writeTo = null
   let senderPres = null
+  let userObj = (id) => {
+    return props.users.filter((u) => u.id === id)[0]
+  }
   
 
 
@@ -43,13 +46,15 @@ const Convo = (props) => {
     .then(({
       data
     }) => {
+      console.log("ALLO??")
       if (parseInt(user_id) === data[0].applicant_id) {
         console.log("te rends-tu")
         data[0].sender_id ? setDestination(data[0].sender_id) : setDestination(2)
       } else {
+        console.log("te rends-tu issi")
         setDestination(data[0].applicant_id)
       }
-      //console.log("PIIIIS", typeof(parseInt(user_id)), typeof(data[0].applicant_id), destination)
+      console.log("PIIIIS", parseInt(user_id), data[0].applicant_id, "destination", destination)
       if (parseInt(user_id) === data[0].applicant_id){
         writeTo = data[0].sender_id
       } else {
@@ -61,7 +66,8 @@ const Convo = (props) => {
         if (parseInt(user_id) === data[0].sender_id){
           senderPres = "You Wrote";
         } else {
-          senderPres = `${props.users[writeTo-1].firstname} wrote`
+          senderPres = `${userObj(writeTo)} wrote`
+          console.log("userOBj",userObj(writeTo) )
           //writeTo = thread[0].sender_id
         }
         if (true){
@@ -76,7 +82,7 @@ const Convo = (props) => {
               sentDate = {message.sentdate}
               room = {message.room_id}
               applicant = {message.applicant_id}
-              recipient_name = {props.users[writeTo-1].firstname}
+              recipient_name = {userObj(writeTo).firstname}
               senderPres = {senderPres}
             />
           )
@@ -101,7 +107,7 @@ const Convo = (props) => {
             recipient={destination}
             room={roomId}
             applicant={applicantId}
-            recipient_name={props.users[destination-1].firstname}
+            recipient_name={userObj(destination).firstname}
             placeholder="Hello"
           ><Image className="convoWrite" src="/write.png"/>
           </ReplyForm>
@@ -110,7 +116,7 @@ const Convo = (props) => {
           <div className="convoMessages" >
         {/*     <div className="messagesCard">  */}
               <ConvoThumbnail
-                recipientUser = {props.users[destination -1]}
+                recipientUser = {userObj(destination)}
               />
         {/*     </div> */}
             <div className="messagesText">

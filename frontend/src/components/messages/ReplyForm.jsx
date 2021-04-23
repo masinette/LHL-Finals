@@ -20,7 +20,7 @@ export default function ReplyForm(props) {
   const updateMail = (event) => {
     event.preventDefault()
     setMessageContent(event.target.value)
-    console.log("update", messageContent)
+    //console.log("update", messageContent)
   }
 
   const postData = { 
@@ -29,14 +29,14 @@ export default function ReplyForm(props) {
 
   const handleSubmit = (event) => {
     event.preventDefault()
-    console.log("INSIDE SUBMIT REPLY FORM", postData)
+    //console.log("INSIDE SUBMIT REPLY FORM", postData)
       axios({
         method: 'POST',
         url: '/api/messages',
         data: postData
       })
       .then((response)=> {
-        console.log("RESPONSE",response.data)
+        //console.log("RESPONSE",response.data)
         history.push(`/search/roommates`)
 
       }) 

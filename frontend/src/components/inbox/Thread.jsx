@@ -19,6 +19,7 @@ export default function ThreadListItem(props) {
   } else {
     writeTo = props.thread[0].receiver_id
   }
+  const recipientUser = props.users.filter((u) => u.id === writeTo)[0]
 
 
   //applicant_id serves as one stable reference for the thread. it is the recipient of the first email
@@ -42,13 +43,15 @@ export default function ThreadListItem(props) {
         <Row> 
           <Col >
             <Card.Text className="thread">
-              <ThreadInfo  recipientUser = {writeTo ? props.users[writeTo-1] : props.users[2]}/>
+            <ThreadInfo  recipientUser = {recipientUser}/>
+              {/* <ThreadInfo  recipientUser = {writeTo ? props.users[writeTo-1] : props.users[2]}/> */}
               <div className="threadMessages">
                 {props.thread.map((message, index) => {
+                  const sender = props.users.filter((u) => u.id === message.sender_id)[0]
                   return (
                     <UniqueMessage
                     key={index}
-                    senderFirstName={props.users[message.sender_id-1].firstname}
+                    senderFirstName={sender.firstname}
                     // receiver = {message.receiver_id}
                     message = {message.message}
                     sentDate = {message.sentdate}
