@@ -23,14 +23,14 @@ export default function RoomCard(props) {
     }
   });
 
-
-
+  
   const roomDetails = props.rooms ? props.rooms[room_id-1] : null
-  // const roomDetails = props.rooms[room_id-1]
-
+  //console.log( "roomdetails", roomDetails)
+  
+  const roomOwner = props.users.filter((u) => u.id === roomDetails.user_id)
+  //console.log( "roomOwner", roomOwner[0].firstname)
   
   const [index, setIndex] = useState(0);
-//sender_id, receiver_id, message, room_id, applicant_id
   const sender_id = user.id
   const [userMessage, setUserMessage] = useState(
     { sender_id: user.id, receiver_id: roomDetails?.user_id, message: '', room_id: room_id, applicant_id: roomDetails.user_id }
@@ -43,7 +43,7 @@ export default function RoomCard(props) {
   }
 
   const handleSubmit = (event) => {
-    console.log("INSIDE SUBMIT", userMessage)
+    //console.log("INSIDE SUBMIT", userMessage)
     event.preventDefault()
       axios({
         method: 'POST',
@@ -57,7 +57,7 @@ export default function RoomCard(props) {
       .then(()=> history.push("/search/rooms"))
       .catch((err) => console.log(err))
   }
-  console.log("INSIDE ROOM CARD", props.users[roomDetails.user_id-1])
+ 
 
   const convertDate = (dateString) => {
     const date = dateString.slice(0,10);
@@ -151,7 +151,7 @@ export default function RoomCard(props) {
         {/* -------------------MESSAGE BOX-------------- */}
         <Form onSubmit={handleSubmit}>
           <Form.Group id="message">
-            <Form.Label>Send {props.users[roomDetails.user_id-1].firstname} a message:</Form.Label>
+            <Form.Label>Send {roomOwner[0].firstname} a message:</Form.Label>
             <Form.Control as="textarea" type="text" onChange={handleChange} value={userMessage.message} name="message" required />
           </Form.Group>
           <Button type="submit" variant="outline-success" size="lg" type="text" placeholder="Large text">Send</Button>
