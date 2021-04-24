@@ -5,7 +5,7 @@ import { useHistory } from 'react-router-dom';
 
 export default function UniqueMessage(props) {
   const history = useHistory();
-  console.log("Props in Unique message", props)
+  //console.log("Props in Unique message", props)
 
 
   const dateFormatted = (sqlDate) => {

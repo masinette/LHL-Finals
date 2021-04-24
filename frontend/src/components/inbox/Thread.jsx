@@ -14,7 +14,7 @@ export default function ThreadListItem(props) {
   //This establish will be the next recipient. first message sender = !applicant
   let writeTo = null
   if (parseInt(props.userLogged) === props.thread[0].applicant_id){
-    //console.log("Terend-tu?", props.thread[0].sender_id)
+    console.log("Terend-tu?", props.thread[0].sender_id)
     writeTo = props.thread[0].sender_id
   } else {
     writeTo = props.thread[0].receiver_id
@@ -36,7 +36,7 @@ export default function ThreadListItem(props) {
       history.push(`/messages/${props.userLogged}/${firstDestination}`)
     }
   }
-  //console.log("WriteTo", writeTo)
+  console.log("WriteTo", writeTo)
   return (
     <section>
       <Container fluid onClick={(e) => handleOnClick(e)}>

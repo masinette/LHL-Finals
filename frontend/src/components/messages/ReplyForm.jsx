@@ -36,9 +36,13 @@ export default function ReplyForm(props) {
         data: postData
       })
       .then((response)=> {
-        //console.log("RESPONSE",response.data)
-        history.push(`/search/roommates`)
-
+        console.log("RESPONSE",response.data, user)
+        if (user.is_owner){
+          console.log("Allo??")
+          history.push(`/search/roommates`)
+        } else {
+          history.push(`/search/rooms`)
+        }
       }) 
       .then()
       .catch((err) => console.log(err))

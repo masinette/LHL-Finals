@@ -20,28 +20,49 @@ export default function Inbox(props) {
   }
 
   const formatConvo = (messages, is_owner)  => {
-    //console.log(" 1- KEYS", messages)
-    const firstRecipientsArray = messages.reduce(function(firstRecipients, item) {
-      firstRecipients.push(item.applicant_id);
-      return firstRecipients;
+    console.log(" 1- KEYS", messages)
+    //const otherPersons = []
+    const firstRecipientsArray = []
+    messages.map(function(m, item) {
+      if(m.sender_id !== user.id) {
+        firstRecipientsArray.push(m.sender_id)
+      }
+      if(m.receiver_id !== user.id) {
+        firstRecipientsArray.push(m.receiver_id)
+      }
     }, [])
-    //console.log("2- firstRecipients", firstRecipientsArray)
+    // const firstRecipientsArray = messages.reduce(function(firstRecipients, item) {
+    //   firstRecipients.push(item.applicant_id);
+    //   return firstRecipients;
+    // }, [])
+
+    console.log("2- firstRecipients", firstRecipientsArray)
     const firstRecipientsCleaned = [];
     for(var value of firstRecipientsArray){
       if(firstRecipientsCleaned.indexOf(value) === -1){
           firstRecipientsCleaned.push(value);
       }
     }
-    //console.log("3- recipientClean", firstRecipientsCleaned)
+    console.log("3- recipientClean", firstRecipientsCleaned)
     const splitByConvos = []
       for (let i = 0; i < firstRecipientsCleaned.length; i++){
         splitByConvos.push([])
         for (let j = 0; j < messages.length; j++){
-          if(messages[j].applicant_id === firstRecipientsCleaned[i]){
+          if(messages[j].sender_id === firstRecipientsCleaned[i] || messages[j].receiver_id === firstRecipientsCleaned[i]){
             splitByConvos[i].push(messages[j])
           }
         }
       }
+    // const splitByConvos = []
+    //   for (let i = 0; i < firstRecipientsCleaned.length; i++){
+    //     splitByConvos.push([])
+    //     for (let j = 0; j < messages.length; j++){
+    //       if(messages[j].applicant_id === firstRecipientsCleaned[i]){
+    //         splitByConvos[i].push(messages[j])
+    //       }
+    //     }
+    //   }
+    console.log("4- splitByConvos", splitByConvos)
     return splitByConvos
   }
 
@@ -56,6 +77,7 @@ export default function Inbox(props) {
       data
     }) => {
       const convos = formatConvo(data)
+      console.log("CONVOS", convos)
       setThreads(convos)
       setLoading(false);
     })
